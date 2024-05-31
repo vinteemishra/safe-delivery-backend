@@ -1,0 +1,6 @@
+{
+    "key": "whatsApp_number_form_hint",
+    "content": "A valid whatsApp number consitst of a + sign, a landcode number, and a phonenumber ie. +45 11223344",
+    "langId": "",
+    "_table": "screens"
+}

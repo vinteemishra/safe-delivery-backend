@@ -1,0 +1,6 @@
+{
+  "key": "lp:user_already_exists_error",
+  "content": "A user by this name already exists on device",
+  "langId": "",
+  "_table": "screens"
+}

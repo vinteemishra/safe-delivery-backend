@@ -1,0 +1,15 @@
+{
+  "version": 2323,
+  "icon": "icon2",
+  "description": "Mixing alcohol-based handrub",
+  "chapters": [
+    {
+      "description": "Some chapter",
+      "content": "<h1>Usage</h1> dshsdfsdfjksdhf <h1>Practical information"
+    },
+    {
+      "description": "Some other chapter",
+      "content": "<h1>Other</h1> dshsdfsdfjksdhf <h1>Practical information"
+    }
+  ]
+}

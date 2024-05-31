@@ -1,0 +1,6 @@
+{
+  "key": "lp:logout_offline_user_message",
+  "content": "This user will be removed. All progress will be deleted.",
+  "langId": "",
+  "_table": "screens"
+}

@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "languages": [
+    {
+      "id": "xxxa77c15c1-7aa6-47a2-5b62-425a1d2d384",
+      "description": "Global English",
+      "version": 42,
+      "href": "/content/xxxa77c15c1-7aa6-47a2-5b62-425a1d2d384/bundle.json"
+    },
+    {
+      "id": "ayy77c15c1-7aa6-47a2-5b62-425a1d4d384",
+      "description": "French",
+      "version": 34,
+      "href": "/content/ayy77c15c1-7aa6-47a2-5b62-425a1d4d384/bundle.json"
+    }
+  ]
+}

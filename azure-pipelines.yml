@@ -1,0 +1,35 @@
+# Node.js with webpack
+# Build a Node.js project using the webpack CLI.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+
+trigger:
+- build-failure-fix
+
+pool:
+  vmImage: 'windows-latest'
+
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '10.x'
+  displayName: 'Install Node.js'
+
+- script: |
+    npm install -g webpack webpack-cli --save-dev
+    npm install
+    npm run build
+    npx webpack --config webpack.config.js
+  displayName: 'npm install, run webpack'
+
+- task: AzureWebApp@1
+  inputs:
+    azureSubscription: 'maternity-dev-sda-cms(6f06839c-007e-4fbf-bed7-c44e696ecd81)'
+    appType: 'webApp'
+    appName: 'UAT-SDA-CMS'
+    deployToSlotOrASE: true
+    ResourceGroupName: 'SDACMS'
+    SlotName: 'production'
+    package: '$(System.DefaultWorkingDirectory)/dist'
+    deploymentMethod: runFromPackage
+    

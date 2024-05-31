@@ -1,0 +1,15 @@
+[
+  {
+    "ts": 1234558,
+    "appId": "xx",
+    "userId": "yy",
+    "sessId": "zz",
+    "location": {
+      "type": "network",
+      "lat": 1.11111,
+      "lon": 2.2222
+    },
+    "eventType": "app_start",
+    "eventData": "1.45"
+  }
+]

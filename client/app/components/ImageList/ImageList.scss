@@ -1,0 +1,20 @@
+.listItem {
+}
+
+.active {
+  color: red;
+}
+
+.paginate {
+  display: flex;
+  justify-content: space-around;
+  margin: 1vw auto;
+
+  width: 75%;
+  li {
+    list-style-type: none;
+  }
+  li:hover {
+    cursor: pointer;
+  }
+}

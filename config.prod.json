@@ -1,0 +1,4 @@
+{
+  "apiUrl": "https://sda.maternity.dk/api",
+  "blobContainer": "https://sdacms.blob.core.windows.net"
+}

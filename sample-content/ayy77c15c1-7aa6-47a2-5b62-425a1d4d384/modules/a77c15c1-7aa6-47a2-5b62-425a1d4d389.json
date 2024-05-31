@@ -1,0 +1,16 @@
+{
+  "version": 23,
+  "icon": "hyp_module",
+  "iconAlt": "hyp_module_alt",
+  "description": "Infection Prevention",
+  "videos": ["hyp0", "hyp1", "hyp2", "hyp3", "hyp4", "hyp5"],
+  "actioncards": [
+    {
+      "description": "Hypertension",
+      "icon": "icon_HYP",
+      "content": "stuff"
+    }
+  ],
+  "procedures": ["a77c15c1-7aa6-47a2-5b62-425a1d4d384", "proc2"],
+  "questionnaire": []
+}

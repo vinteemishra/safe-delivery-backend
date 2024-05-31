@@ -1,0 +1,6 @@
+{
+  "key": "lp:claim_permanent_warning",
+  "content": "The information will appear on the certificate and cannot be changed after pressing 'claim'",
+  "langId": "",
+  "_table": "screens"
+}

@@ -1,0 +1,6 @@
+{
+  "key": "select_your_country_description",
+  "content": "Certain functionality in the app needs to know which country you are in.",
+  "langId": "",
+  "_table": "screens"
+}

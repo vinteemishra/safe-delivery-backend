@@ -1,0 +1,13 @@
+node_modules
+npm-debug.log
+/.idea/
+dist
+sample-content/assets/
+.DS_Store
+package-lock.json
+.vscode
+doc/jsdoc
+tools/prettyPrintContent/output/
+tools/prettyPrintContent/*.zip
+table-events.csv
+

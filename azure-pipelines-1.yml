@@ -1,0 +1,45 @@
+# Node.js with webpack
+
+# Build a Node.js project using the webpack CLI.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+
+trigger:
+- release
+
+pool:
+  vmImage: windows-latest
+
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '10.14.1'
+  displayName: 'Install Node.js'
+
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: '3.x'
+    addToPath: true
+  displayName: 'Install python2'
+
+- script: |
+    npm install --also=dev
+    npm install --production
+  displayName: 'Install dependencies'
+
+
+- script: |
+    npm run webpack
+  displayName: 'Run webpack'
+  
+- task: AzureRmWebAppDeployment@4
+  inputs:
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'maternity-prod-sda-cms(ffe138cb-cd83-45ec-84b5-e18d25d10f1e)'
+    appType: 'webApp'
+    WebAppName: 'SDA-CMS'
+    packageForLinux: '$(System.DefaultWorkingDirectory)'
+    enableCustomDeployment: true
+    DeploymentType: 'webDeploy'
+    TakeAppOfflineFlag: false
+    RemoveAdditionalFilesFlag: true

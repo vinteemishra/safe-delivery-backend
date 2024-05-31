@@ -1,0 +1,6 @@
+{
+    "key": "whatsApp_user_already_exists",
+    "content": "A user with this WhatsApp number already exist",
+    "langId": "",
+    "_table": "screens"
+}

@@ -1,0 +1,59 @@
+@baseUrl = http://localhost:9000/api/public
+@userEmail = ole@bole.dk
+@userName = Ole Bole
+@userPassword = foobar
+@userId = 93e6b40f-70c6-0660-5731-382f5c2753e0
+
+### Create user
+POST {{baseUrl}}/signup HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "{{userName}}",
+    "email": "{{userEmail}}",
+    "password": "{{userPassword}}"
+}
+
+
+### Delete user
+POST {{baseUrl}}/deleteUser HTTP/1.1
+Content-Type: application/json
+
+{
+    "id": "{{userId}}",
+    "password": "{{userPassword}}"
+}
+
+
+
+### Sign in
+POST {{baseUrl}}/signin HTTP/1.1
+Content-Type: application/json
+
+{
+    "email": "{{userEmail}}",
+    "password": "{{userPassword}}"
+}
+
+### Update User Info v2
+POST {{baseUrl}}/updateProfileInfoV2 HTTP/1.1
+Content-Type: application/json
+
+{
+    "id": "{{userId}}",
+    "password": "{{userPassword}}",
+    "info": {
+        "name": "{{userName}} {{$randomInt 0 100}}",
+        "email": "{{userEmail}}"
+    }
+}
+
+### Update Password
+POST {{baseUrl}}/changePassword HTTP/1.1
+Content-Type: application/json
+
+{
+    "id": "{{userId}}",
+    "oldPassword": "{{userPassword}}",
+    "newPassword": "{{userPassword}}"
+}

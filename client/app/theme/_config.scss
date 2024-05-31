@@ -1,0 +1,123 @@
+@import "../../../node_modules/react-toolbox/lib/colors";
+
+$color-primary: #f45440;
+$color-primary-dark: $palette-blue-700;
+
+// Variables
+// ---------------------------
+$default-grid-columns: 12 !default;
+$default-grid-gutter: 6px !default;
+
+$a: 540px !default;
+$b: 640px !default;
+$c: 840px !default;
+
+// Add additional sizes if necessary, highly recommended you change this to be
+// tailored to your breakpoints, that match the design.
+$default-grid-map: ( small: $a, medium: $b, large: $c ) !default;
+$default-grid-font-size-normal: 1rem !default;
+
+// Grid container
+// ---------------------------
+@mixin grid-container($grid-gutter: $default-grid-gutter) {
+  .grid {
+    display: block;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+    font-size: 0; }
+
+  .grid-with-gutter {
+    margin: 0 #{-$grid-gutter}; }
+
+  .grid-center {
+    text-align: center; }
+
+  .grid-right {
+    text-align: right; } }
+
+// Grid cell
+// ---------------------------
+@mixin grid-cell-font-size($grid-map: $default-grid-map) {
+  font-size: $default-grid-font-size-normal; }
+
+@mixin grid-cell(
+  $grid-gutter: $default-grid-gutter,
+    $grid-map: $default-grid-map
+) {
+  .grid-cell {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    vertical-align: top;
+    width: 100%;
+
+    @include grid-cell-font-size($grid-map); }
+
+  .grid-with-gutter > .grid-cell {
+    padding: 0 $grid-gutter; } }
+
+
+// Grid widths
+// ---------------------------
+@mixin grid-width-default(
+  $grid-columns	: $default-grid-columns,
+    $grid-map			: $default-grid-map
+) {
+  $column-increment: 1;
+
+  @for $column-increment from 1 through $grid-columns {
+    .grid-#{$column-increment} {
+      $w: (100% / $grid-columns) * $column-increment;
+      width: $w; } } }
+
+@mixin grid-width(
+  $grid-columns	: $default-grid-columns,
+    $grid-map			: $default-grid-map
+) {
+  $column-increment: 1;
+
+  @each $breakpoint, $width in $grid-map {
+    $class: unquote(".grid-#{$breakpoint}");
+
+    @media (min-width: $width) {
+      @for $column-increment from 1 through $grid-columns {
+        #{$class}-#{$column-increment} {
+          $w: (100% / $grid-columns) * $column-increment;
+          width: $w; } } } } }
+
+// Simple grid using
+// display: inline-block
+// ---------------------------
+@mixin grid(
+  $grid-columns	: $default-grid-columns,
+    $grid-gutter	: $default-grid-gutter,
+    $grid-map			: $default-grid-map
+) {
+  @include grid-container($grid-gutter);
+  @include grid-cell($grid-gutter, $grid-map);
+  @include grid-width-default($grid-columns, $grid-map);
+  @include grid-width($grid-columns, $grid-map); }
+
+// Setup
+html {
+  box-sizing: border-box; }
+
+*, *:before, *:after {
+  box-sizing: inherit; }
+
+@include grid;
+
+// Misc bits
+
+.row { margin-bottom: 12px; }
+
+// Dropdown are missing scrollbars
+.dropdown > ul::-webkit-scrollbar {
+  width: 14px;
+  background: #f1f1f1;
+}
+.dropdown > ul::-webkit-scrollbar-thumb {
+  background: #cccccc;
+}

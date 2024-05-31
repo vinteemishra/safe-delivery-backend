@@ -1,0 +1,6 @@
+{
+  "key": "lp:logout_failed_sync_message",
+  "content": "Your latest progress could not be saved. You may try again, or log out the user anyway (you will lose the latest progress)",
+  "langId": "",
+  "_table": "screens"
+}

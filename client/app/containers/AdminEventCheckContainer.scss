@@ -1,0 +1,9 @@
+table {
+    tr {
+        td:nth-child(2) {
+            padding: 6px 18px;
+            line-height: normal;
+            white-space: pre-line;
+        }
+    }
+}

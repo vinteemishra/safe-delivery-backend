@@ -1,0 +1,464 @@
+{
+  "langId": "f6b0f9ba-8505-f704-ee39-4d2ad9a433b9",
+  "section": "copyright",
+  "cards": [
+    {
+      "id": 1,
+      "content": {
+        "entityMap": {},
+        "blocks": [
+          {
+            "key": "dq676",
+            "text": "Header",
+            "type": "unstyled",
+            "depth": 0,
+            "inlineStyleRanges": [],
+            "entityRanges": [],
+            "data": {}
+          }
+        ]
+      },
+      "type": "header",
+      "adapted": {
+        "entityMap": {},
+        "blocks": [
+          {
+            "key": "dq676",
+            "text": "Header",
+            "type": "unstyled",
+            "depth": 0,
+            "inlineStyleRanges": [],
+            "entityRanges": [],
+            "data": {}
+          }
+        ]
+      },
+      "translated": {
+        "entityMap": {},
+        "blocks": [
+          {
+            "key": "b9iin",
+            "text": "overskrift",
+            "type": "unstyled",
+            "depth": 0,
+            "inlineStyleRanges": [],
+            "entityRanges": [],
+            "data": {}
+          }
+        ]
+      }
+    },
+    {
+      "id": 2,
+      "content": {
+        "entityMap": {},
+        "blocks": [
+          {
+            "key": "sv39",
+            "text": "Subheader",
+            "type": "unstyled",
+            "depth": 0,
+            "inlineStyleRanges": [],
+            "entityRanges": [],
+            "data": {}
+          }
+        ]
+      },
+      "type": "subheader",
+      "adapted": {
+        "entityMap": {},
+        "blocks": [
+          {
+            "key": "sv39",
+            "text": "Subheader",
+            "type": "unstyled",
+            "depth": 0,
+            "inlineStyleRanges": [],
+            "entityRanges": [],
+            "data": {}
+          }
+        ]
+      },
+      "translated": {
+        "entityMap": {},
+        "blocks": [
+          {
+            "key": "5blf9",
+            "text": "overskrift 2",
+            "type": "unstyled",
+            "depth": 0,
+            "inlineStyleRanges": [],
+            "entityRanges": [],
+            "data": {}
+          }
+        ]
+      }
+    },
+    {
+      "id": 3,
+      "content": {
+        "entityMap": {},
+        "blocks": [
+          {
+            "key": "5bc26",
+            "text": "Paragraph, bold, and then blue",
+            "type": "unstyled",
+            "depth": 0,
+            "inlineStyleRanges": [
+              {
+                "offset": 11,
+                "length": 4,
+                "style": "BOLD"
+              },
+              {
+                "offset": 26,
+                "length": 4,
+                "style": "BLUE"
+              }
+            ],
+            "entityRanges": [],
+            "data": {}
+          }
+        ]
+      },
+      "type": "paragraph",
+      "adapted": {
+        "entityMap": {},
+        "blocks": [
+          {
+            "key": "5bc26",
+            "text": "Paragraph, bold, and then blue",
+            "type": "unstyled",
+            "depth": 0,
+            "inlineStyleRanges": [
+              {
+                "offset": 11,
+                "length": 4,
+                "style": "BOLD"
+              },
+              {
+                "offset": 26,
+                "length": 4,
+                "style": "BLUE"
+              }
+            ],
+            "entityRanges": [],
+            "data": {}
+          }
+        ]
+      },
+      "translated": {
+        "entityMap": {},
+        "blocks": [
+          {
+            "key": "dulfr",
+            "text": "Paragraf i bold og så lidt blåt. done",
+            "type": "unstyled",
+            "depth": 0,
+            "inlineStyleRanges": [
+              {
+                "offset": 11,
+                "length": 4,
+                "style": "BOLD"
+              },
+              {
+                "offset": 27,
+                "length": 2,
+                "style": "BLUE"
+              }
+            ],
+            "entityRanges": [],
+            "data": {}
+          }
+        ]
+      }
+    },
+    {
+      "id": 4,
+      "content": {
+        "entityMap": {},
+        "blocks": [
+          {
+            "key": "e98j1",
+            "text": "Important",
+            "type": "unstyled",
+            "depth": 0,
+            "inlineStyleRanges": [],
+            "entityRanges": [],
+            "data": {}
+          }
+        ]
+      },
+      "type": "important_text",
+      "adapted": {
+        "entityMap": {},
+        "blocks": [
+          {
+            "key": "e98j1",
+            "text": "Important",
+            "type": "unstyled",
+            "depth": 0,
+            "inlineStyleRanges": [],
+            "entityRanges": [],
+            "data": {}
+          }
+        ]
+      },
+      "translated": {
+        "entityMap": {},
+        "blocks": [
+          {
+            "key": "a6r4s",
+            "text": "vigtigt",
+            "type": "unstyled",
+            "depth": 0,
+            "inlineStyleRanges": [],
+            "entityRanges": [],
+            "data": {}
+          }
+        ]
+      }
+    },
+    {
+      "id": 5,
+      "content": {},
+      "type": "divider",
+      "adapted": {
+        "entityMap": {},
+        "blocks": [
+          {
+            "key": "b725k",
+            "text": "",
+            "type": "unstyled",
+            "depth": 0,
+            "inlineStyleRanges": [],
+            "entityRanges": [],
+            "data": {}
+          }
+        ]
+      },
+      "translated": {
+        "entityMap": {},
+        "blocks": [
+          {
+            "key": "499c3",
+            "text": "",
+            "type": "unstyled",
+            "depth": 0,
+            "inlineStyleRanges": [],
+            "entityRanges": [],
+            "data": {}
+          }
+        ]
+      }
+    },
+    {
+      "id": 6,
+      "content": {
+        "entityMap": {},
+        "blocks": [
+          {
+            "key": "18ql9",
+            "text": "ol 1",
+            "type": "ordered-list-item",
+            "depth": 0,
+            "inlineStyleRanges": [],
+            "entityRanges": [],
+            "data": {}
+          },
+          {
+            "key": "jtqo",
+            "text": "ol 2",
+            "type": "ordered-list-item",
+            "depth": 0,
+            "inlineStyleRanges": [],
+            "entityRanges": [],
+            "data": {}
+          }
+        ]
+      },
+      "type": "ol",
+      "adapted": {
+        "entityMap": {},
+        "blocks": [
+          {
+            "key": "18ql9",
+            "text": "ol 1",
+            "type": "ordered-list-item",
+            "depth": 0,
+            "inlineStyleRanges": [],
+            "entityRanges": [],
+            "data": {}
+          },
+          {
+            "key": "jtqo",
+            "text": "ol 2",
+            "type": "ordered-list-item",
+            "depth": 0,
+            "inlineStyleRanges": [],
+            "entityRanges": [],
+            "data": {}
+          }
+        ]
+      },
+      "translated": {
+        "entityMap": {},
+        "blocks": [
+          {
+            "key": "e4hrk",
+            "text": "ol 1",
+            "type": "unstyled",
+            "depth": 0,
+            "inlineStyleRanges": [],
+            "entityRanges": [],
+            "data": {}
+          },
+          {
+            "key": "2o0sv",
+            "text": "ol 2",
+            "type": "unstyled",
+            "depth": 0,
+            "inlineStyleRanges": [],
+            "entityRanges": [],
+            "data": {}
+          }
+        ]
+      }
+    },
+    {
+      "id": 7,
+      "content": {
+        "entityMap": {},
+        "blocks": [
+          {
+            "key": "18ql9",
+            "text": "ul 1",
+            "type": "unordered-list-item",
+            "depth": 0,
+            "inlineStyleRanges": [],
+            "entityRanges": [],
+            "data": {}
+          },
+          {
+            "key": "aq4st",
+            "text": "ul 2",
+            "type": "unordered-list-item",
+            "depth": 0,
+            "inlineStyleRanges": [],
+            "entityRanges": [],
+            "data": {}
+          }
+        ]
+      },
+      "type": "ul",
+      "adapted": {
+        "entityMap": {},
+        "blocks": [
+          {
+            "key": "18ql9",
+            "text": "ul 1",
+            "type": "unordered-list-item",
+            "depth": 0,
+            "inlineStyleRanges": [],
+            "entityRanges": [],
+            "data": {}
+          },
+          {
+            "key": "aq4st",
+            "text": "ul 2",
+            "type": "unordered-list-item",
+            "depth": 0,
+            "inlineStyleRanges": [],
+            "entityRanges": [],
+            "data": {}
+          }
+        ]
+      },
+      "translated": {
+        "entityMap": {},
+        "blocks": [
+          {
+            "key": "f6qbd",
+            "text": "ul 1",
+            "type": "unstyled",
+            "depth": 0,
+            "inlineStyleRanges": [],
+            "entityRanges": [],
+            "data": {}
+          },
+          {
+            "key": "bg2kv",
+            "text": "ul 2",
+            "type": "unstyled",
+            "depth": 0,
+            "inlineStyleRanges": [],
+            "entityRanges": [],
+            "data": {}
+          }
+        ]
+      }
+    },
+    {
+      "id": 8,
+      "content": {
+        "src": "image"
+      },
+      "type": "image",
+      "adapted": {
+        "entityMap": {},
+        "blocks": [
+          {
+            "key": "8iqfj",
+            "text": "",
+            "type": "unstyled",
+            "depth": 0,
+            "inlineStyleRanges": [],
+            "entityRanges": [],
+            "data": {}
+          }
+        ]
+      },
+      "translated": {
+        "entityMap": {},
+        "blocks": [
+          {
+            "key": "33vud",
+            "text": "sd",
+            "type": "unstyled",
+            "depth": 0,
+            "inlineStyleRanges": [],
+            "entityRanges": [],
+            "data": {}
+          }
+        ]
+      }
+    },
+    {
+      "id": 9,
+      "content": {
+        "html": "\n            <table >\n                <tbody>\n                    <tr><th></th><th><div contentEditable>0 points</div></th><th><div contentEditable>1 point</div></th><th><div contentEditable>2 points</div></th></tr>\n                    <tr><td className=\"blue\"><div contentEditable>Activity</div></td><td><div contentEditable>Limb arms and legs</div></td><td><div contentEditable> Arms and legs flexed</div></td><td><div contentEditable>Active</div></td></tr>\n                    <tr><td className=\"blue\"><div contentEditable>Pulse</div></td><td><div contentEditable>Absent</div></td><td><div contentEditable>Less than 100</div></td><td><div contentEditable>Above 100</div></td></tr>\n                    <tr><td className=\"blue\"><div contentEditable>Grimace</div></td><td><div contentEditable>No response</div></td><td><div contentEditable>Grimace</div></td><td><div contentEditable>Sneeze, cough</div></td></tr>\n                    <tr><td className=\"blue\"><div contentEditable>Appearance (skin color)</div></td><td><div contentEditable>Glue or pale</div></td><td><div contentEditable>Body pink, arms and legs blue</div></td><td><div contentEditable>All pink</div></td></tr>\n                    <tr><td className=\"blue\"><div contentEditable>Respiration</div></td><td><div contentEditable>Absent</div></td><td><div contentEditable>Slow, irregular</div></td><td><div contentEditable>Crying</div></td></tr>\n                    <tr><th colSpan='4'><div contentEditable>Total score</div></th></tr>\n                </tbody>\n            </table>\n         "
+      },
+      "type": "table",
+      "adapted": {
+        "html": "\n            <table >\n                <tbody>\n                    <tr><th></th><th><div contentEditable>0 points</div></th><th><div contentEditable>1 point</div></th><th><div contentEditable>2 points</div></th></tr>\n                    <tr><td className=\"blue\"><div contentEditable>Activity</div></td><td><div contentEditable>Limb arms and legs</div></td><td><div contentEditable> Arms and legs flexed</div></td><td><div contentEditable>Active</div></td></tr>\n                    <tr><td className=\"blue\"><div contentEditable>Pulse</div></td><td><div contentEditable>Absent</div></td><td><div contentEditable>Less than 100</div></td><td><div contentEditable>Above 100</div></td></tr>\n                    <tr><td className=\"blue\"><div contentEditable>Grimace</div></td><td><div contentEditable>No response</div></td><td><div contentEditable>Grimace</div></td><td><div contentEditable>Sneeze, cough</div></td></tr>\n                    <tr><td className=\"blue\"><div contentEditable>Appearance (skin color)</div></td><td><div contentEditable>Glue or pale</div></td><td><div contentEditable>Body pink, arms and legs blue</div></td><td><div contentEditable>All pink</div></td></tr>\n                    <tr><td className=\"blue\"><div contentEditable>Respiration</div></td><td><div contentEditable>Absent</div></td><td><div contentEditable>Slow, irregular</div></td><td><div contentEditable>Crying</div></td></tr>\n                    <tr><th colSpan='4'><div contentEditable>Total score</div></th></tr>\n                </tbody>\n            </table>\n         "
+      },
+      "translated": {
+        "entityMap": {},
+        "blocks": [
+          {
+            "key": "40he5",
+            "text": "",
+            "type": "unstyled",
+            "depth": 0,
+            "inlineStyleRanges": [],
+            "entityRanges": [],
+            "data": {}
+          }
+        ]
+      }
+    }
+  ],
+  "LastUpdatedBy": "jeppe@ingolfs.dk",
+  "LastUpdated": 1485017734969,
+  "id": "3bef0c34-a63d-6d46-bee2-94f463ff93e6"
+}

@@ -1,0 +1,133 @@
+{
+  "description": "English",
+  "version": 42,
+  "screen": {
+    "ok": "Ok",
+    "cancel": "Cancel",
+    "next": "Next",
+    "main": "Main",
+    "learning": "My learning",
+    "settings": "Settings",
+    "actioncards": "Actioncards",
+    "procedures": "Practical Procedures",
+    "videos": "Videos",
+    "questionaire": "Questionaire",
+    "about": "About",
+    "close": "Close",
+    "language": "Change language",
+    "drugs": "Drugs",
+    "copyright": "Copyright",
+    "developers": "Developers",
+    "thankyou": "Thank you",
+    "introduction": "Introduction"
+  },
+  "about": [
+    {
+      "id": "introduction",
+      "version": 382,
+      "href": "about/introduction.json"
+    }
+  ],
+
+  "videos": [
+    { "id": "hyp0",
+      "icon": "hyp0",
+      "version": 1234,
+      "description": "Introduction",
+      "src": "/assets/videos/Hyp_step_00.mp4"
+    },
+    {
+      "id": "hyp1",
+      "icon": "hyp1",
+      "version": 1234,
+      "description": "Definitions",
+      "src": "/assets/videos/Hyp_step_01.mp4"
+    },
+    {
+      "id": "hyp2",
+      "icon": "hyp2",
+      "version": 1234,
+      "description": "Causes",
+      "src": "/assets/videos/Hyp_step_02.mp4"
+    },
+    {
+      "id": "hyp3",
+      "icon": "hyp3",
+      "version": 1234,
+      "description": "How to diagnose",
+      "src": "/assets/videos/Hyp_step_03.mp4"
+    },
+    {
+      "id": "hyp4",
+      "icon": "hyp4",
+      "version": 1234,
+      "description": "Management of hypertension",
+      "src": "/assets/videos/Hyp_step_04.mp4"
+    },
+    {
+      "id": "hyp5",
+      "icon": "hyp5",
+      "version": 1234,
+      "description": "Severe pre-eclampsia",
+      "src": "/assets/videos/Hyp_step_05.mp4"
+    }
+  ],
+
+  "images": [
+    {
+      "id": "hyp_module",
+      "version": 383,
+      "src": "/assets/images/icon_HYP.png"
+    },
+    {
+      "id": "hyp_module_alt",
+      "version": 383,
+      "src": "/assets/images/icon_HYP.png"
+    },
+    {
+      "id": "hyp0",
+      "version": 388,
+      "src": "/assets/images/hypertension0001.png"
+    },
+    {
+      "id": "hyp1",
+      "version": 388,
+      "src": "/assets/images/hypertension0001.png"
+    },
+    {
+      "id": "hyp2",
+      "version": 388,
+      "src": "/assets/images/hypertension0003.png"
+    },
+    {
+      "id": "hyp3",
+      "version": 388,
+      "src": "/assets/images/hypertension0005.png"
+    },
+    {
+      "id": "hyp4",
+      "version": 388,
+      "src": "/assets/images/hypertension0007.png"
+    },
+    {
+      "id": "hyp5",
+      "version": 388,
+      "src": "/assets/images/hypertension0009.png"
+    }
+  ],
+  "procedures": [
+    {
+      "id": "a77c15c1-7aa6-47a2-5b62-425a1d4d384",
+      "version": 2323,
+      "href": "procedures/a77c15c1-7aa6-47a2-5b62-425a1d4d384.json"
+    }
+  ],
+
+  "modules": [
+    {
+      "id": "a77c15c1-7aa6-47a2-5b62-425a1d4d389",
+      "version": 23,
+      "href": "modules/a77c15c1-7aa6-47a2-5b62-425a1d4d389.json"
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "key": "lp:email_already_exists_error",
+  "content": "A user with this e-mail already exists",
+  "langId": "",
+  "_table": "screens"
+}

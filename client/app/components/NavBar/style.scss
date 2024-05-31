@@ -1,0 +1,16 @@
+@import "../../../../node_modules/react-toolbox/lib/colors";
+
+$white: #fff;
+
+.appBar {
+  background-color: $palette-grey-200;
+  color: $color-primary !important;
+  height: 4rem;
+}
+
+.logo {
+  width: 3.4rem;
+  height: 3.4rem;
+  margin-right: 1rem;
+  fill: $white;
+}

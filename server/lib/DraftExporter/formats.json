@@ -1,0 +1,36 @@
+{
+  "HTML": {
+    "BLOCK": {
+      "unstyled": {
+        "open": "",
+        "close": ""
+      },
+      "paragraph-section": {
+        "open": "",
+        "close": "<br>"
+      },
+      "ordered-list-item": {
+        "open": "<li>",
+        "close": "</li>"
+      },
+      "unordered-list-item": {
+        "open": "<li>",
+        "close": "</li>"
+      },
+      "table": {
+        "open": "<div>",
+        "close": "</div>"
+      }
+    },
+    "INLINE": {
+      "BOLD": {
+        "open": "<strong>",
+        "close": "</strong>"
+      },
+      "BLUE": {
+        "open": "<span color='highlighted'>",
+        "close": "</span>"
+      }
+    }
+  }
+}

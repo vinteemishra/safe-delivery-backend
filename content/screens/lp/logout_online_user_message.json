@@ -1,0 +1,6 @@
+{
+  "key": "lp:logout_online_user_message",
+  "content": "This user will be removed from the device. It can later be added again by adding existing account. Progress will not be deleted",
+  "langId": "",
+  "_table": "screens"
+}

@@ -1,0 +1,1630 @@
+{
+	"info": {
+		"_postman_id": "2edb9fd7-5cbd-4aac-9e05-609d924f2caa",
+		"name": "safe-delivery-cms",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get All Screens",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/api/screens",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"screens"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Screens",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_URL}}/api/screens",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"screens"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All languages",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/api/languages",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"languages"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add a language",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"body\":\"body goes here\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_URL}}/api/languages",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"languages"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Getting languages with a specified language ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/api/languages/e3116616-a17f-4884-a7f8-3993f098e5d0",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"languages",
+						"e3116616-a17f-4884-a7f8-3993f098e5d0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Language with a specified Language ID",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/api/languages/e3116616-a17f-4884-a7f8",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"languages",
+						"e3116616-a17f-4884-a7f8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Publish Draft",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"Draft\":\"Draft goes here\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_URL}}/api/languages/e3116616-a17f-4884-a7f8-3993f098e5d0/publish",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"languages",
+						"e3116616-a17f-4884-a7f8-3993f098e5d0",
+						"publish"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Unpublish Draft",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/api/languages/e3116616-a17f-4884-a7f8-3993f098e5d0/unpublish",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"languages",
+						"e3116616-a17f-4884-a7f8-3993f098e5d0",
+						"unpublish"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "About the section",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/api/{section}?langId=e3116616-a17f-4884-a7f8-3993f098e5d0",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"{section}"
+					],
+					"query": [
+						{
+							"key": "langId",
+							"value": "e3116616-a17f-4884-a7f8-3993f098e5d0"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update the section",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"update\":\"update goes here\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_URL}}/api/{section}",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"{section}"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List of apks",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/api/apks/list?langId=e3116616-a17f-4884-a7f8-3993f098e5d0",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"apks",
+						"list"
+					],
+					"query": [
+						{
+							"key": "langId",
+							"value": "e3116616-a17f-4884-a7f8-3993f098e5d0"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Status of apk",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/api/apks/status",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"apks",
+						"status"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Generate Apk",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/api/apks/genApk?langId=e3116616-a17f-4884-a7f8-3993f098e5d0&draft=Draft",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"apks",
+						"genApk"
+					],
+					"query": [
+						{
+							"key": "langId",
+							"value": "e3116616-a17f-4884-a7f8-3993f098e5d0"
+						},
+						{
+							"key": "draft",
+							"value": "Draft"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Download Apk files",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/api/apks/download?langId=e3116616-a17f-4884-a7f8-3993f098e5d0&filename=File Name",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"apks",
+						"download"
+					],
+					"query": [
+						{
+							"key": "langId",
+							"value": "e3116616-a17f-4884-a7f8-3993f098e5d0"
+						},
+						{
+							"key": "filename",
+							"value": "File Name"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Getting the latest Apk file",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/api/apks/latest?langId=e3116616-a17f-4884-a7f8-3993f098e5d0",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"apks",
+						"latest"
+					],
+					"query": [
+						{
+							"key": "langId",
+							"value": "e3116616-a17f-4884-a7f8-3993f098e5d0"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Getting the image assets",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/api/images?version=Version",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"images"
+					],
+					"query": [
+						{
+							"key": "version",
+							"value": "Version"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Getting the videos assets",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/api/videos?version=Version",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"videos"
+					],
+					"query": [
+						{
+							"key": "version",
+							"value": "Version"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All modules",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/api/modules?langId=e3116616-a17f-4884-a7f8-3993f098e5d0",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"modules"
+					],
+					"query": [
+						{
+							"key": "langId",
+							"value": "e3116616-a17f-4884-a7f8-3993f098e5d0"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Updating a module",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"update\":\"update body goes here\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_URL}}/api/modules",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"modules"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Adding a new module",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"add\":\"new module information goes here\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_URL}}/api/modules",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"modules"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Getting the module with a module key",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/api/modules/19788965-cdd8-d02d-bf87-780585ddefae?langId=e3116616-a17f-4884-a7f8-3993f098e5d0",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"modules",
+						"19788965-cdd8-d02d-bf87-780585ddefae"
+					],
+					"query": [
+						{
+							"key": "langId",
+							"value": "e3116616-a17f-4884-a7f8-3993f098e5d0"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Deleting a module",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/api/modules/19788965-cdd8-d02d-bf87",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"modules",
+						"19788965-cdd8-d02d-bf87"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Getting the procedures",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/api/procedures?langId=e3116616-a17f-4884-a7f8-3993f098e5d0&showAll=True",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"procedures"
+					],
+					"query": [
+						{
+							"key": "langId",
+							"value": "e3116616-a17f-4884-a7f8-3993f098e5d0"
+						},
+						{
+							"key": "showAll",
+							"value": "True"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Updating the procedures",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"update\":\"update body goes here\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9000/api/procedures",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"api",
+						"procedures"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Adding procedures",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/api/procedures",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"procedures"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Getting the procedure with a procedure ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/api/procedures/usage_1487245873343",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"procedures",
+						"usage_1487245873343"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Deleting the procedure with a procedure ID",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/api/procedures/usage_1487245873343",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"procedures",
+						"usage_1487245873343"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All action cards",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/api/action-cards?langId=e3116616-a17f-4884-a7f8-3993f098e5d0&showAll=True",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"action-cards"
+					],
+					"query": [
+						{
+							"key": "langId",
+							"value": "e3116616-a17f-4884-a7f8-3993f098e5d0"
+						},
+						{
+							"key": "showAll",
+							"value": "True"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Action Cards",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"update\":\"update goes here\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_URL}}/api/action-cards",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"action-cards"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add action card",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"Add\":\"Add action-cards information goes here\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_URL}}/api/action-cards",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"action-cards"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Getting the action-card with a card key param",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/api/action-cards/pediatric-drugs_1486735985488",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"action-cards",
+						"pediatric-drugs_1486735985488"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete an action card",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/api/action-cards/pediatric-drugs_148673",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"action-cards",
+						"pediatric-drugs_148673"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All drugs",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/api/drugs?langId=e3116616-a17f-4884-a7f8-3993f098e5d0",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"drugs"
+					],
+					"query": [
+						{
+							"key": "langId",
+							"value": "e3116616-a17f-4884-a7f8-3993f098e5d0"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update drug information",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"update\":\"update information goes here\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_URL}}/api/drugs",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"drugs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Adding drugs",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"add\":\"Drug addition inforamtion goes here\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_URL}}/api/drugs",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"drugs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Getting drugs information with a specified drug name",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/api/drugs/adrenaline_1486111274533",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"drugs",
+						"adrenaline_1486111274533"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Drugs",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/api/drugs/adrenaline_148611",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"drugs",
+						"adrenaline_148611"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All notifications",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/api/notifications?langId=e3116616-a17f-4884-a7f8-3993f098e5d0",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"notifications"
+					],
+					"query": [
+						{
+							"key": "langId",
+							"value": "e3116616-a17f-4884-a7f8-3993f098e5d0"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update notifications",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"update\":\"update information goes here\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_URL}}/api/notifications",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"notifications"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add notifications",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"add\":\"new notification information goes here\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_URL}}/api/notifications",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"notifications"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get notification with a specified notification key",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/api/notifications/ghjghj_1550565973011",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"notifications",
+						"ghjghj_1550565973011"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Deleting a notification",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/api/notifications/ghjghj_15505",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"notifications",
+						"ghjghj_15505"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get auth info",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/api/auth",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"auth"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Key Learning Points",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/api/key-learning-points?langId=e3116616-a17f-4884-a7f8-3993f098e5d0",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"key-learning-points"
+					],
+					"query": [
+						{
+							"key": "langId",
+							"value": "e3116616-a17f-4884-a7f8-3993f098e5d0"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Key Learning Points",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"update\":\"update information goes here\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_URL}}/api/key-learning-points",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"key-learning-points"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add  Key Learning Points",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"add\":\"New key learning points goes here\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_URL}}/api/key-learning-points",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"key-learning-points"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Key Learning Point with a speciifed klp key",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/api/key-learning-points/prevent-infections_1497356424386?langId=e3116616-a17f-4884-a7f8-3993f098e5d0",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"key-learning-points",
+						"prevent-infections_1497356424386"
+					],
+					"query": [
+						{
+							"key": "langId",
+							"value": "e3116616-a17f-4884-a7f8-3993f098e5d0"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Key Learning Point",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/api/key-learning-points/prevent-infections_14973",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"key-learning-points",
+						"prevent-infections_14973"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all cases",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/api/cases?langId=e3116616-a17f-4884-a7f8-3993f098e5d0",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"cases"
+					],
+					"query": [
+						{
+							"key": "langId",
+							"value": "e3116616-a17f-4884-a7f8-3993f098e5d0"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update case",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"update\":\"update information goes here\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_URL}}/api/cases",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"cases"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add cases",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"add\":\"new cases goes here\"   \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_URL}}/api/cases",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"cases"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get case with a specified case key",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/api/cases/case-1_1504530230752?langId=e3116616-a17f-4884-a7f8-3993f098e5d0",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"cases",
+						"case-1_1504530230752"
+					],
+					"query": [
+						{
+							"key": "langId",
+							"value": "e3116616-a17f-4884-a7f8-3993f098e5d0"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete cases",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/api/cases/case-1_1504530",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"cases",
+						"case-1_1504530"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Certificates",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/api/certificates?langId=e3116616-a17f-4884-a7f8-3993f098e5d0",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"certificates"
+					],
+					"query": [
+						{
+							"key": "langId",
+							"value": "e3116616-a17f-4884-a7f8-3993f098e5d0"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update certificate",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"update\":\"update information goes here\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_URL}}/api/certificates",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"certificates"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add certificates",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"add\":\"new certificate information goes here\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_URL}}api/certificates",
+					"host": [
+						"{{API_URL}}api"
+					],
+					"path": [
+						"certificates"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get certificate with a specified cert key",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/api/certificates/{certificateId}?langId=e3116616-a17f-4884-a7f8-3993f098e5d0",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"certificates",
+						"{certificateId}"
+					],
+					"query": [
+						{
+							"key": "langId",
+							"value": "e3116616-a17f-4884-a7f8-3993f098e5d0"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete a certificate",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/api/certificates/{certificateId}",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"certificates",
+						"{certificateId}"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All onboarding",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/api/onboarding?langId=e3116616-a17f-4884-a7f8-3993f098e5d0",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"onboarding"
+					],
+					"query": [
+						{
+							"key": "langId",
+							"value": "e3116616-a17f-4884-a7f8-3993f098e5d0"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update onboarding",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"update\":\"update information goes here\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_URL}}/api/onboarding",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"onboarding"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add onboarding",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"add\":\"New onboarding information goes here\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_URL}}/api/onboarding",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"onboarding"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get onboarding with a specified onb key",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/api/onboarding/onboarding-question---number-1_1550824470215?langId=e3116616-a17f-4884-a7f8-3993f098e5d0",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"onboarding",
+						"onboarding-question---number-1_1550824470215"
+					],
+					"query": [
+						{
+							"key": "langId",
+							"value": "e3116616-a17f-4884-a7f8-3993f098e5d0"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete onboarding",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/api/onboarding/onboarding-question---number-1_1550824470215",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"onboarding",
+						"onboarding-question---number-1_1550824470215"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get the config version",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/api/public/",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"public",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get the version",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/api/public/version",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"public",
+						"version"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Ping",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/api/public/ping",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"public",
+						"ping"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "7bfd7e22-e088-48b8-9819-a46a334918f5",
+			"key": "API_URL",
+			"value": "http://localhost:9000"
+		}
+	]
+}
