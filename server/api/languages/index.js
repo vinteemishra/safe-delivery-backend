@@ -35,7 +35,7 @@
 
 'use strict';
 
-import { index, post, del, publish, unpublish, get,filterModulesByCategory1 } from './languages.controller';
+import { index, post, del, publish, unpublish, get} from './languages.controller';
 import router from 'koa-router';
 
 const languages = router();
@@ -46,7 +46,7 @@ languages.get('/:id', get);
 languages.delete('/:id', del);
 languages.post('/:id/publish', publish);
 languages.post('/:id/unpublish', unpublish);
-languages.get('/:id/categorywese_data', filterModulesByCategory1);
+// languages.get('/:id/categorywese_data', filterModulesByCategory1);
 
 
 export default languages;

@@ -1,9 +1,10 @@
 "use strict";
 
 import { list, upsert, remove, find } from "./languages.model";
-import { publisher, unpublisher, publishIndex } from "../../lib/publisher";
+import { publisher, unpublisher } from "../../lib/publisher";
 import { createBlockBlobFromText } from "../../lib/blobstorage";
 // import{main} from "../../lib/publisher/publishIndex.main"
+
 
 import config from "../../config";
 
@@ -64,13 +65,7 @@ export const publish = async (ctx, next) => {
   }
 };
 
-export const filterModulesByCategory1=async(ctx,next) => {
-  const data = await publishIndex.main(langId,draft);
-  ctx.status = 200;
-    ctx.body = data;
-    await next();
-    
-}
+
 
 export const unpublish = async (ctx, next) => {
   if (ctx.role !== "admin" && config.env !== "dev") {

@@ -33,6 +33,7 @@ import { proceduresModel } from "../api/procedures/procedures.model";
 import { httpRequest } from "./httpUtil";
 import log from "../config/logging";
 
+
 const Parallel = require("async-parallel");
 
 import { chapterScreenKey } from "./chapters";
@@ -45,6 +46,8 @@ import { publishLangLegacy } from "./publisherLegacy";
 import { getModuleCategories } from "../api/module-categories/module-categories.model";
 
 const https = require('https'); 
+const fs = require('fs');
+
 
 
 
@@ -71,81 +74,11 @@ export const publishIndex = (version, langs1, exporter, draft) => {
         hrefZip: contentURL(`${lang.id}/bundle.zip`, draft),
       })),
   };
-  // index.languages.forEach((lang) => {
-  //   console.log("https://sdacms.blob.core.windows.net" + lang.href);
-  //   const fullURL=("https://sdacms.blob.core.windows.net"+ contentURL(`${lang.id}/content-bundle.json`, draft));
-  //   https.get(fullURL, (res) => {
-  //     let data = '';
   
-  //     // Collect the data chunks
-  //     res.on('data', (chunk) => {
-  //       data += chunk;
-  //     });
-  
-  //     // When the response is complete
-  //     res.on('end', () => {
-  //       try {
-  //         const jsonData = JSON.parse(data);
-  //         console.log('Content Bundle:', jsonData);
-  //       } catch (err) {
-  //         console.error('Failed to parse content bundle:', err);
-  //       }
-  //     });
-  //   }).on('error', (err) => {
-  //     console.error('Failed to fetch content bundle:', err);
-  //   });
-  
-  
-  // // Example usage
 
-  // });
-  // Example usage
-// const main = async () => {
-//   try {
-//     const contentBundle = await fetchContentBundle('ee722f96-fcf6-4bcf-9f4e-c5fd285eaac3', true);
-//     console.log('Content Bundle:', contentBundle);
-//   } catch (error) {
-//     console.error('Error fetching content bundle:', error);
-//   }
-// };
-
-// // Example usage
-// const main1 = async () => {
-//   try {
-//     const moduleCategory = await fetchmodulecategory(true);
-//     console.log('Module Category:', moduleCategory);
-//   } catch (error) {
-//     console.error('Error fetching module category:', error);
-//   }
-// };
-
-// // Example usage
-// const main2 = async () => {
-//   const lang = 'ee722f96-fcf6-4bcf-9f4e-c5fd285eaac3';  
-//   const draft = true;  
-
-//   const modules = await filterModulesByCategory(lang, draft);
-//   console.log('Modules in Category:', modules);
-// };
-
-// // main();
-
-// // main1();
-
-// main2();
-
-// Example usage
-// Example usage
-// Example usage
-const main = async () => {
-  const lang = 'ee722f96-fcf6-4bcf-9f4e-c5fd285eaac3';  
-  const draft = true;  
-
-  const modules = await filterModulesByCategory(lang, draft);
-  console.log('Modules in Category:', modules);
-};
 
 main();
+
 
 
   // fetchContentBundle('ee722f96-fcf6-4bcf-9f4e-c5fd285eaac3', true);
@@ -732,7 +665,7 @@ const fetchContentBundle = (lang, draft) => {
   const path = contentURL1(`${lang}/content-bundle.json`, draft);
   const fullURL = `${baseURL}/${path}`;
 
-  console.log('Fetching content bundle from:', fullURL); 
+  console.log('Fetching content bundle from:', fullURL); // Log the full URL for debugging
 
   return new Promise((resolve, reject) => {
     https.get(fullURL, (res) => {
@@ -747,7 +680,6 @@ const fetchContentBundle = (lang, draft) => {
       res.on('end', () => {
         try {
           const jsonData = JSON.parse(data);
-          // console.log("Fetched Content Bundle Data:", jsonData);
           resolve(jsonData);
         } catch (err) {
           console.error('Failed to parse content bundle:', err);
@@ -761,13 +693,12 @@ const fetchContentBundle = (lang, draft) => {
   });
 };
 
-const fetchmodulecategory = (draft) => {
+const fetchModuleCategory = (draft) => {
   const baseURL = 'https://sdacms.blob.core.windows.net';
   const path = contentURL1('assets/module_categories.json', draft);
   const fullURL = `${baseURL}/${path}`;
-  
 
-  console.log('Fetching module categories from:', fullURL); 
+  console.log('Fetching module categories from:', fullURL); // Log the full URL for debugging
 
   return new Promise((resolve, reject) => {
     https.get(fullURL, (res) => {
@@ -782,7 +713,6 @@ const fetchmodulecategory = (draft) => {
       res.on('end', () => {
         try {
           const jsonData = JSON.parse(data);
-          // console.log("Fetched Module Categories Data:", jsonData);
           resolve(jsonData);
         } catch (err) {
           console.error('Failed to parse module category:', err);
@@ -796,44 +726,113 @@ const fetchmodulecategory = (draft) => {
   });
 };
 
-const categoryId = 'b08c23ad-1e01-2d12-102b-ad6706e7358a';
+// const categoryId = 'b08c23ad-1e01-2d12-102b-ad6706e7358a';
 
-const filterModulesByCategory = async (lang, draft) => {
+const filterModulesByCategory = async (lang, draft, categoryId) => {
   try {
     
-    const moduleCategories = await fetchmodulecategory(draft);
-    
+    const moduleCategories = await fetchModuleCategory(draft);
+    console.log("hiii",categoryId);
 
     
     const category = moduleCategories.categories.find(cat => cat.id === categoryId);
 
     if (!category) {
       console.error('Category not found');
-      return [];
+      return null;
     }
 
     console.log('Found Category:', category);
 
     
     const contentBundle = await fetchContentBundle(lang, draft);
-    
 
     
     if (!contentBundle.modules) {
       console.error('Content bundle does not contain a "modules" property.');
-      return [];
+      return null;
     }
 
     
     const filteredModules = contentBundle.modules.filter(module => {
       return category.modules.includes(module.id);
     });
-    
 
-    return filteredModules;
+    filteredModules.forEach(module => {
+      module.actionCardDetails = module.actionCards.map(actionCardId => {
+        return contentBundle.actionCards.find(card => card.id === actionCardId);
+      });
+
+      module.drugDetails = module.drugs.map(drugId => {
+        return contentBundle.drugs.find(drug => drug.id === drugId);
+      });
+
+      module.procedureDetails = module.procedures.map(procedureId => {
+        return contentBundle.procedures.find(procedure => procedure.id === procedureId);
+      });
+
+      module.keyLearningPointDetails = module.keyLearningPoints.map(pointId => {
+        return contentBundle.keyLearningPoints.find(point => point.id === pointId);
+      });
+
+      module.videoDetails = module.videos.map(videoId => {
+        return contentBundle.videos.find(video => video.id === videoId);
+      });
+    });
+
+    return { category, modules: filteredModules };
   } catch (error) {
     console.error('Error filtering modules by category:', error);
-    return [];
+    return null;
   }
 };
+
+// module.exports = { main };
+
+export const publiss = async (categoryId) => {
+  const filename=await main(categoryId);
+  return filename;// Call the main function within publiss
+};
+
+const main = async (categoryId) => {
+  const lang = 'ee722f96-fcf6-4bcf-9f4e-c5fd285eaac3';  
+  const draft = true;  
+
+  const result = await filterModulesByCategory(lang, draft, categoryId);
+
+  if (result) {
+    const output = {
+      category: result.category,
+      module: result.modules.map(module => ({
+        moduleId: module.id,
+        actionCardDetails: module.actionCardDetails,
+        drugDetails: module.drugDetails,
+        procedureDetails: module.procedureDetails,
+        keyLearningPointDetails: module.keyLearningPointDetails,
+        videoDetails: module.videoDetails
+      }))
+    };
+
+    const fileName = 'content_bundle_module_category7.json';
+
+    fs.writeFileSync(fileName, JSON.stringify(output, null, 2), 'utf-8');
+    console.log('The details have been written to content_bundle_module_category.json');
+    // const fileContent = fs.readFileSync(fileName, 'utf-8');
+    return fileName;
+  }
+};
+
+export { main };
+
+
+
+
+
+
+
+
+
+
+
+
 
