@@ -47,6 +47,8 @@ import { getModuleCategories } from "../api/module-categories/module-categories.
 
 const https = require('https'); 
 const fs = require('fs');
+// const axios = require('axios');
+
 
 
 
@@ -519,7 +521,7 @@ const publishLang = async (version, lang, textExporter, user, draft) => {
   }
   log.debug("All content collected");
 
-  // export bundle blob
+  
   const bundleJson = JSON.stringify(bundle);
   await createBlockBlobFromBuffer(draft)(
     `${lang.id}/content-bundle.json`,
@@ -528,7 +530,6 @@ const publishLang = async (version, lang, textExporter, user, draft) => {
   );
 
   
-  // Export images
   await exportImageList(lang, images, textExporter, draft, "image-bundle");
   await exportImageList(
     lang,
@@ -571,36 +572,9 @@ export const publisher = async (langId, ls, exporter, user, draft) => {
 
   const languages = await Promise.all(publishPromises);
   const index = await publishIndex(Date.now(), languages, exporter, draft);
-  // try {
-  //   const url = contentURL('content-bundle.json', draft);
-  //   const contentBundle = await fetchJSON(url);
-    
-  //   // Assuming contentBundle contains an array of modules
-  //   const modules = contentBundle.modules;
-  //   modules.forEach(module => {
-  //     console.log(`Module ID: ${module.id}`);
-  //     console.log(`Module Name: ${module.name}`);
-  //     // Add more processing logic as needed
-  //   });
-  // } catch (error) {
-  //   console.error('Failed to fetch content-bundle.json:', error);
-  // }
+  
   return { index, languages };
 };
-
-// const fetchJSON = async (url) => {
-//   try {
-//     const response = await fetch(url);
-//     if (!response.ok) {
-//       throw new Error(`HTTP error! status: ${response.status}`);
-//     }
-//     return await response.json();
-//   } catch (error) {
-//     console.error('Error fetching JSON:', error);
-//     throw error;
-//   }
-// };
-
 
 export const unpublisher = (langId, ls, exporter, user) => {
   const publishedLangs = ls.then((langs) => {
@@ -663,9 +637,15 @@ const contentURL1 = (path, draft) => {
 const fetchContentBundle = (lang, draft) => {
   const baseURL = 'https://sdacms.blob.core.windows.net';
   const path = contentURL1(`${lang}/content-bundle.json`, draft);
-  const fullURL = `${baseURL}/${path}`;
+  // const hrefZip= contentURL1(`${lang.id}/bundle.zip`, draft);
 
-  console.log('Fetching content bundle from:', fullURL); // Log the full URL for debugging
+  const fullURL = `${baseURL}/${path}`;
+  // const fullURL1 = `${baseURL}/${hrefZip}`;
+
+
+  console.log('Fetching content bundle from:', fullURL); 
+  // console.log('Fetching bundle.zip:', fullURL1); // Log the full URL for debugging
+
 
   return new Promise((resolve, reject) => {
     https.get(fullURL, (res) => {
@@ -731,6 +711,7 @@ const fetchModuleCategory = (draft) => {
 const filterModulesByCategory = async (lang, draft, categoryId) => {
   try {
     
+    
     const moduleCategories = await fetchModuleCategory(draft);
     console.log("hiii",categoryId);
 
@@ -787,16 +768,155 @@ const filterModulesByCategory = async (lang, draft, categoryId) => {
   }
 };
 
-// module.exports = { main };
 
-export const publiss = async (categoryId) => {
-  const filename=await main(categoryId);
-  return filename;// Call the main function within publiss
+const JSZip = require('jszip');
+
+const downloadImage = (relativePath) => {
+  const baseUrl = 'https://sdacms.blob.core.windows.net/content/assets/images/india'; 
+  const imageUrl = `${baseUrl}${relativePath}`; 
+  console.log(imageUrl);
+
+  return new Promise((resolve, reject) => {
+    const request = https.get(imageUrl, (response) => {
+      if (response.statusCode !== 200) {
+        if (response.statusCode === 404) {
+          console.log(`Image not found: ${imageUrl}`);
+          resolve(null); // Skip this image
+        } else {
+          reject(new Error(`Failed to download image ${imageUrl}: Status code ${response.statusCode}`));
+        }
+        return;
+      }
+
+      let data = [];
+      response.on('data', (chunk) => {
+        data.push(chunk);
+      });
+
+      response.on('end', () => {
+        resolve(Buffer.concat(data));
+      });
+    }).on('error', (err) => {
+      console.error(`Failed to download image ${imageUrl}:`, err);
+      reject(err);
+    });
+
+    
+    request.setTimeout(10000, () => {
+      request.abort();
+      reject(new Error(`Download timed out for image ${imageUrl}`));
+    });
+  });
 };
 
+
+const createImageZip = async (contentFilePath, zipFilePath) => {
+  try {
+    const content = JSON.parse(fs.readFileSync(contentFilePath, 'utf-8'));
+    const modules = content.module || [];
+
+    const images = [];
+    modules.forEach(module => {
+      console.log('Processing module:', module.moduleId);
+
+      if (module.actionCardDetails) {
+        module.actionCardDetails.forEach(card => {
+          if (card && card.icon) {
+            let iconPath = card.icon;
+            if (!iconPath.endsWith('.png')) {
+              iconPath += '.png';
+            }
+            images.push(iconPath);
+            console.log('Found action card image:', iconPath);
+          }
+        });
+      }
+
+      if (module.videoDetails) {
+        module.videoDetails.forEach(video => {
+          if (video && video.thumbnail) {
+            let thumbnailPath = video.thumbnail;
+            if (!thumbnailPath.endsWith('.png')) {
+              thumbnailPath += '.png';
+            }
+            images.push(thumbnailPath);
+            console.log('Found video thumbnail:', thumbnailPath);
+          }
+        });
+      }
+
+      if (module.procedureDetails) {
+        module.procedureDetails.forEach(procedure => {
+          if (procedure && procedure.icon) {
+            let iconPath = procedure.icon;
+            if (!iconPath.endsWith('.png')) {
+              iconPath += '.png';
+            }
+            images.push(iconPath);
+            console.log('Found procedure icon:', iconPath);
+          }
+          if (procedure.chapters) {
+            procedure.chapters.forEach(chapter => {
+              const matches = chapter.content.match(/<img src="(\/richtext\/[^"]+)"/g);
+              if (matches) {
+                matches.forEach(match => {
+                  let imagePath = match.replace('<img src="', '').replace('"', '');
+                  if (!imagePath.endsWith('.png')) {
+                    imagePath += '.png';
+                  }
+                  images.push(imagePath);
+                  console.log('Found procedure chapter image:', imagePath);
+                });
+              }
+            });
+          }
+        });
+      }
+
+      if (module.keyLearningPointDetails) {
+        module.keyLearningPointDetails.forEach(point => {
+          if (point && point.questions) {
+            point.questions.forEach(question => {
+              if (question && question.image) {
+                let imagePath = question.image;
+                if (!imagePath.endsWith('.png')) {
+                  imagePath += '.png';
+                }
+                images.push(imagePath);
+                console.log('Found key learning point image:', imagePath);
+              }
+            });
+          }
+        });
+      }
+    });
+
+    if (images.length === 0) {
+      console.log('No images found in the content.');
+    }
+
+    const zip = new JSZip();
+    for (const imageUrl of images) {
+      const imageData = await downloadImage(imageUrl);
+      if (imageData) {
+        const imageName = imageUrl.split('/').pop();
+        zip.file(imageName, imageData, { binary: true });
+      }
+    }
+
+    const zipContent = await zip.generateAsync({ type: 'nodebuffer' });
+    fs.writeFileSync(zipFilePath, zipContent);
+    console.log('Zip file created successfully:', zipFilePath);
+  } catch (error) {
+    console.error('Error creating image zip:', error);
+  }
+};
+
+
+
 const main = async (categoryId) => {
-  const lang = 'ee722f96-fcf6-4bcf-9f4e-c5fd285eaac3';  
-  const draft = true;  
+  const lang = 'ee722f96-fcf6-4bcf-9f4e-c5fd285eaac3';
+  const draft = true;
 
   const result = await filterModulesByCategory(lang, draft, categoryId);
 
@@ -814,15 +934,21 @@ const main = async (categoryId) => {
     };
 
     const fileName = 'content_bundle_module_category7.json';
-
     fs.writeFileSync(fileName, JSON.stringify(output, null, 2), 'utf-8');
-    console.log('The details have been written to content_bundle_module_category.json');
-    // const fileContent = fs.readFileSync(fileName, 'utf-8');
+    console.log('The details have been written to content_bundle_module_category7.json');
+
+    
+    await createImageZip(fileName, 'images5.zip');
     return fileName;
   }
 };
 
-export { main };
+const publiss = async (categoryId) => {
+  const filename = await main(categoryId);
+  return filename;
+};
+
+module.exports = { main, publiss };
 
 
 

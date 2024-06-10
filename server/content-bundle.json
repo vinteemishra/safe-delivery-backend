@@ -2987,7 +2987,7 @@
 			"id": "newborn-management_1487679126990",
 			"version": 1510856362494,
 			"icon": "/icon/module/newborn_management",
-			"iconAlt": "/icon/module/newborn_management_alt",
+			"iconAlt": "/icon/module/newborn_management_alt",+
 			"description": "Newborn Management",
 			"actionCards": [
 				"prevention_1486813119229",
