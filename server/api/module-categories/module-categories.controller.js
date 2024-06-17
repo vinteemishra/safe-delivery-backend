@@ -8,17 +8,41 @@ import {
   publishModuleCategory,
   getModuleCategoryVersion,
   publiss,
+  publiss1,
 } from "../../lib/publisher";
 const fs = require('fs');
+
+
+// export const list = async (ctx, next) => {
+//   var id = ctx.query.key;
+//   const data = await getModuleCategories(id);
+//   ctx.status = 200;
+//   ctx.body = data;
+//   await next();
+// };
 
 
 export const list = async (ctx, next) => {
   var id = ctx.query.key;
   const data = await getModuleCategories(id);
+
+  const cleanedData = data.map((doc) => {
+    if (doc.modules) {
+      doc.modules = doc.modules.map((module) => {
+        let cleanedModule = module.replace(/_\d+$/, "");
+        cleanedModule = cleanedModule.replace(/[_-]/g, ' ');
+        cleanedModule = cleanedModule.toLowerCase().replace(/(^\w|\s\w)/g, (m) => m.toUpperCase());
+        return cleanedModule;
+      });
+    }
+    return doc;
+  });
+
   ctx.status = 200;
-  ctx.body = data;
+  ctx.body = cleanedData;
   await next();
 };
+
 
 export const post = async (ctx, next) => {
   ctx.status = 200;
@@ -80,6 +104,26 @@ export const ModulesByCategory = async (ctx, next) => {
   }
   await next();
 };
+
+
+export const ZipByCategory = async (ctx, next) => {
+  ctx.req.setTimeout(0);
+  try {
+    const categoryId = ctx.params.id; 
+    const draft = ctx.query.draft === 'true'; 
+    const fileName = await publiss1(categoryId); 
+
+    ctx.set('Content-disposition', `attachment; filename=${fileName}`);
+    ctx.set('Content-type', 'application/zip');
+    ctx.body = fs.createReadStream(fileName);
+  } catch (error) {
+    console.error(error);
+    ctx.status = 500;
+    ctx.body = { error: 'Internal Server Error' };
+  }
+  await next();
+};
+
   
 
 

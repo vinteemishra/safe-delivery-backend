@@ -771,41 +771,95 @@ const filterModulesByCategory = async (lang, draft, categoryId) => {
 
 const JSZip = require('jszip');
 
-const downloadImage = (relativePath) => {
+// const downloadImage = (relativePath) => {
+//   const baseUrl = 'https://sdacms.blob.core.windows.net/content/assets/images/india'; 
+//   const imageUrl = `${baseUrl}${relativePath}`; 
+//   console.log(imageUrl);
+
+//   return new Promise((resolve, reject) => {
+//     const request = https.get(imageUrl, (response) => {
+//       if (response.statusCode !== 200) {
+//         if (response.statusCode === 404) {
+//           console.log(`Image not found: ${imageUrl}`);
+//           resolve(null); // Skip this image
+//         } else {
+//           reject(new Error(`Failed to download image ${imageUrl}: Status code ${response.statusCode}`));
+//         }
+//         return;
+//       }
+
+//       let data = [];
+//       response.on('data', (chunk) => {
+//         data.push(chunk);
+//       });
+
+//       response.on('end', () => {
+//         resolve(Buffer.concat(data));
+//       });
+//     }).on('error', (err) => {
+//       console.error(`Failed to download image ${imageUrl}:`, err);
+//       reject(err);
+//     });
+
+    
+//     request.setTimeout(10000, () => {
+//       request.abort();
+//       reject(new Error(`Download timed out for image ${imageUrl}`));
+//     });
+//   });
+// };
+
+
+const downloadImage = (relativePath, timeoutDuration = 30000, retries = 3) => {
   const baseUrl = 'https://sdacms.blob.core.windows.net/content/assets/images/india'; 
   const imageUrl = `${baseUrl}${relativePath}`; 
   console.log(imageUrl);
 
   return new Promise((resolve, reject) => {
-    const request = https.get(imageUrl, (response) => {
-      if (response.statusCode !== 200) {
-        if (response.statusCode === 404) {
-          console.log(`Image not found: ${imageUrl}`);
-          resolve(null); // Skip this image
-        } else {
-          reject(new Error(`Failed to download image ${imageUrl}: Status code ${response.statusCode}`));
+    const attemptDownload = (attempt) => {
+      const request = https.get(imageUrl, (response) => {
+        if (response.statusCode !== 200) {
+          if (response.statusCode === 404) {
+            console.log(`Image not found: ${imageUrl}`);
+            resolve(null); // Skip this image
+          } else {
+            reject(new Error(`Failed to download image ${imageUrl}: Status code ${response.statusCode}`));
+          }
+          return;
         }
-        return;
-      }
 
-      let data = [];
-      response.on('data', (chunk) => {
-        data.push(chunk);
+        let data = [];
+        response.on('data', (chunk) => {
+          data.push(chunk);
+        });
+
+        response.on('end', () => {
+          resolve(Buffer.concat(data));
+        });
+      }).on('error', (err) => {
+        if (attempt < retries) {
+          const delay = Math.pow(2, attempt) * 1000; // Exponential backoff
+          console.log(`Attempt ${attempt} failed. Retrying in ${delay} ms...`);
+          setTimeout(() => attemptDownload(attempt + 1), delay);
+        } else {
+          console.error(`Failed to download image ${imageUrl}:`, err);
+          reject(err);
+        }
       });
 
-      response.on('end', () => {
-        resolve(Buffer.concat(data));
+      request.setTimeout(timeoutDuration, () => {
+        request.abort();
+        if (attempt < retries) {
+          const delay = Math.pow(2, attempt) * 1000; // Exponential backoff
+          console.log(`Download timed out for image ${imageUrl}. Retrying in ${delay} ms...`);
+          setTimeout(() => attemptDownload(attempt + 1), delay);
+        } else {
+          reject(new Error(`Download timed out for image ${imageUrl} after ${retries} attempts`));
+        }
       });
-    }).on('error', (err) => {
-      console.error(`Failed to download image ${imageUrl}:`, err);
-      reject(err);
-    });
+    };
 
-    
-    request.setTimeout(10000, () => {
-      request.abort();
-      reject(new Error(`Download timed out for image ${imageUrl}`));
-    });
+    attemptDownload(1);
   });
 };
 
@@ -907,6 +961,7 @@ const createImageZip = async (contentFilePath, zipFilePath) => {
     const zipContent = await zip.generateAsync({ type: 'nodebuffer' });
     fs.writeFileSync(zipFilePath, zipContent);
     console.log('Zip file created successfully:', zipFilePath);
+    return zipFilePath
   } catch (error) {
     console.error('Error creating image zip:', error);
   }
@@ -938,8 +993,37 @@ const main = async (categoryId) => {
     console.log('The details have been written to content_bundle_module_category7.json');
 
     
-    await createImageZip(fileName, 'images5.zip');
+    // await createImageZip(fileName, 'category-wise-image-bundle1.zip');
     return fileName;
+  }
+};
+
+const main1 = async (categoryId) => {
+  const lang = 'ee722f96-fcf6-4bcf-9f4e-c5fd285eaac3';
+  const draft = true;
+
+  const result = await filterModulesByCategory(lang, draft, categoryId);
+
+  if (result) {
+    const output = {
+      category: result.category,
+      module: result.modules.map(module => ({
+        moduleId: module.id,
+        actionCardDetails: module.actionCardDetails,
+        drugDetails: module.drugDetails,
+        procedureDetails: module.procedureDetails,
+        keyLearningPointDetails: module.keyLearningPointDetails,
+        videoDetails: module.videoDetails
+      }))
+    };
+
+    const fileName = 'content_bundle_module_category7.json';
+    fs.writeFileSync(fileName, JSON.stringify(output, null, 2), 'utf-8');
+    console.log('The details have been written to content_bundle_module_category7.json');
+
+    
+    const zipfile=await createImageZip(fileName, 'category-wise-image-bundle1.zip');
+    return zipfile;
   }
 };
 
@@ -948,7 +1032,12 @@ const publiss = async (categoryId) => {
   return filename;
 };
 
-module.exports = { main, publiss };
+const publiss1 = async (categoryId) => {
+  const filename = await main1(categoryId);
+  return filename;
+};
+
+module.exports = { main, publiss,main1, publiss1 };
 
 
 

@@ -8,6 +8,7 @@ import {
   publish,
   getPublishVersion,
   ModulesByCategory,
+  ZipByCategory,
   
 } from "./module-categories.controller";
 import router from "koa-router";
@@ -22,6 +23,8 @@ modulesCategories.delete("/:moduleCategoryKey", del);
 modulesCategories.post("/publish", publish);
 modulesCategories.get("/publish/version", getPublishVersion);
 modulesCategories.get("/category_wise_data/:id",ModulesByCategory);
+modulesCategories.get("/category_wise_zip/:id",ZipByCategory);
+
 
 
 export default modulesCategories;

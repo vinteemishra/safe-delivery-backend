@@ -239,26 +239,3 @@ Data Aggregation Techniques
 2. should category.json created on click of same publish button with content-bundle.json?
 3. Accessing module data
 
-+----------------------------------+
-|          Azure Cosmos DB         |
-+----------------------------------+
-                |
-                v
-+----------------------------------+
-|       Read content-bundle.json   |
-+----------------------------------+
-                |
-                v
-+----------------------------------+
-| Extract Categories and Modules   |
-+----------------------------------+
-                |
-                v
-+----------------------------------+
-| Fetch Modules by Category Key    |
-+----------------------------------+
-                |
-                v
-+----------------------------------+
-|  Output Module Data for Category |
-+----------------------------------+
