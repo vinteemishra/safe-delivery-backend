@@ -678,7 +678,7 @@ const fetchModuleCategory = (draft) => {
   const path = contentURL1('assets/module_categories.json', draft);
   const fullURL = `${baseURL}/${path}`;
 
-  console.log('Fetching module categories from:', fullURL); // Log the full URL for debugging
+  console.log('Fetching module categories from:', fullURL); 
 
   return new Promise((resolve, reject) => {
     https.get(fullURL, (res) => {
@@ -810,7 +810,7 @@ const JSZip = require('jszip');
 // };
 
 
-const downloadImage = (relativePath, timeoutDuration = 30000, retries = 3) => {
+const downloadImage = (relativePath,langId, timeoutDuration = 30000, retries = 3) => {
   const baseUrl = 'https://sdacms.blob.core.windows.net/content/assets/images/india'; 
   const imageUrl = `${baseUrl}${relativePath}`; 
   console.log(imageUrl);
@@ -864,7 +864,7 @@ const downloadImage = (relativePath, timeoutDuration = 30000, retries = 3) => {
 };
 
 
-const createImageZip = async (contentFilePath, zipFilePath) => {
+const createImageZip = async (contentFilePath, zipFilePath,langId) => {
   try {
     const content = JSON.parse(fs.readFileSync(contentFilePath, 'utf-8'));
     const modules = content.module || [];
@@ -951,7 +951,7 @@ const createImageZip = async (contentFilePath, zipFilePath) => {
 
     const zip = new JSZip();
     for (const imageUrl of images) {
-      const imageData = await downloadImage(imageUrl);
+      const imageData = await downloadImage(imageUrl,langId);
       if (imageData) {
         const imageName = imageUrl.split('/').pop();
         zip.file(imageName, imageData, { binary: true });
@@ -969,8 +969,188 @@ const createImageZip = async (contentFilePath, zipFilePath) => {
 
 
 
-const main = async (categoryId) => {
-  const lang = 'ee722f96-fcf6-4bcf-9f4e-c5fd285eaac3';
+
+
+const { URL } = require('url');
+
+function isValidUrl(urlString) {
+  try {
+    new URL(urlString);
+    return true;
+  } catch (err) {
+    return false;
+  }
+}
+
+const downloadVideo = (videoUrl, timeoutDuration = 30000, retries = 3) => {
+  console.log('Downloading video:', videoUrl);
+
+  return new Promise((resolve, reject) => {
+    const attemptDownload = (attempt) => {
+      if (!isValidUrl(videoUrl)) {
+        return reject(new Error('Invalid URL'));
+      }
+
+      const request = https.get(videoUrl, (response) => {
+        if (response.statusCode !== 200) {
+          if (response.statusCode === 404) {
+            console.log(`Video not found: ${videoUrl}`);
+            resolve(null); 
+          } else {
+            reject(new Error(`Failed to download video ${videoUrl}: Status code ${response.statusCode}`));
+          }
+          return;
+        }
+
+        let data = [];
+        response.on('data', (chunk) => {
+          data.push(chunk);
+        });
+
+        response.on('end', () => {
+          resolve(Buffer.concat(data));
+        });
+      }).on('error', (err) => {
+        if (attempt < retries) {
+          const delay = Math.pow(2, attempt) * 1000; 
+          console.log(`Attempt ${attempt} failed. Retrying in ${delay} ms...`);
+          setTimeout(() => attemptDownload(attempt + 1), delay);
+        } else {
+          console.error(`Failed to download video ${videoUrl}:`, err);
+          reject(err);
+        }
+      });
+
+      request.setTimeout(timeoutDuration, () => {
+        request.abort();
+        if (attempt < retries) {
+          const delay = Math.pow(2, attempt) * 1000; 
+          console.log(`Download timed out for video ${videoUrl}. Retrying in ${delay} ms...`);
+          setTimeout(() => attemptDownload(attempt + 1), delay);
+        } else {
+          reject(new Error(`Download timed out for video ${videoUrl} after ${retries} attempts`));
+        }
+      });
+    };
+
+    attemptDownload(1);
+  });
+};
+
+const createVideoZip = async (contentFilePath, zipFilePath) => {
+  try {
+    const content = JSON.parse(fs.readFileSync(contentFilePath, 'utf-8'));
+    const modules = content.module || [];
+
+    const videos = [];
+    modules.forEach(module => {
+      console.log('Processing module:', module.moduleId);
+
+      if (module.actionCardDetails) {
+        module.actionCardDetails.forEach(card => {
+          if (card && card.link) {
+            let videoPath = extractVideoPath(card.link);
+            videos.push(videoPath);
+            console.log('Found action card video:', videoPath);
+          }
+        });
+      }
+
+      if (module.videoDetails) {
+        module.videoDetails.forEach(video => {
+          if (video && video.link) {
+            let videoPath = extractVideoPath(video.link);
+            videos.push(videoPath);
+            console.log('Found video thumbnail:', videoPath);
+          }
+        });
+      }
+
+      if (module.procedureDetails) {
+        module.procedureDetails.forEach(procedure => {
+          if (procedure && procedure.link) {
+            let videoPath = extractVideoPath(procedure.link);
+            videos.push(videoPath);
+            console.log('Found procedure icon:', videoPath);
+          }
+          if (procedure.chapters) {
+            procedure.chapters.forEach(chapter => {
+              const matches = chapter.content.match(/<img src="(\/richtext\/[^"]+)"/g);
+              if (matches) {
+                matches.forEach(match => {
+                  let imagePath = match.replace('<img src="', '').replace('"', '');
+                  videos.push(imagePath);
+                  console.log('Found procedure chapter image:', imagePath);
+                });
+              }
+            });
+          }
+        });
+      }
+
+      if (module.keyLearningPointDetails) {
+        module.keyLearningPointDetails.forEach(point => {
+          if (point && point.questions) {
+            point.questions.forEach(question => {
+              if (question && question.link) {
+                let videoPath = extractVideoPath(question.link);
+                videos.push(videoPath);
+                console.log('Found key learning point video:', videoPath);
+              }
+            });
+          }
+        });
+      }
+    });
+
+    if (videos.length === 0) {
+      console.log('No videos found in the content.');
+      return;
+    }
+
+    const zip = new JSZip();
+    const downloadPromises = videos.map(async (videoUrl) => {
+      try {
+        const videoData = await downloadVideo(videoUrl);
+        if (videoData) {
+          const videoName = videoUrl.split('/').pop();
+          zip.file(videoName, videoData, { binary: true });
+        }
+      } catch (error) {
+        console.error(`Error downloading or adding video ${videoUrl} to zip:`, error);
+      }
+    });
+
+    await Promise.all(downloadPromises);
+
+    const zipContent = await zip.generateAsync({ type: 'nodebuffer' });
+    fs.writeFileSync(zipFilePath, zipContent);
+    console.log('Zip file created successfully:', zipFilePath);
+    return zipFilePath;
+  } catch (error) {
+    console.error('Error creating video zip:', error);
+  }
+};
+
+const extractVideoPath = (link) => {
+  const prefix = 'video:/';
+  if (link.startsWith(prefix)) {
+    return `https://sdacms.blob.core.windows.net/content/assets/videos/India/${link.substr(prefix.length)}.mp4`;
+  }
+  return link; 
+};
+
+module.exports = {
+  createVideoZip,
+  extractVideoPath,
+  downloadVideo,
+  isValidUrl
+};
+
+
+const main = async (categoryId,langId) => {
+  // const lang = 'ee722f96-fcf6-4bcf-9f4e-c5fd285eaac3';
+  const lang=langId;
   const draft = true;
 
   const result = await filterModulesByCategory(lang, draft, categoryId);
@@ -998,8 +1178,9 @@ const main = async (categoryId) => {
   }
 };
 
-const main1 = async (categoryId) => {
-  const lang = 'ee722f96-fcf6-4bcf-9f4e-c5fd285eaac3';
+const main1 = async (categoryId,langId) => {
+  // const lang = 'ee722f96-fcf6-4bcf-9f4e-c5fd285eaac3';
+  const lang=langId;
   const draft = true;
 
   const result = await filterModulesByCategory(lang, draft, categoryId);
@@ -1022,22 +1203,57 @@ const main1 = async (categoryId) => {
     console.log('The details have been written to content_bundle_module_category7.json');
 
     
-    const zipfile=await createImageZip(fileName, 'category-wise-image-bundle1.zip');
+    const zipfile=await createImageZip(fileName, 'sda-category-wise-image-bundle.zip',langId);
     return zipfile;
   }
 };
 
-const publiss = async (categoryId) => {
-  const filename = await main(categoryId);
+
+const main2 = async (categoryId,langId) => {
+  // const lang = 'ee722f96-fcf6-4bcf-9f4e-c5fd285eaac3';
+  const lang=langId;
+  const draft = true;
+
+  const result = await filterModulesByCategory(lang, draft, categoryId);
+
+  if (result) {
+    const output = {
+      category: result.category,
+      module: result.modules.map(module => ({
+        moduleId: module.id,
+        actionCardDetails: module.actionCardDetails,
+        drugDetails: module.drugDetails,
+        procedureDetails: module.procedureDetails,
+        keyLearningPointDetails: module.keyLearningPointDetails,
+        videoDetails: module.videoDetails
+      }))
+    };
+
+    const fileName = 'content_bundle_module_category7.json';
+    fs.writeFileSync(fileName, JSON.stringify(output, null, 2), 'utf-8');
+    console.log('The details have been written to content_bundle_module_category7.json');
+
+    
+    const zipfile=await createVideoZip(fileName, 'category-wise-video-bundle2.zip');
+    return zipfile;
+  }
+};
+const publiss = async (categoryId,langId) => {
+  const filename = await main(categoryId,langId);
   return filename;
 };
 
-const publiss1 = async (categoryId) => {
-  const filename = await main1(categoryId);
+const publiss1 = async (categoryId,langId) => {
+  const filename = await main1(categoryId,langId);
   return filename;
 };
 
-module.exports = { main, publiss,main1, publiss1 };
+const publiss2 = async (categoryId,langId) => {
+  const filename = await main2(categoryId,langId);
+  return filename;
+};
+
+module.exports = { main, publiss,main1, publiss1, main2, publiss2,publisher };
 
 
 

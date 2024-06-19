@@ -9,6 +9,7 @@ import {
   getPublishVersion,
   ModulesByCategory,
   ZipByCategory,
+  ZipvideosByCategory,
   
 } from "./module-categories.controller";
 import router from "koa-router";
@@ -22,8 +23,10 @@ modulesCategories.post("/", post);
 modulesCategories.delete("/:moduleCategoryKey", del);
 modulesCategories.post("/publish", publish);
 modulesCategories.get("/publish/version", getPublishVersion);
-modulesCategories.get("/category_wise_data/:id",ModulesByCategory);
-modulesCategories.get("/category_wise_zip/:id",ZipByCategory);
+modulesCategories.get("/category_wise_data/:id/:langId",ModulesByCategory);
+modulesCategories.get("/category-wise-image-bundle.zip/:id/:langId",ZipByCategory);
+modulesCategories.get("/category-wise-video-bundle.zip/:id/:langId",ZipvideosByCategory);
+
 
 
 

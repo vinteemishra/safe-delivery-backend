@@ -9,6 +9,7 @@ import {
   getModuleCategoryVersion,
   publiss,
   publiss1,
+  publiss2,
 } from "../../lib/publisher";
 const fs = require('fs');
 
@@ -90,9 +91,11 @@ export const getPublishVersion = async (ctx, next) => {
 export const ModulesByCategory = async (ctx, next) => {
   ctx.req.setTimeout(0);
   try {
-    const categoryId = ctx.params.id; 
+    // const categoryId = ctx.params.id; 
+    const { id: categoryId, langId } = ctx.params;
+
     const draft = ctx.query.draft === 'true'; 
-    const fileName = await publiss(categoryId); 
+    const fileName = await publiss(categoryId,langId); 
 
     ctx.set('Content-disposition', `attachment; filename=${fileName}`);
     ctx.set('Content-type', 'application/json');
@@ -109,9 +112,34 @@ export const ModulesByCategory = async (ctx, next) => {
 export const ZipByCategory = async (ctx, next) => {
   ctx.req.setTimeout(0);
   try {
-    const categoryId = ctx.params.id; 
+    // const categoryId = ctx.params.id; 
+    const { id: categoryId, langId } = ctx.params;
+
     const draft = ctx.query.draft === 'true'; 
-    const fileName = await publiss1(categoryId); 
+    const fileName = await publiss1(categoryId,langId); 
+
+    ctx.set('Content-disposition', `attachment; filename=${fileName}`);
+    ctx.set('Content-type', 'application/zip');
+    ctx.body = fs.createReadStream(fileName);
+  } catch (error) {
+    console.error(error);
+    ctx.status = 500;
+    ctx.body = { error: 'Internal Server Error' };
+  }
+  await next();
+};
+
+
+export const ZipvideosByCategory = async (ctx, next) => {
+  ctx.req.setTimeout(0);
+  try {
+    // const categoryId = ctx.params.id; 
+    
+    const { id: categoryId, langId } = ctx.params;
+
+
+    const draft = ctx.query.draft === 'true'; 
+    const fileName = await publiss2(categoryId,langId); 
 
     ctx.set('Content-disposition', `attachment; filename=${fileName}`);
     ctx.set('Content-type', 'application/zip');
