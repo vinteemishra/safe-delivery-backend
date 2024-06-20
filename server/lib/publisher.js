@@ -809,10 +809,9 @@ const JSZip = require('jszip');
 //   });
 // };
 
-
-const downloadImage = (relativePath,langId, timeoutDuration = 30000, retries = 3) => {
-  const baseUrl = 'https://sdacms.blob.core.windows.net/content/assets/images/india'; 
-  const imageUrl = `${baseUrl}${relativePath}`; 
+const downloadImage = (relativePath, langId, timeoutDuration = 30000, retries = 3) => {
+  const baseUrl = 'https://sdacms.blob.core.windows.net/content/assets/images/india';
+  const imageUrl = `${baseUrl}${relativePath}`;
   console.log(imageUrl);
 
   return new Promise((resolve, reject) => {
@@ -821,7 +820,7 @@ const downloadImage = (relativePath,langId, timeoutDuration = 30000, retries = 3
         if (response.statusCode !== 200) {
           if (response.statusCode === 404) {
             console.log(`Image not found: ${imageUrl}`);
-            resolve(null); // Skip this image
+            resolve(null); 
           } else {
             reject(new Error(`Failed to download image ${imageUrl}: Status code ${response.statusCode}`));
           }
@@ -838,7 +837,7 @@ const downloadImage = (relativePath,langId, timeoutDuration = 30000, retries = 3
         });
       }).on('error', (err) => {
         if (attempt < retries) {
-          const delay = Math.pow(2, attempt) * 1000; // Exponential backoff
+          const delay = Math.pow(2, attempt) * 1000; 
           console.log(`Attempt ${attempt} failed. Retrying in ${delay} ms...`);
           setTimeout(() => attemptDownload(attempt + 1), delay);
         } else {
@@ -850,7 +849,7 @@ const downloadImage = (relativePath,langId, timeoutDuration = 30000, retries = 3
       request.setTimeout(timeoutDuration, () => {
         request.abort();
         if (attempt < retries) {
-          const delay = Math.pow(2, attempt) * 1000; // Exponential backoff
+          const delay = Math.pow(2, attempt) * 1000; 
           console.log(`Download timed out for image ${imageUrl}. Retrying in ${delay} ms...`);
           setTimeout(() => attemptDownload(attempt + 1), delay);
         } else {
@@ -863,8 +862,7 @@ const downloadImage = (relativePath,langId, timeoutDuration = 30000, retries = 3
   });
 };
 
-
-const createImageZip = async (contentFilePath, zipFilePath,langId) => {
+const createImageZip = async (contentFilePath, zipFilePath, langId) => {
   try {
     const content = JSON.parse(fs.readFileSync(contentFilePath, 'utf-8'));
     const modules = content.module || [];
@@ -950,25 +948,33 @@ const createImageZip = async (contentFilePath, zipFilePath,langId) => {
     }
 
     const zip = new JSZip();
-    for (const imageUrl of images) {
-      const imageData = await downloadImage(imageUrl,langId);
-      if (imageData) {
-        const imageName = imageUrl.split('/').pop();
-        zip.file(imageName, imageData, { binary: true });
+    const downloadPromises = images.map(async (imageUrl) => {
+      try {
+        const imageData = await downloadImage(imageUrl, langId);
+        if (imageData) {
+          const imageName = imageUrl.split('/').pop();
+          zip.file(imageName, imageData, { binary: true });
+        }
+      } catch (error) {
+        console.error(`Error downloading or adding image ${imageUrl} to zip:`, error);
       }
-    }
+    });
+
+    await Promise.all(downloadPromises);
 
     const zipContent = await zip.generateAsync({ type: 'nodebuffer' });
     fs.writeFileSync(zipFilePath, zipContent);
     console.log('Zip file created successfully:', zipFilePath);
-    return zipFilePath
+    return zipFilePath;
   } catch (error) {
     console.error('Error creating image zip:', error);
   }
 };
 
-
-
+module.exports = {
+  createImageZip,
+  downloadImage,
+};
 
 
 const { URL } = require('url');
@@ -988,7 +994,7 @@ const downloadVideo = (videoUrl, timeoutDuration = 30000, retries = 3) => {
   return new Promise((resolve, reject) => {
     const attemptDownload = (attempt) => {
       if (!isValidUrl(videoUrl)) {
-        return reject(new Error('Invalid URL'));
+        return reject(new Error(`Invalid URL: ${videoUrl}`));
       }
 
       const request = https.get(videoUrl, (response) => {
@@ -1133,11 +1139,14 @@ const createVideoZip = async (contentFilePath, zipFilePath) => {
 };
 
 const extractVideoPath = (link) => {
-  const prefix = 'video:/';
-  if (link.startsWith(prefix)) {
-    return `https://sdacms.blob.core.windows.net/content/assets/videos/India/${link.substr(prefix.length)}.mp4`;
+  const videoPrefix = 'video:/';
+  const richtextPrefix = '/richtext/';
+  if (link.startsWith(videoPrefix)) {
+    return `https://sdacms.blob.core.windows.net/content/assets/videos/India/${link.substr(videoPrefix.length)}.mp4`;
+  } else if (link.startsWith(richtextPrefix)) {
+    return `https://yourdomain.com${link}`; 
   }
-  return link; 
+  return link;
 };
 
 module.exports = {
@@ -1253,7 +1262,7 @@ const publiss2 = async (categoryId,langId) => {
   return filename;
 };
 
-module.exports = { main, publiss,main1, publiss1, main2, publiss2,publisher };
+module.exports = { main, publiss,main1, publiss1, main2, publiss2,publisher,publishModuleCategory,getModuleCategoryVersion };
 
 
 
