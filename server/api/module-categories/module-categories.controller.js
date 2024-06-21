@@ -14,35 +14,35 @@ import {
 const fs = require('fs');
 
 
-// export const list = async (ctx, next) => {
-//   var id = ctx.query.key;
-//   const data = await getModuleCategories(id);
-//   ctx.status = 200;
-//   ctx.body = data;
-//   await next();
-// };
-
-
 export const list = async (ctx, next) => {
   var id = ctx.query.key;
   const data = await getModuleCategories(id);
-
-  const cleanedData = data.map((doc) => {
-    if (doc.modules) {
-      doc.modules = doc.modules.map((module) => {
-        let cleanedModule = module.replace(/_\d+$/, "");
-        cleanedModule = cleanedModule.replace(/[_-]/g, ' ');
-        cleanedModule = cleanedModule.toLowerCase().replace(/(^\w|\s\w)/g, (m) => m.toUpperCase());
-        return cleanedModule;
-      });
-    }
-    return doc;
-  });
-
   ctx.status = 200;
-  ctx.body = cleanedData;
+  ctx.body = data;
   await next();
 };
+
+
+// export const list = async (ctx, next) => {
+//   var id = ctx.query.key;
+//   const data = await getModuleCategories(id);
+
+//   const cleanedData = data.map((doc) => {
+//     if (doc.modules) {
+//       doc.modules = doc.modules.map((module) => {
+//         let cleanedModule = module.replace(/_\d+$/, "");
+//         cleanedModule = cleanedModule.replace(/[_-]/g, ' ');
+//         cleanedModule = cleanedModule.toLowerCase().replace(/(^\w|\s\w)/g, (m) => m.toUpperCase());
+//         return cleanedModule;
+//       });
+//     }
+//     return doc;
+//   });
+
+//   ctx.status = 200;
+//   ctx.body = cleanedData;
+//   await next();
+// };
 
 
 export const post = async (ctx, next) => {

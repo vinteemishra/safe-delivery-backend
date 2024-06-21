@@ -15,6 +15,7 @@ import {
   videoScreenKey,
 } from "../api/assets/assets.model";
 import {
+  insert,
   list as listModules,
   screenKey as moduleScreenKey,
 } from "../api/modules/modules.model";
@@ -1119,6 +1120,7 @@ const createVideoZip = async (contentFilePath, zipFilePath) => {
       try {
         const videoData = await downloadVideo(videoUrl);
         if (videoData) {
+          console.log(videoUrl);
           const videoName = videoUrl.split('/').pop();
           zip.file(videoName, videoData, { binary: true });
         }
@@ -1177,9 +1179,9 @@ const main = async (categoryId,langId) => {
       }))
     };
 
-    const fileName = 'content_bundle_module_category7.json';
+    const fileName = 'content_bundle_module_category.json';
     fs.writeFileSync(fileName, JSON.stringify(output, null, 2), 'utf-8');
-    console.log('The details have been written to content_bundle_module_category7.json');
+    console.log('The details have been written to content_bundle_module_category.json');
 
     
     // await createImageZip(fileName, 'category-wise-image-bundle1.zip');
@@ -1207,9 +1209,9 @@ const main1 = async (categoryId,langId) => {
       }))
     };
 
-    const fileName = 'content_bundle_module_category7.json';
+    const fileName = 'content_bundle_module_category.json';
     fs.writeFileSync(fileName, JSON.stringify(output, null, 2), 'utf-8');
-    console.log('The details have been written to content_bundle_module_category7.json');
+    console.log('The details have been written to content_bundle_module_category.json');
 
     
     const zipfile=await createImageZip(fileName, 'sda-category-wise-image-bundle.zip',langId);
@@ -1238,12 +1240,12 @@ const main2 = async (categoryId,langId) => {
       }))
     };
 
-    const fileName = 'content_bundle_module_category7.json';
+    const fileName = 'content_bundle_module_category.json';
     fs.writeFileSync(fileName, JSON.stringify(output, null, 2), 'utf-8');
-    console.log('The details have been written to content_bundle_module_category7.json');
+    console.log('The details have been written to content_bundle_module_category.json');
 
     
-    const zipfile=await createVideoZip(fileName, 'category-wise-video-bundle2.zip');
+    const zipfile=await createVideoZip(fileName, 'category-wise-video-bundle.zip');
     return zipfile;
   }
 };
@@ -1262,7 +1264,7 @@ const publiss2 = async (categoryId,langId) => {
   return filename;
 };
 
-module.exports = { main, publiss,main1, publiss1, main2, publiss2,publisher,publishModuleCategory,getModuleCategoryVersion };
+module.exports = { main, publiss,main1, publiss1, main2, publiss2,publisher,publishModuleCategory,getModuleCategoryVersion};
 
 
 
