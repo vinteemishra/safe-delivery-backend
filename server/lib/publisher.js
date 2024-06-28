@@ -1144,7 +1144,7 @@ const extractVideoPath = (link) => {
   const videoPrefix = 'video:/';
   const richtextPrefix = '/richtext/';
   if (link.startsWith(videoPrefix)) {
-    return `https://sdacms.blob.core.windows.net/content/assets/videos/India/${link.substr(videoPrefix.length)}.mp4`;
+    return `https://sdacms.blob.core.windows.net/content/assets/videos/english WHO/${link.substr(videoPrefix.length)}.mp4`;
   } else if (link.startsWith(richtextPrefix)) {
     return `https://yourdomain.com${link}`; 
   }
