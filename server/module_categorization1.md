@@ -239,3 +239,99 @@ Data Aggregation Techniques
 2. should category.json created on click of same publish button with content-bundle.json?
 3. Accessing module data
 
+## Detailed Task List
+
+### contentURL
+Objective: Generate the full content URL based on a draft flag.
+
+Determine Base Path: Identify the base path using the draft flag.
+
+Construct URL: Combine the base path with the necessary components to form the full content URL.
+
+Return URL: Return the constructed content URL.
+
+### fetchContentBundle
+
+Objective: Retrieve and parse the content bundle JSON.
+
+Construct URL: Build the URL for the content bundle.
+
+Fetch JSON: Send a request to fetch the content bundle JSON from the server.
+
+Parse Response: Parse the JSON response.
+
+Error Handling: Manage errors that occur during fetching or parsing.
+
+### fetchModuleCategory
+
+Objective: Retrieve and parse the module categories JSON.
+
+Construct URL: Build the URL for the module categories JSON.
+
+Fetch JSON: Send a request to fetch the module categories JSON from the server.
+
+Parse Response: Parse the JSON response.
+
+Error Handling: Manage errors that occur during fetching or parsing.
+
+### filterModulesByCategory
+
+Objective: Filter modules by category and enrich them with additional details.
+
+Fetch Categories: Use fetchModuleCategory to get the module categories.
+
+Find Category: Identify the specified category using categoryId.
+
+Fetch Content Bundle: Use fetchContentBundle to get the content bundle.
+
+Filter Modules: Filter the modules based on the identified category.
+
+Attach Details: Enrich each module with additional details (action cards, drugs, procedures, key learning points, videos).
+
+Error Handling: Manage errors that occur during fetching or processing.
+
+### downloadImage
+
+Objective: Download an image from a specified URL with error handling.
+
+Download Image: Initiate the download from the provided URL.
+
+Retry Mechanism: Implement retries if the download fails or times out.
+
+Error Handling: Manage download errors effectively.
+
+### createImageZip
+
+Objective: Create a ZIP file containing downloaded images.
+
+Read Content JSON: Parse the content JSON file to extract image URLs.
+
+Collect Image URLs: Gather all image URLs from the parsed content.
+
+Download Images: Download the images from the collected URLs.
+
+Create ZIP: Compile the downloaded images into a ZIP file.
+
+Error Handling: Manage errors that occur during image downloading and ZIP creation.
+
+### downloadVideo
+
+Objective: Download a video from a specified URL with error handling.
+
+Download Video: Initiate the download from the provided URL.
+
+Retry Mechanism: Implement retries if the download fails or times out.
+
+Error Handling: Manage download errors effectively.
+
+### createVideoZip
+
+Read and parse the content JSON file.
+
+Collect video URLs from the content.
+
+Download videos.
+
+Create a ZIP file containing the downloaded videos.
+
+Handle errors in downloading videos and creating the ZIP file.

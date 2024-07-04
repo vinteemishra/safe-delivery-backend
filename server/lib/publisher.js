@@ -811,9 +811,19 @@ const JSZip = require('jszip');
 // };
 
 const downloadImage = (relativePath, langId, timeoutDuration = 30000, retries = 3) => {
-  const baseUrl = 'https://sdacms.blob.core.windows.net/content/assets/images/india';
-  const imageUrl = `${baseUrl}${relativePath}`;
-  console.log(imageUrl);
+  // const baseUrl = 'https://sdacms.blob.core.windows.net/content/assets/images/india';
+  // const imageUrl = `${baseUrl}${relativePath}`;
+  // console.log(imageUrl);
+  if((langId=='ee722f96-fcf6-4bcf-9f4e-c5fd285eaac3')||(langId=='22118d52-0d78-431d-b1ba-545ee63017ca')){
+    var baseUrl = 'https://sdacms.blob.core.windows.net/content/assets/images/india';
+    }else if((langId=='da5137d1-8492-4312-b444-8e4d4949a3c7')||(langId=='dc40648b-0a77-446b-b11b-e0aa17aed697')){
+    var baseUrl = 'https://sdacms.blob.core.windows.net/content/assets/images/africa';
+    }else{
+    var baseUrl = 'https://sdacms.blob.core.windows.net/content/assets/images/africa';
+    }
+    const imageUrl = `${baseUrl}${relativePath}`;
+    console.log(imageUrl);
+  
 
   return new Promise((resolve, reject) => {
     const attemptDownload = (attempt) => {
@@ -871,8 +881,38 @@ const createImageZip = async (contentFilePath, zipFilePath, langId) => {
     const images = [];
     modules.forEach(module => {
       console.log('Processing module:', module.moduleId);
+      
 
-      if (module.actionCardDetails) {
+
+      
+        // if (category && category.icon) {
+        //   let iconPath = category.icon;
+        //   if (!iconPath.endsWith('.png')) {
+        //     iconPath += '.png';
+        //   }
+        //   images.push(iconPath);
+        //   console.log('Found category icon:', iconPath);
+        // }
+      
+        // Check if modules exist and iterate through each module to find its icon
+        
+        if (module.icon) {
+          
+              let iconPath = module.icon;
+              if (!iconPath.endsWith('.png')) {
+                iconPath += '.png';
+              }
+              images.push(iconPath);
+              console.log('Found module icon:', iconPath);
+            } else {
+              console.log('No icon found for module');
+            }
+          
+   
+        
+        
+
+    if (module.actionCardDetails) {
         module.actionCardDetails.forEach(card => {
           if (card && card.icon) {
             let iconPath = card.icon;
@@ -1171,6 +1211,7 @@ const main = async (categoryId,langId) => {
       category: result.category,
       module: result.modules.map(module => ({
         moduleId: module.id,
+        icon:module.icon,
         actionCardDetails: module.actionCardDetails,
         drugDetails: module.drugDetails,
         procedureDetails: module.procedureDetails,
@@ -1201,6 +1242,7 @@ const main1 = async (categoryId,langId) => {
       category: result.category,
       module: result.modules.map(module => ({
         moduleId: module.id,
+        icon: module.icon,
         actionCardDetails: module.actionCardDetails,
         drugDetails: module.drugDetails,
         procedureDetails: module.procedureDetails,

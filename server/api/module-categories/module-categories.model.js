@@ -38,6 +38,14 @@ export function remove(id) {
   });
 }
 
+
+// export function remove(id) {
+//   return dbClient.deleteDoc(id);
+// }
+
+
+
+
 export function update(user, moduleCategory) {
   if (!moduleCategory.id) {
     return {};

@@ -17,6 +17,8 @@ const fs = require('fs');
 export const list = async (ctx, next) => {
   var id = ctx.query.key;
   const data = await getModuleCategories(id);
+  // console.log("Original Data:", JSON.stringify(data, null, 2));
+
   ctx.status = 200;
   ctx.body = data;
   await next();
@@ -26,7 +28,55 @@ export const list = async (ctx, next) => {
 // export const list = async (ctx, next) => {
 //   var id = ctx.query.key;
 //   const data = await getModuleCategories(id);
+  
+//   // Process each category object
+//   data.forEach(category => {
+//     // Clean up module names
+//     category.modules = category.modules.map(module => cleanModuleName(module));
+//   });
 
+//   ctx.status = 200;
+//   ctx.body = data;
+//   await next();
+// };
+
+// // Function to clean module names
+// function cleanModuleName(moduleName) {
+//   // Split by underscore and take the first part
+//   const cleanName = moduleName.split('_')[0];
+//   // Replace hyphens with spaces
+//   const normalized = cleanName.replace(/-/g, ' ');
+//   // Capitalize the first letter of each word
+//   return normalized.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+// }
+
+
+
+
+
+
+
+// export const list = async (ctx, next) => {
+//   var id = ctx.query.key;
+//   const data = await getModuleCategories(id);
+  
+//   // Modify the response data to extract only module names without suffixes
+//   const modifiedData = data.map(category => ({
+//     ...category,
+//     modules: category.modules.map(module => {
+//       return module.split('_')[0].replace(/-/g, ' '); // Replace hyphens with spaces
+//     })
+//   }));
+
+//   ctx.status = 200;
+//   ctx.body = modifiedData;
+//   await next();
+// };
+
+
+// export const list = async (ctx, next) => {
+//   var id = ctx.query.key;
+//   const data = await getModuleCategories(id);
 //   const cleanedData = data.map((doc) => {
 //     if (doc.modules) {
 //       doc.modules = doc.modules.map((module) => {
@@ -38,11 +88,32 @@ export const list = async (ctx, next) => {
 //     }
 //     return doc;
 //   });
-
 //   ctx.status = 200;
 //   ctx.body = cleanedData;
 //   await next();
 // };
+
+
+// export const list = async (ctx, next) => {
+//   var id = ctx.query.key;
+  //   const data = await getModuleCategories(id);
+//   const cleanedData = data.map((doc) => {
+//     let cleanedDoc = { ...doc }; // Create a shallow copy of the document
+//     if (cleanedDoc.modules) {
+//       cleanedDoc.modules = cleanedDoc.modules.map((module) => {
+//         let cleanedModule = module.replace(/_\d+$/, "");
+//         cleanedModule = cleanedModule.replace(/[_-]/g, ' ');
+//         cleanedModule = cleanedModule.toLowerCase().replace(/(^\w|\s\w)/g, (m) => m.toUpperCase());
+//         return cleanedModule;
+//       });
+//     }
+//     return cleanedDoc;
+//   });
+//   ctx.status = 200;
+//   ctx.body = cleanedData;
+//   await next();
+// };
+
 
 
 export const post = async (ctx, next) => {
