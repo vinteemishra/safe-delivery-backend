@@ -19,65 +19,65 @@
       "drugDetails": [
         {
           "id": "post-exposure-prophylaxis---pep_1490708337530",
-          "version": 1496403108782,
-          "description": "Post Exposure Prophylaxis - PEP",
-          "content": "<h1>Preamble</h1><p>PEP is Post-Exposure Prophylaxis.</p><p>It means taking antiretroviral medicines (ART) after being potentially exposed to HIV to prevent becoming infected.</p><h1>Indications and Usage</h1><p>PEP should be considered if you’ve had a recent possible exposure to HIV at work.</p><p>Report your exposure to your supervisor, and seek medical attention immediately.</p><p>Occupational transmission of HIV to health care workers is extremely rare, and the proper use of safety devices and barriers can help minimize the risk of exposure while caring for patients with HIV.</p><h1>Dosage and Administration</h1><p>PEP must be started within 72 hours after a recent possible exposure to HIV, but the sooner you start the PEP, the better. </p><p>Every hour counts. </p><p>If you're prescribed PEP, you'll need to take it once or twice daily for 28 days.</p><p>PEP is effective in preventing HIV when administered correctly, but not 100%.</p><p>PEP normally consists of three anti-HIV drugs, from two of the different classes.</p><p>(A regimen for post-exposure prophylaxis for HIV with two ARV drugs is effective, but three drugs are preferred).</p><p>TDF + 3TC (or FTC) + EFV as a fixed-dose combination is recommended as the preferred option to initiate ART for adults and adolescents.</p><p>Remember to take an HIV test 3 months after exposure. </p><p>Pregnant and breastfeeding women can be treated with PEP.</p><h1>Contraindications</h1><p>Do not treat pregnant women with Efavirenz or Nevirapin.</p><h1>Adverse Reactions</h1><p>HIV treatment can cause side-effects which tend to be the worst when you first start taking them.</p><p>If you are taking PEP you may experience some unpleasant side-effects such as nausea, vomiting, diarrhoea, headaches and fatigue.</p><p>The drugs used in a course of PEP today are less likely to cause side-effects than those used in the past.</p>"
+          "version": 1519037542546,
+          "description": "Prophylaxie post exposition - PPE",
+          "content": "<h1>Intro</h1><p>PPE sont les initiales de Prophylaxie Post Exposition.</p><p>Il s’agit d’une prise de médicaments (ARV) prophylactique après une exposition éventuelle aux virus VIH afin de prévenir l’infection. </p><h1>Indications et utilisation</h1><p>La PPE doit être envisagée si vous avez été exposé au VIH durant votre travail. </p><p>Rapportez le cas d’exposition à votre superviseur et consultez un médecin immédiatement.  </p><p>La transmission du VIH aux agents de santé en service est extrêmement rare et l'utilisation correcte des dispositifs de sécurité aident à minimiser le risque d'exposition tout en prenant en charge les patients atteints du VIH.</p><h1>Posologie et mode d'emploi</h1><p>La PPE doit être démarré dans les 72 heures suivant une exposition au VIH, mais doit être démarrée le plus tôt possible. </p><p>Chaque heure compte.</p><p>Si vous recevez la PPE, vous devrez la prendre une ou deux fois par jour pendant 28 jours. </p><p>La PPE est efficace pour prévenir le VIH lorsqu'elle est administrée correctement, mais pas à 100%.</p><p>La PPE consiste normalement en la prise de trois médicaments anti-VIH, provenant de deux classes différentes. </p><p>(Un régime de prophylaxie post exposition avec deux médicaments antirétroviraux (ARV) est efficace, mais trois médicaments sont préférables). </p><p>TDF + 3TC (ou FTC) + EFV en tant que combinaison à dose fixe est recommandé comme option privilégiée pour initier le traitement antirétroviral chez les adultes et les adolescents. </p><p>Rappelez-vous de faire un test VIH trois mois après l'exposition. </p><p>Les femmes enceintes et allaitantes peuvent être traitées avec la PPE.</p><h1>Contre-indications</h1><p>Ne traitez pas les femmes enceintes avec l’Efavirenz ou la Nevirapine. </p><h1>Effets indésirables</h1><p>Le traitement du VIH peut causer des effets indésirables surtout au début du traitement.</p><p>Si vous suivez une PPE, les effets secondaires peuvent être la diarrhée, la fatigue et de sentir une légère asthénie. </p><p>Les médicaments utilisés au cours des PPE aujourd'hui sont moins susceptibles de causer des effets secondaires que ceux utilisés dans le passé.</p>"
         }
       ],
       "procedureDetails": [
         {
           "id": "mixing-alcohol-based-handrub_1487245431108",
-          "version": 1499421708859,
+          "version": 1516036763478,
           "icon": "/icon/procedure/handrub",
-          "description": "Mixing alcohol-based handrub",
+          "description": "Aseptisant hydro-alcoolique",
           "chapters": [
             {
               "id": "usage_1487245873343",
-              "description": "Usage",
-              "content": "<p>Using alcohol-based handrub is indicated when hands are visibly clean.</p><p class=\"link\" href=\"https://google.com\" data-text=\"Just google stuff. I can actually create the master content here. What if I enter a whole bunch of stuff here?\"></p><p>Use alcohol-based handrub before and after every procedure, such as before and after touching a patient, after touching patient's surroundings, before a clean procedure, after body fluid exposure risk and before and after wearing gloves.</p><p class=\"link\" href=\"safedelivery://hypertension_1487677992452/quiz\" data-text=\"This is a link to the quiz!\"></p><p class=\"link\" href=\"safedelivery://infection-prevention_1487676001934/drug/post-exposure-prophylaxis---pep_1490708337530\" data-text=\"PEP\"></p>"
+              "description": "Utilisation",
+              "content": "<p>L’utilisation d’aseptisant hydro-alcoolique est indiquée lorsque les mains sont visiblement propres. </p><p class=\"link\" href=\"https://google.com\" data-text=\"Just google stuff. I can actually create the master content here. What if I enter a whole bunch of stuff here?\"></p><p>Utilisez l’aseptisant hydro-alcoolique avant et après contact avec le patient, après contact avec l’environnement d’un patient, avant un geste aseptique, après un risque d’exposition aux liquides organiques et avant l’enfilage et après le retrait des gants. </p><p class=\"link\" href=\"safedelivery://hypertension_1487677992452/quiz\" data-text=\"This is a link to the quiz!\"></p><p class=\"link\" href=\"safedelivery://infection-prevention_1487676001934/drug/post-exposure-prophylaxis---pep_1490708337530\" data-text=\"PEP\"></p>"
             },
             {
               "id": "practical-information_1487245887198",
-              "description": "Practical information",
-              "content": "<h1>Guide to Local Production: </h1><p>WHO-recommended handrub formulations.</p><h2>Liquids Required</h2><ul><li>Ethanol 96% OR Isopropyl alcohol 99.8%</li><li>Hydrogen peroxide 3%</li><li>Glycerol 98%</li><li>Sterile distilled OR boiled cold water</li></ul><h2>Materials Required</h2><img src=\"/richtext/pp_mixing_handrub_practical_1\"/><ul><li>10-litre glass or plastic bottles with screw-threaded stoppers, <strong>OR</strong></li></ul><img src=\"/richtext/pp_mixing_handrub_practical_2\"/><ul><li>50-litre plastic tanks (preferably in polypropylene or high density polyethylene, translucent so as to see the liquid level), <strong>OR</strong></li></ul><img src=\"/richtext/pp_mixing_handrub_practical_3\"/><ul><li>Stainless steel tanks with a capacity of 80-100 litres (for mixing without overflowing)</li></ul><img src=\"/richtext/pp_mixing_handrub_practical_4\"/><ul><li>Wooden, plastic or metal paddles for mixing</li></ul><img src=\"/richtext/pp_mixing_handrub_practical_5\"/><img src=\"/richtext/pp_mixing_handrub_practical_6\"/><ul><li>Measuring cylinders and measuring jugs</li><li>Plastic or metal funnel</li></ul><img src=\"/richtext/pp_mixing_handrub_practical_7\"/><ul><li>100 ml plastic bottles with leak-proof tops, <strong>OR</strong></li><li>500 ml glass or plastic bottles with screwtops.</li></ul><img src=\"/richtext/pp_mixing_handrub_practical_8\"/><ul>An alcoholmeter: the temperature scale is at the bottom and the ethanol concentration (percentage v/v) at the top.</ul><h2>Note:</h2><ul><strong>Glycerol:</strong> used as humectant, but other emollients may be used for skin care, provided that they are cheap, widely available and miscible in the water and alcohol and do not add to toxicity, or promote allergy.</ul><ul><strong>Hydrogen peroxide:</strong> used to inactivate contaminating bacterial spores in the solution and is not an active substance for hand antisepsis. </ul><ul>Any further additive should be clearly labelled and be non-toxic in case of accidental ingestion. </ul><ul>A colourant may be added to allow differentiation from other fluids, but should not add to toxicity, promote allergy, or interfere with antimicrobial properties. The addition of perfumes or dyes is not recommended due to risk of allergic reactions </ul>"
+              "description": "Informations pratiques",
+              "content": "<h1>Guide de production locale:</h1><p>Formulations des produits hydro-alcooliques récommandées par l'OMS.</p><h2>Liquides nécessaires </h2><ul><li>Ethanol 96% OU Isopropanol 99.8%</li><li>Peroxyde d'hydrogène 3%</li><li>Glycérol 98%</li><li>Eau distillée OU eau bouillie refroidie</li></ul><h2>Matériels nécessaires</h2><img src=\"/richtext/pp_mixing_handrub_practical_1\"/><ul><li>Bouteille de 10 litres, en verre ou en plastique, munie d’un bouchon à vis (1),  <strong>ou</strong></li></ul><img src=\"/richtext/pp_mixing_handrub_practical_2\"/><ul><li>Réservoir de 50 litres en plastique (de préférence en polypropylène ou en polyéthylène de haute densité, translucide permettant de voir le niveau de liquide)  (2), <strong>ou</strong></li></ul><img src=\"/richtext/pp_mixing_handrub_practical_3\"/><ul><li>Récipients en acier inoxydable avec couvercle d’une capacité de 80 à 100 litres (permettant les opérations de mélange sans débordement) (3, 4),</li></ul><img src=\"/richtext/pp_mixing_handrub_practical_4\"/><ul><li>Spatules en bois, plastique ou métal, pour le mélange des composants (5),</li></ul><img src=\"/richtext/pp_mixing_handrub_practical_5\"/><img src=\"/richtext/pp_mixing_handrub_practical_6\"/><ul><li>Cylindres ou béchers ou berlins gradués (6, 7),</li><li>Entonnoir en plastique ou en métal,</li></ul><img src=\"/richtext/pp_mixing_handrub_practical_7\"/><ul>•\tFlacons de 100 ml en plastique, munis de bouchons étanches (8), ou•\tFlacons de 500 ml en plastique ou en verre, munis de bouchons à vis (8),</ul><img src=\"/richtext/pp_mixing_handrub_practical_8\"/><ul><li>Alcoomètre : échelle de température et concentration en éthanol (pourcentage v/v) situées respectivement en bas et en haut de l’alcoomètre (9, 10, 11).</li></ul><h2>Note:</h2><ul><li><strong>Glycérol </strong>: utilisé comme humectant ; d’autres produits émollients peuvent être utilisés pour la protection de la peau à condition qu’ils soient peu onéreux, facilement disponibles, miscibles dans l’eau et l’alcool, et non toxiques ou allergéniques.</li></ul><ul><li><strong>Peroxyde d’hydrogène :</strong> utilisé pour l’inactivation de spores bactériennes potentiellement présentes dans le produit. Le peroxyde d’hydrogène n’est pas un principe actif de l’antisepsie des mains.</li></ul><ul><li>Tout additif aux formulations recommandées par l’OMS doit être clairement indiqué sur l’étiquetage des flacons et autres récipients et ne pas être toxique en cas d’ingestion accidentelle.</li></ul><ul><li>Un colorant peut être ajouté aidant à différencier les produits hydro-alcooliques des autres solutions ou produits. Ce colorant ne doit ni être toxique ou allergénique, ni compromettre les propriétés antimicrobiennes du produit. L’ajout de parfums ou de teintures est déconseillé en raison des risques de réactions allergiques. </li></ul>"
             },
             {
               "id": "method_1487245895529",
-              "description": "Method",
-              "content": "<h1>10-litre preparations:</h1><p>These can be prepared in 10-litre glass or plastic bottles with screw-treaded stoppers.</p><p>Recommended amounts of products:</p><h2>10-litre preparations</h2><h2>Formulation 1</h2><ul><li><strong>Ethanol 96%</strong>: 8333 ml</li><li><strong>Hydrogen peroxide 3%</strong>: 417 ml</li><li><strong>Glycerol 98%</strong>: 145 ml</li><li><strong>Sterile distilled</strong><span color='highlighted'> </span>or<span color='highlighted'> </span><strong>boiled cold water</strong>: 1105 ml</li></ul><h2>Formulation 2</h2><ul><li><strong>Isopropyl alcohol 99.8%</strong>: 7515 ml</li><li><strong>Hydrogen peroxide 3%</strong>: 417 ml</li><li><strong>Glycerol 98%</strong>: 145 ml</li><li><strong>Sterile distilled</strong><span color='highlighted'> </span>or <strong>boiled cold water</strong>: 1923 ml</li></ul><p>Final products:</p><h2>Formulation 1</h2><p>Final concentrations:</p><ul><li><strong>Ethanol 80%</strong> (v/v)</li><li><strong>Glucerol 1.45%</strong> (v/v)</li><li><strong>Hydrogen peroxide 0.125% </strong>(v/v)</li></ul><h2>Formulation 2</h2><p>Final concentrations: </p><ul><li><strong>Isopropyl alcohol 75%</strong> (v/v)</li><li><strong>Glycerol 1.45%</strong> (v/v)</li><li><strong>Hydrogen peroxide 0.125%</strong> (v/v)</li></ul><hr><h1>Step by Step Preparation:</h1><p><strong>1.<span color='highlighted'> </strong></span>The alcohol (Ethanol or Isopropyl) for the formula to be used is poured into the large bottle or tank up to the graduated mark.</p><img src=\"/richtext/pp_mixing_handrub_method_1\"/><p><strong>2.</strong> Hydrogen peroxide is added using the measuring cylinder</p><img src=\"/richtext/pp_mixing_handrub_method_2\"/><p><strong>3.</strong> Glycerol is added using a measuring cylinder.</p><p>As glycerol is very viscous and sticks to the wall of the measuring cylinder, it should be rinsed with some sterile distilled or cold boiled water and then emptied into the bottle/tank.</p><img src=\"/richtext/pp_mixing_handrub_method_3\"/><p><strong>4.</strong> The bottle/tank is then topped up to the 10-litre mark with sterile distilled or cold boiled water</p><p><strong>5. </strong>The lid or the screw cap is placed on the tank/bottle as soon as possible after preparation, in order to prevent evaporation.</p><img src=\"/richtext/pp_mixing_handrub_method_4\"/><p><strong>6.</strong> The solution is mixed by shaking gently where appropriate or by using a paddle.</p><img src=\"/richtext/pp_mixing_handrub_method_5\"/><p><strong>7.</strong> Immediately divide up the solution into its final containers (e.g. 500 or 100 ml plastic bottles), and place the bottles in quarantine for 72 hours before use.</p><p>This allows time for any spores present in the alcohol or the new/re-used bottles to be destroyed.</p><img src=\"/richtext/pp_mixing_handrub_method_6\"/>"
+              "description": "Méthode",
+              "content": "<h1>Production de 10 litres de produit</h1><p>Les produits peuvent être préparés en volumes de 10 litres, conditionnés en flacons en verre ou en plastique munis de bouchons à vis.</p><p>Quantités recommandées pour chaque composant :</p><h2>Préparations à 10 litres</h2><h2>Solution 1</h2><ul><li><strong>Ethanol 96% </strong>: 8333 ml</li><li><strong>Peroxyde d'hydrogène 3% </strong>: 417 ml</li><li><strong>Glycérol 98% </strong>: 145 ml</li><li><strong>Eau distillé ou eau bouillie refroidie </strong>: 1105 ml</li></ul><h2>Solution 2</h2><ul><li><strong>Isopropanol 99.8% </strong>: 7515 ml</li><li><strong>Peroxyde d'hydrogène 3% </strong>: 417 ml</li><li><strong>Glycérol 98% </strong>: 145 ml</li><li><strong>Eau distillé ou eau bouillie refroidie </strong>: 1923 ml</li></ul><p>Produits finis </p><h2>Solution 1</h2><p>Concentrations finales :</p><ul><li><strong>Ethanol 80%</strong> (v/v)</li><li><strong>Glycérol 1.45%</strong> (v/v)</li><li><strong>Peroxyde d'hydrogène 0.125% </strong>(v/v)</li></ul><h2>Solution 2</h2><p>Final concentrations: </p><ul><li><strong>Isopropanol 75%</strong> (v/v)</li><li><strong>Glycérol 1.45%</strong> (v/v)</li><li><strong>Peroxyde d'hydrogène 0.125%</strong> (v/v)</li></ul><hr><h1>Étapes de production :</h1><p><strong>1.\t</strong>Verser la quantité d’alcool (éthanol ou isopropyle) nécessaire à la préparation du produit dans la bouteille, le réservoir ou le récipient servant au mélange, en utilisant un bécher ou berlin gradué.</p><img src=\"/richtext/pp_mixing_handrub_method_1\"/><p><strong>2.\t</strong>Ajouter le peroxyde d’hydrogène en utilisant un cylindre gradué.</p><img src=\"/richtext/pp_mixing_handrub_method_2\"/><p><strong>3. </strong>Ajouter le glycérol en utilisant un cylindre gradué. </p><p>Le glycérol étant une substance visqueuse adhérant aux parois, rincer le cylindre avec un peu d’eau distillée ou d’eau bouillie refroidie, et verser le contenu dans la bouteille, le réservoir ou le récipient servant au mélange.</p><img src=\"/richtext/pp_mixing_handrub_method_3\"/><p><strong>4. </strong>Ajouter l’eau distillée ou l’eau bouillie refroidie jusqu’au repère gradué indiquant 10 litres.</p><p><strong>5. </strong>Afin d’éviter toute évaporation, fermer rapidement le récipient à l’aide du bouchon à vis ou du couvercle prévus à cet effet.</p><img src=\"/richtext/pp_mixing_handrub_method_4\"/><p><strong>6. </strong>Mélanger la préparation en agitant délicatement le récipient ou à l’aide d’une spatule.</p><img src=\"/richtext/pp_mixing_handrub_method_5\"/><p><strong>7. </strong>Répartir immédiatement la préparation dans les flacons de distribution (100 ml ou 500 ml). Placer les flacons remplis en quarantaine pendant 72 heures, </p><p>Délai permettant la destruction des spores bactériennes potentiellement présentes dans l’alcool ou dans les flacons (neufs ou réutilisés).</p><img src=\"/richtext/pp_mixing_handrub_method_6\"/>"
             },
             {
               "id": "quality-control_1487245905738",
-              "description": "Quality Control",
-              "content": "<p><strong>1. </strong> Pre-production analysis should be made every time an analysis certificate is not available to guarantee the titration of alcohol (i.e. local production). </p><p>Verify the alcohol concentration with the alcoholmeter and make the necessary adjustments in volume in the preparation formulation to obtain the final recommended concentration. </p><img src=\"/richtext/pp_mixing_handrub_quality_1\"/><img src=\"/richtext/pp_mixing_handrub_quality_2\"/><p><strong>2. </strong> Post-production analysis is mandatory if either ethanol or an isopropanol solution is used.</p><p>Use the alcoholmeter to control the alcohol  concentration of the final use solution.</p><p>The accepted limits should be fixed to ± 5% of the target concentration (75%–85% for ethanol).</p><img src=\"/richtext/pp_mixing_handrub_quality_3\"/><p><strong>3.</strong> The alcoholmeter shown in the image above is for use with ethanol; if used to  control an isopropanol solution, a 75% solution will show 77% (± 1%) on the scale at 25°C.</p>"
+              "description": "Contrôle de qualité",
+              "content": "<p><strong>1. </strong> Les contrôles préalables à la production doivent être effectués chaque fois que le certificat garantissant le titrage de l’alcool n’est pas disponible (en cas de production locale). </p><p>Vérifier la concentration en alcool à l’aide de l’alcoomètre et procéder aux ajustements en volume nécessaires pour obtenir la concentration finale recommandée.</p><img src=\"/richtext/pp_mixing_handrub_quality_1\"/><img src=\"/richtext/pp_mixing_handrub_quality_2\"/><p><strong>2. </strong> Les contrôles des produits finis sont obligatoires lorsque de l’éthanol ou une solution d’isopropanol sont utilisés. </p><p> Contrôler la concentration finale de la solution à l’aide d’un alcoomètre. </p><p>Les limites d’acceptabilité sont égales à ± 5% de la concentration finale (75-85% pour l’éthanol).</p><img src=\"/richtext/pp_mixing_handrub_quality_3\"/><p><strong>3.</strong> L’alcoomètre présenté dans ce document est utilisé pour mesurer la concentration en éthanol. S’il devait être utilisé pour mesurer la concentration en isopropanol, une solution à 75% indiquera 77% (±1%) sur l’échelle, à une température de 25°C.</p>"
             },
             {
               "id": "general-information_1487245914646",
-              "description": "General Information",
-              "content": "<p>Labelling should be in accordance with national guidelines and should include the following:</p><ul><li>Name of institution, date of production and batch number.</li><li>WHO-recommended hand rub formulation.</li><li>For external use only.</li><li>Avoid contact with eyes.</li><li>Keep out of reach of children.</li><li>Date of production and batch number.</li><li><strong>Use:</strong> Apply a palmful of alcohol-based handrub and cover all surfaces of the hands. Rub hands for 20- 30 seconds.</li><li><strong>Composition:</strong> Ethanol or isopropanol, glycerol and hydrogen peroxide.</li><li><strong>Flammable:</strong> Keep away from flame and heat.</li></ul>"
+              "description": "Informations générales",
+              "content": "<p>L’étiquetage des flacons doit être conforme aux réglementations nationales et doit comporter les mentions suivantes: </p><ul><li>Nom de l’établissement, date de fabrication et numéro de lot, </li><li>Solution hydro-alcoolique recommandée par l’OMS pour l’antisepsie des mains, </li><li>Pour usage externe uniquement, </li><li>Eviter tout contact avec les yeux,</li><li>Maintenir hors de portée des enfants, </li><li>Date de fabrication et numéro de lot, </li><li><strong>Mode d’emploi :</strong> Remplir la paume d’une main avec la solution et couvrir toutes les surfaces des mains. Frictionner les mains pendant 30 secondes.</li><li><strong>Composition:</strong> L'éthanol ou l'isopropanol, le glycérol et le peroxyde d'hydrogène.</li><li><strong>Inflammable: </strong>Tenir à l'écart des flammes et de la chaleur.</li></ul>"
             },
             {
               "id": "production-and-storage_1487245933150",
-              "description": "Production and Storage",
-              "content": "<ul><li>Production and storage facilities should ideally be air conditioned or cool rooms. No naked flames or smoking should be permitted in these areas.</li></ul><ul><li>WHO-recommended handrub formulations should not be produced in quantities exceeding 50- litres locally or in central pharmacies lacking specialised air conditioning and ventilation.</li></ul><ul><li>Since undiluted ethanol is highly flammable and may ignite at temperatures as low as 10°C, production facilities should directly dilute it to the above mentioned concentration.</li></ul><ul><li>The flashpoints of ethanol 80% (v/v) and of isopropyl alcohol 75% (v/v) are 17.5°C and 19°C, respectively.</li></ul><ul><li>National safety guidelines and local legal requirements must be adhered to the storage of ingredients and the final product.</li></ul>"
+              "description": "Production et stockage",
+              "content": "<ul><li>Les locaux de production et de stockage doivent être équipés de systèmes de climatisation ou de chambres froides. Il est strictement interdit de fumer ou d’utiliser une flamme nue dans ces locaux. </li></ul><ul><li>Les solutions hydro-alcooliques recommandées par l’OMS ne doivent pas être produites en quantité supérieure à 50 litres, dans des locaux ou pharmacies centrales dépourvus de systèmes spécifiques et appropriés de climatisation ou de ventilation. </li></ul><ul><li>Etant donné que l’éthanol pur est hautement inflammable à une température de 10°C, les unités de production doivent directement diluer l’éthanol à la concentration recommandée ci-dessus. </li></ul><ul><li>Les points d’éclair de l’éthanol 80% (v/v) et de l’alcool isopropylique 75% (v/v) sont respectivement de 17,5°C et de 19°C. </li></ul><ul><li>Les réglementations nationales et locales pour le stockage des matières premières et des produits finis doivent être respectées. </li></ul>"
             }
           ]
         },
         {
           "id": "mixing-chlorine-solution_1487245480781",
-          "version": 1496399206516,
+          "version": 1493140298405,
           "icon": "/icon/procedure/chlorine",
-          "description": "Mixing chlorine solution",
+          "description": "Solution javellisée",
           "chapters": [
             {
               "id": "usage_1487245961821",
-              "description": "Usage",
-              "content": "<p>Using <strong>0.5% Chlorine Solution</strong> is indicated when instruments can be decontaminated and when to mix a disinfection solution used for cleaning high-risk areas.</p><p>Disinfection solution is made with <strong>detergent</strong> and <strong>0.5% Chlorine Solution</strong>.</p>"
+              "description": "Utilisation",
+              "content": "<p>L’utilisation de <strong>solution javellisée à 0,5%</strong> est indiquée lorsque les instruments peuvent être en les trempant dans une solution désinfectante et pour le nettoyage de surfaces à haut risque. </p><p>La solution désinfectante est préparée à base de <strong>détergent</strong> et <strong>d’eau de Javel à 0,5%.</strong> </p>"
             },
             {
               "id": "practical-information_1487245967025",
-              "description": "Practical information",
-              "content": "<p><strong>Chlorine</strong> in liquid bleach comes in different concentrations.</p><p>Any concentration can be used to make a dilute chlorine solution by applying the following formula:</p><div class=\"formula\">\n                <div class=\"problem\">\n                    <div class=\"fraction\">\n                        <div class=\"numerator\" contenteditable=\"\">% Chlorine in liquid bleach</div>\n                        <div class=\"fractionline\"></div>\n                        <div class=\"denominator\" contenteditable=\"\">Chlorine desired (0.5%)</div>\n                    </div>\n                    <div class=\"subtraction\" contenteditable=\"\">-1</div>\n                </div>\n                <div class=\"equal\" contenteditable=\"\"><div class=\"equal\" =\"\"=\"\">=</div></div>\n                <div class=\"result\" contenteditable=\"\">Total parts of water for each part of bleach</div>\n            </div><p>Example: To make a <strong>0.5% chlorine solution</strong> from <strong>5% bleach:</strong></p><div class=\"formula\">\n                <div class=\"problem\">\n                    <div class=\"fraction\">\n                        <div class=\"numerator\" contenteditable=\"\">5%</div>\n                        <div class=\"fractionline\"></div>\n                        <div class=\"denominator\" contenteditable=\"\">0.5%</div>\n                    </div>\n                    <div class=\"subtraction\" contenteditable=\"\">-1</div>\n                </div>\n                <div class=\"equal\" contenteditable=\"\"> = </div>\n                <div class=\"result\" contenteditable=\"\">9 parts of water for each part of bleach</div>\n            </div><p>Therefore, you must add 1 part of <strong>5% bleach</strong> to 9 parts water to make a <strong>0.5% chlorine solution</strong>.</p><p>Parts can be used for any unit of measure (e.g. litre or gallon) or any container used for measuring, such as a pitcher.</p><p>In countries where French products are available, the amount of active chlorine is usually expressed in degrees chlorum.</p><p>One degree chlorum is equivalent to 0.3% active chlorine.</p>"
+              "description": "Informations pratiques",
+              "content": "<p><strong>Le chlore </strong>dans l’eau de Javel peut avoir plusieurs concentrations. </p><p>Toute concentration peut être utilisée pour fabriquer une solution diluée de chlore à partir de la formule suivante :</p><div class=\"formula\">\n                <div class=\"problem\">\n                    <div class=\"fraction\">\n                        <div class=\"numerator\" contenteditable=\"\">% chlore dans l'eau de javel</div>\n                        <div class=\"fractionline\"></div>\n                        <div class=\"denominator\" contenteditable=\"\">solution désirée (0.5%)</div>\n                    </div>\n                    <div class=\"subtraction\" contenteditable=\"\">-1</div>\n                </div>\n                <div class=\"equal\" contenteditable=\"\"> = </div>\n                <div class=\"result\" contenteditable=\"\">Volume total d'eau pour chaque volume de chlore actif</div>\n            </div><p>Exemple : pour préparer une <strong>solution javellisée à 0,5%</strong> à partir de<strong> chlore actif 5%</strong> :</p><div class=\"formula\">\n                <div class=\"problem\">\n                    <div class=\"fraction\">\n                        <div class=\"numerator\" contenteditable=\"\">5%</div>\n                        <div class=\"fractionline\"></div>\n                        <div class=\"denominator\" contenteditable=\"\">0.5%</div>\n                    </div>\n                    <div class=\"subtraction\" contenteditable=\"\">-1</div>\n                </div>\n                <div class=\"equal\" contenteditable=\"\"> = </div>\n                <div class=\"result\" contenteditable=\"\">9 volumes d'eau pour chaque volume de chlore *</div>\n            </div><p>Par conséquent, vous devez ajouter 1 volume de <strong>chlore actif 5% </strong> à 9 volumes d’eau pour préparer une <strong>solution javellisée à 5%.</strong></p><p><strong>* </strong>Volume peut être n’importe quelle unité de mesure (Litre, gallon) ou n’importe quel récipient utilisé pour mesurer, comme un broc.</p><p><strong>* </strong>Dans les pays où les produits français sont disponibles, la concentration de chlore est exprimée en degré chlorométrique. </p><p>1 degré chlorométrique est équivalent à 0,3% de chlore actif.</p>"
             }
           ]
         }
@@ -85,7 +85,7 @@
       "keyLearningPointDetails": [
         {
           "id": "prevent-infections_1497356424386",
-          "version": 1529314462423,
+          "version": 1535961712856,
           "level": "1",
           "description": "Prevent infections",
           "questions": [
@@ -780,30 +780,30 @@
         },
         {
           "id": "disinfection-solution_1498131845883",
-          "version": 1524570373953,
+          "version": 1526372779073,
           "level": "2",
           "description": "Disinfection solution",
           "questions": [
             {
               "id": "what-is-a-disinfection-solution-made-of_1498132015859",
-              "question": "Why is it important to organize the cleaning process?",
+              "question": "What is a disinfection solution made of?",
               "quizzType": "oneCorrect",
               "image": "/key learning points/Infection prevention/disinfection-solution",
               "showToggle": false,
               "link": "video:/Infection prevention/housekeeping",
               "essential": true,
-              "description": "By separating the dirty and clean area contamination are avoided.",
+              "description": "Disinfection solution is made of 0.5% chlorine solution and detergent",
               "answers": [
                 {
-                  "value": "To avoid contamination by separating the dirty and clean areas",
+                  "value": "0.5 % chlorine solution and detergent",
                   "correct": true
                 },
                 {
-                  "value": "It is not important",
+                  "value": "Water and detergent",
                   "correct": false
                 },
                 {
-                  "value": "To prevent the healthcare workers from cleaning the instruments",
+                  "value": "Chlorine solution",
                   "correct": false
                 }
               ]
@@ -916,7 +916,7 @@
         },
         {
           "id": "procedure-for-handwashing_1498466869003",
-          "version": 1524569203506,
+          "version": 1505292370237,
           "level": "3",
           "description": "Procedure for handwashing",
           "questions": [
@@ -928,22 +928,22 @@
               "showToggle": false,
               "link": "video:/Infection prevention/procedure_for_handwash",
               "essential": false,
-              "description": "The procedure for handwashing is:\n\n1. Turn on the water from the tap \n2. Position the hands and wrist downward as you wet them and apply soap\n3. Perform 6 steps of rubbing movements\n4. Rinse hands with clean running water",
+              "description": "The procedure for handwashing is:\n\n1. Wet hands with clean, running water and apply soap.\n2. Vigorously rub all areas of hands and fingers together.\n3. Rinse hands with clean, running water.\n4. Close the tap with your elbow and use paper towel to dry hands.",
               "answers": [
                 {
-                  "value": " Turn on the water from the tap ",
+                  "value": "Wet hands with clean, running water and apply soap ",
                   "correct": false
                 },
                 {
-                  "value": "Position the hands and wrist downward as you wet them and apply soap",
+                  "value": "Vigorously rub all areas of hands and fingers together",
                   "correct": false
                 },
                 {
-                  "value": "Perform 6 steps of rubbing movements",
+                  "value": "Rinse hands with clean, running water",
                   "correct": false
                 },
                 {
-                  "value": "Rinse hands with clean running water",
+                  "value": "Close the tap with your elbow and use paper towel to dry hands",
                   "correct": false
                 }
               ]
@@ -1080,7 +1080,7 @@
         },
         {
           "id": "gloves-for-birth_1498469312963",
-          "version": 1526376534562,
+          "version": 1504268772001,
           "level": "3",
           "description": "Gloves for birth",
           "questions": [
@@ -1092,14 +1092,14 @@
               "showToggle": false,
               "link": "video:/Infection prevention/personal_protective_equipment",
               "essential": false,
-              "description": "Sterile gloves are preferred while attending a birth.",
+              "description": "Sterile or examination gloves are preferred while attending a birth.",
               "answers": [
                 {
                   "value": "Sterile or examination gloves",
                   "correct": true
                 },
                 {
-                  "value": "Examination gloves",
+                  "value": "Reusable sterile gloves",
                   "correct": false
                 },
                 {
@@ -1237,7 +1237,7 @@
         },
         {
           "id": "air-dry-hands_1504268482403",
-          "version": 1519902289708,
+          "version": 1505292695757,
           "level": "1",
           "description": "Air-dry hands",
           "questions": [
@@ -1249,18 +1249,18 @@
               "showToggle": false,
               "link": "video:/Infection prevention/procedure_for_handwash",
               "essential": false,
-              "description": "It is recommended to use paper towel after hand wash if available",
+              "description": "It is not recommended to air-dry hands after handwash, as almost no one can wait, so they dry their hands on their clothing unconsciously.",
               "answers": [
                 {
-                  "value": "Use a shared towel",
+                  "value": "Germs will grow while you wait",
                   "correct": false
                 },
                 {
-                  "value": "Use paper towel if available",
+                  "value": "Almost no one can wait so they dry their hands on their clothing unconsciously",
                   "correct": true
                 },
                 {
-                  "value": "Use your gown",
+                  "value": "Because a shared towel will make hands cleaner",
                   "correct": false
                 }
               ]
@@ -1302,40 +1302,36 @@
       ],
       "videoDetails": [
         {
-          "id": "/India english/Infection prevention/intro",
+          "id": "/french/Infection prevention/intro",
           "description": "Intro"
         },
         {
-          "id": "/India english/Infection prevention/hand_hygiene",
-          "description": "Hand hygiene"
+          "id": "/french/Infection prevention/hand_hygiene",
+          "description": "Hygiène des mains"
         },
         {
-          "id": "/India english/Infection prevention/procedure_for_handwash",
-          "description": "Procedure for handwash"
+          "id": "/french/Infection prevention/procedure_for_handwash",
+          "description": "Procédure pour le lavage des mains"
         },
         {
-          "id": "/India english/Infection prevention/procedure_for_handrub",
-          "description": "Procedure for handrub"
+          "id": "/french/Infection prevention/procedure_for_handrub",
+          "description": "Procédure pour la friction"
         },
         {
-          "id": "/India english/Infection prevention/personal_protective_equipment",
-          "description": "Personal protective equipment"
+          "id": "/french/Infection prevention/personal_protective_equipment",
+          "description": "Équipement de protection personnel"
         },
         {
-          "id": "/India english/Infection prevention/cleaning_decontamination",
-          "description": "Cleaning decontamination"
+          "id": "/french/Infection prevention/cleaning_decontamination",
+          "description": "Nettoyage et désinfection"
         },
         {
-          "id": "/India english/Infection prevention/storage",
-          "description": "Storage"
+          "id": "/french/Infection prevention/storage",
+          "description": "Stockage"
         },
         {
-          "id": "/India english/Infection prevention/housekeeping",
-          "description": "Housekeeping"
-        },
-        {
-          "id": "/India english/Infection prevention/hiv_hepatitis_b_prevention",
-          "description": "HIV and Hepatitis B prevention"
+          "id": "/french/Infection prevention/housekeeping",
+          "description": "Intendance"
         }
       ]
     },
@@ -1345,49 +1341,50 @@
       "actionCardDetails": [
         {
           "id": "definitions_1486843717068",
-          "version": 1497337934375,
+          "version": 1516020898904,
           "icon": "/icon/actioncard/post_abortion_care_definitions",
-          "description": "Definitions",
+          "description": "Définitions",
           "chapters": [
             {
               "id": "_1486843724228",
-              "content": "<h1>Septic Abortion</h1><p><strong>Septic abortion</strong> is diagnosed by the following signs:</p><p>Tender uterus</p><p>AND</p><p>Abnormal, foul smelling vaginal discharge</p><p>OR</p><p>Rebound tenderness</p><p>OR</p><p>Any signs of shock (systolic blood pressure below 90) or pre-shock (pulse above 90).</p><important>OR</important>"
+              "content": "<h1>Septic Abortion</h1><p><strong>L’avortement septique </strong>se diagnostique d’après les signes suivants :</p><p>Utérus sensible</p><p>ET</p><p>Pertes vaginales anormales et fétides </p><p>OU</p><p>Douleur à la décompression </p><p>OU</p><p>Signe de choc (tension artérielle systolique inférieure à 90) ou pré-choc (pouls supérieur à 90).</p><important>ATTENTION : L’avortement septique provoque souvent de la fièvre mais pas nécessairement. </important>"
             }
           ]
         },
         {
           "id": "emergency-management_1486843944185",
-          "version": 1498482753157,
+          "version": 1516021904568,
           "icon": "/icon/actioncard/post_abortion_care_emergency_management",
-          "description": "Emergency Management",
+          "description": "Prise en charge d'urgence",
           "chapters": [
             {
               "id": "_1486843950040",
-              "content": "<p>This is a BEmONC Signal Function as stated by the United Nations. However, you still have to act according to government law in your country and should only perform procedures that you have been authorized for.<br><br>At signs of septic abortion or at excessive vaginal bleeding:</p><important>Evacuation of the uterus must be performed with no delay!</important><important>Do not delay by awaiting “antibiotic coverage”!</important><hr><important><strong>CALL FOR HELP!</strong></important><hr><h3><strong>Airway</strong></h3><p>Position so airway is not occluded or at risk of aspiration.</p><hr><h3><strong>Breathing</strong></h3><p>If gasping or absent ventilate with bag and mask.</p><hr><h3><strong>Circulation</strong></h3><p>Insert 2 wide bore IV cannulas.</p><p>Give at least <span color='highlighted'>2L fluids IV</span>, <span color='highlighted'><strong>normal saline</span></strong> or <span color='highlighted'><strong>Ringer’s lactate</span></strong> fast.</p><p>Insert indwelling urine catheter to monitor in- and output.</p><hr><h3><strong>Drugs</strong></h3><p>Give antibiotics intravenous according to local guidelines, for example:</p><p><strong><span color='highlighted'>Ampicillin </strong>1 g/6 hrs.</span></p><p>AND</p><p><strong><span color='highlighted'>Gentamicin</strong> 80 mg/12 hrs.</span></p><p>AND</p><p><strong><span color='highlighted'>Metronidazole</strong> 500 mg/8 hrs.</span></p><important>This must not delay the lifesaving EVACUATION of the uterus.</important><important>Give antibiotics while you start the procedure.</important><important>If antibiotics are not available, perform evacuation and give antibiotics afterwards.</important><hr><h3><strong>Evacuate Uterus</strong></h3><p>Give appropriate <span color='highlighted'>analgesia</span> then evacuate using no-touch technique.</p><p>Until 12-14 weeks of gestation Manual Vacuum Aspiration (MVA) is the preferred method.</p><p>At a higher gestational age evacuation is by Dilatation and Curettage (D&C) and should be performed in a referral facility.<br><br>PERIPHERAL LEVEL <br><br>If at a peripheral level without possibility of performing manual vacuum aspiration: Give Antibiotics intra musculary and refer IMMEDIATELY<br></p>"
+              "content": "<p>En cas de signe d’avortement septique ou d’hémorragie vaginale excessive</p><important><strong>L'évacuation de l'utérus doit avoir lieu sans délai!</strong></important><important>Ne retardez pas la procédure pour attendre la “couverture antibiotique”!</important><hr><important><strong>APPELEZ À L'AIDE!</strong></important><hr><h3>Voies aériennes</h3><p>Dégagez les voies aériennes pour éviter l’obstruction et le risque d’aspiration.</p><hr><h3><strong>Respiration</strong></h3><p>En cas de suffocation ou d'absence de respiration, ventilez à l'aide d'un ballon ou d’un masque.</p><hr><h3><strong>Circulation</strong></h3><p>Insérez 2 canules IV à gros calibre.</p><p>Administrez au moins <strong><span color='highlighted'>2L de liquide en IV</strong></span>, du<strong><span color='highlighted'> sérum physiologique </strong></span>ou du <strong><span color='highlighted'>Ringer’s lactate </strong></span>rapidement.</p><p>Introduisez une sonde urinaire à demeure pour surveiller la diurèse.</p><hr><h3><strong>Médicaments</strong></h3><p>Antibiotiques en intraveineuse en fonction des recommandations locales, par exemple : </p><p><strong><span color='highlighted'>Ampicilline </strong>1g/6h (2g la prèmiere fois)</span></p><p>ET</p><p><strong><span color='highlighted'>Gentamicine </strong>240mg/24h. </span></p><p>ET</p><p><strong><span color='highlighted'>Métronidazole </strong>500mg/8h. </span></p><important><strong>Cela ne doit pas retarder l’ÉVACUATION de l’utérus, dont dépend la vie de la patiente.</strong></important><important><strong>Administrez les antibiotiques tout en démarrant la procédure.</strong></important><important><strong>Si vous ne disposez pas d’antibiotiques, procédez à l’évacuation et administrez les antibiotiques plus tard.</strong></important><hr><h3><strong>Évacuez l'utérus</strong></h3><p>Administrez les <span color='highlighted'>analgésiques</span> recommandés et procédez à l’évacuation en utilisant la technique no-touch (sans contact).</p><p>Jusqu’à 12-14 semaines gestationnelles, l’Aspiration Manuelle Intra-Utérine (AMIU) est la méthode préférentielle.</p><p>À un âge gestationnel plus avancé, l’évacuation doit se faire par Dilatation et Curetage (D&C) dans un centre de niveau supérieur.</p>"
             }
           ]
         },
         {
           "id": "following-management_1486845338095",
-          "version": 1496959522840,
+          "version": 1497514291034,
           "icon": "/icon/actioncard/post_abortion_care_following_management",
-          "description": "Following Management",
+          "description": "Prise en charge suivante",
           "chapters": [
             {
               "id": "_1486845344690",
-              "content": "<ol><li>Monitor vital signs and urine output closely until stable.</li><li>Treat with <span color='highlighted'>IV <strong>antibiotics </strong>until 48 hours</span> after the woman is fever free, then <span color='highlighted'>oral <strong>antibiotics </strong>for 5-7 days</span>.</li><li>Before discharge, advise on family planning and check for sexually transmitted diseases and HIV/AIDS.</li></ol>"
+              "content": "<ol><li>Contrôlez de près les signes vitaux et la diurèse jusqu’à stabilisation. </li><li>Traitez avec des <strong><span color='highlighted'>antibiotiques</strong> IV pendant 48 heures</span>, puis avec des <strong><span color='highlighted'>antibiotiques </strong>oraux pendant 5 à 7 jours.</span></li><li>Avant le départ de la patiente, renseignez-la sur le planning familial et faites un dépistage des maladies sexuellement transmissibles et du VIH/SIDA.  </li></ol>"
             }
           ]
         },
         {
-          "id": "emergency-referral_1490716065855",
-          "version": 1498573761424,
+          "id": "emergency-referral---post-abortion-care_1527679414998",
+          "version": 1528269052251,
           "icon": "/icon/actioncard/emergency_referral",
-          "description": "Emergency Referral",
+          "description": "Emergency Referral - Post Abortion Care",
           "chapters": [
             {
-              "id": "_1490716076132",
-              "content": "<important>Do not refer if emergency is not controlled! </important><p>Never refer a patient with uncontrolled bleeding, retained placenta, uncontrolled hypertension, unevacuated septic or haemorrhagic abortion or septic shock.<br><br>Remove placenta by trained provider.</p><p><strong>In cases of prolonged labour:</strong><br>- If at a peripheral facility, refer the woman to a higher centre with her partograph for further management.<br><br>- At a referral facility, amniotomy may be done (also for HIV+ women if on antiretroviral therapy). Reassess in 2 hours and decide on further management if there is insufficient progress.</p><p>After emergency management and when in a stable condition, discuss decision of referral with woman and relatives.</p><p>Quickly organise transport and possible financial aid.</p><p>Inform the referral center.</p><p>Accompany the woman.</p><p>It is crucial that she is accompanied by a health worker who is trained in delivery care and able to manage an emergency situation, if it recurrs during transport. </p><p>Consider to bring a relative who can donate blood.</p><h2>Bring</h2><p>Referral note.</p><p>Essential emergency drugs:</p><ul><li><strong><span color='highlighted'>Oxytocin </strong></span>and <strong><span color='highlighted'>Ergometrine </strong></span>(alternatively <strong><span color='highlighted'>Misoprostol</strong></span>) for treatment of postpartum haemorrhage</li><li><span color='highlighted'><strong>Oxytocin </strong>for IM </span>injection immediately postpartum</li><li><span color='highlighted'><strong>Hydralazine </strong>for IV</span> treatment of elevated blood pressure</li><li><span color='highlighted'><strong>Magnesium Sulphate </span></strong>for eclampsia</li><li><span color='highlighted'><strong>Calcium Gluconate</span></strong> for intoxication with <span color='highlighted'><strong>Magnesium Sulphate</span></strong></li><li><span color='highlighted'><strong>Ampicillin</span></strong> for infections</li><li><strong><span color='highlighted'>Diazepam </strong></span>for pain relief</li></ul><p>Supplies:</p><ul><li>Delivery set</li><li>Towels</li><li>IV-equipment + IV fluids </li><li>Foetoscope or Doppler</li><li>Blood pressure monitor</li><li>Ambu bag</li><li>Suction bulb</li></ul><h2>During Transport</h2><p>Observe vital signs and level of consciousness.</p><p>If pregnant check FHR.</p><p>In case of excessive vaginal bleeding apply bimanual compression.</p><p>If the bleeding does not stop apply aorta compression (can be maintained up to 6 hours).</p><p>If the woman’s condition permits:</p><p>Keep record of all IV fluids, medications given, time of administration and the woman´s condition.</p><p><strong>If in labour during transport:</strong></p><p>FHR every half an hour.</p><p>If pushing and superficial breathing is not enough to repress this urge, stop the transport and deliver the woman.</p>"
+              "id": "post-abortion-care_1527682813116",
+              "description": "Post Abortion Care",
+              "content": "<important>Do not refer before you have tried to control an emergency!</important><p>Never refer a patient with uncontrolled bleeding, un-evacuated septic or haemorrhagic abortion or septic shock.</p><p>After emergency management and when in a stable condition, discuss decision of referral with woman and relatives.</p><p>Quickly organize transport and possible financial aid.</p><p>Inform the referral center.</p><p>Accompany the woman.</p><p>It is crucial that she is accompanied by a health worker who is trained in emergency management, if it resurrects during transport.</p><p>Consider to bring a relative who can donate blood.</p><hr><h3>Bring</h3><p>Referral note.</p><h2>Essential emergency drugs: </h2><ul><li><strong>Oxytocin</strong> and <strong>Ergometrine </strong>(alternatively <strong>Misoprostol</strong>) for treatment of post partum haemorrhage</li><li><strong>Hydralazine</strong> for IV treatment of elevated blood pressure</li><li><strong>Magnesium Sulphate</strong> for eclampsia</li><li><strong>Calcium Gluconate</strong> for intoxication with <strong>Magnesium Sulphate</strong></li><li><strong>Ampicillin</strong>,<strong> Gentamicin </strong>and  <strong>Metronidazole </strong>for infections<strong> </strong></li><li><strong>Diazepam</strong> for pain relief</li><li><strong>Phenobarbital</strong> for the newborn in case of convulsions</li><li><strong>Adrenaline</strong> for the newborn in case of cardiac arrest</li></ul><h2>Supplies:</h2><ul><li>IV-equipment + IV fluids</li><li>Blood pressure monitor</li><li>Adult ambu bag with appropriate mask size</li><li>Syringes of different size</li></ul><hr><h3>During Transport</h3><p>Observe vital signs and level of consciousness.</p><p>Keep record of all IV fluids, medications given, time of administration and the woman´s condition.</p>"
             }
           ]
         }
@@ -1395,93 +1392,93 @@
       "drugDetails": [
         {
           "id": "ampicillin_1486975748548",
-          "version": 1519037669261,
-          "description": "Ampicillin",
-          "content": "<h1>Indications and Usage</h1><p>Ampicillin is a B-lactamantibiotics effective on gram positive as well as negative bacterial infections.</p><h1>Dosage and Administration</h1><h2>Adults:</h2><p>1 g intravenously every 6 hours (at sepsis initially each 4 hours). </p><h2>Children:</h2><p>First week of life:</p><p>50 mg/kg per dose every 12 hours intravenously or intramuscularly.</p><p>Week 2-4 of life:</p><p>50 mg/kg per dose every 8 hours intravenously or intramuscularly.</p><h1>Contraindications</h1><p>Allergy to penicillin.</p><h1>Adverse Reactions</h1><p>Common adverse reactions are diarrhea and skin rash. </p><p>Uncommon reactions are nausea, vomiting, stomatitis, glossitis, pseudomembraneous colitis, lowered platelets, anemia and urticaria. </p><p>Anaphylactic shock is rare.</p>"
+          "version": 1514975141588,
+          "description": "Ampicilline",
+          "content": "<h1>Indications et utilisation</h1><p>L'ampicilline est un antibiotique bêta-lactamine efficace contre les infections bactériennes à gram positives et négatives.</p><h1>Posologie et mode d'emploi</h1><h2>Adulte:</h2><p>1 g en intraveineuse ou intramusculaire toutes les 6 heures (en début de septicémie, toutes les 4 heures).</p><p>Quelques directives recommandent 2 g d'ampicilline la première fois et après 1 g toutes les 6 heures.</p><h2>Enfant:</h2><p>La première semaine de vie : </p><p>50 mg/kg par dose toutes les 12 heures en intraveineuse ou intramusculaire.</p><p>2ème à 4ème semaine de vie :</p><p>50 mg/kg par dose toutes les 8 heures en intraveineuse ou intramusculaire.</p><h1>Contre-indications</h1><p>Allergie à la pénicilline.</p><h1>Effets indésirables</h1><p>Effets indésirables les plus fréquents : diarrhée et éruption cutanée. </p><p>Effets indésirables peu fréquents : nausées, vomissements, stomatite, glossite, colite pseudomembraneuse, baisse de plaquettes, anémie et urticaire. </p><p>Le choc anaphylactique est rare.</p>"
         },
         {
           "id": "diazepam_1487102080825",
-          "version": 1519037680050,
-          "description": "Diazepam",
-          "content": "<h1>Indications and Usage</h1><p>Diazepam is a benzodiazepine.</p><p>Diazepam is used to treat anxiety, agitation and convulsions.</p><p>Can also be used as analgesia before a painful procedure.</p><h1>Dosage and Administration</h1><h2>Adults:</h2><p>Before procedure:</p><p>10 mg IV OR</p><p>10-20 mg IM OR</p><p>20 mg rectally OR</p><p>Second dose:</p><p>10 mg IV/IM/rectally</p><h2>Children:</h2><p>For convulsions:</p><p>give 0.5 mg/kg rectally once. </p><p>If convulsions persist after 10 minutes repeat 0.5mg/kg rectally one more time. </p><p>If convulsions persists after additional 10 min give 0.4 mg/kg intravenously maximum once.</p><p>If convulsions occur in early pregnancy or if Magnesium Sulphate toxicity occurs or Magnesium Sulphate is not available.</p><p><strong>Loading dose IV: </strong></p><p>Give Diazepam 10 mg IV slowly over 2 minutes.</p><p>If convulsions recur, repeat 10 mg.</p><p><strong>Maintenace dose:</strong></p><p>Give Diazepam 40 mg in 500 ml IV fluids (normal saline or Ringer’s lactate) titrated over 6-8 hours to keep the woman sedated but rousable.</p><p>Stop the maintenance dose if breathing is affected.</p><p>Assist ventilation if necessary with mask and bag.</p><p>Do not give more than 100 mg in 24 hours.</p><p>If IV access is not possible (e.g. during convulsion), give Diazepam rectally.</p><p><strong>Loading dose rectally:</strong></p><p>Give 20 mg (4 ml) in a 10 ml syringe (or urinary catheter):</p><p>Remove the needle, lubricate the barrel and insert the syringe into the rectum to half its length.</p><p>Discharge the contents and leave the syringe in place, holding the buttocks together for 10 minutes to prevent expulsion of the drug.</p><p>If convulsions recur, repeat 10 mg.</p><p><strong>Maintenance dose:</strong></p><p>Give additional 10 mg (2 ml) every hour during transport.</p><h1>Contraindications</h1><p>Alcohol intoxication. </p><p>Severe respiratory or liver illness.</p><h1>Adverse reactions</h1><p>Common adverse reactions are drowsiness and confusion.</p><p>Uncommon reactions are muscle weakness, coordination difficulties, headache, concentration difficulty and dizziness.</p><p>Rare reactions are respiratory depression or respiratory stop, aggression, hallucinations, psychosis, and allergic reactions.</p><p>Diazepam should not be used long term as tolerance and addiction occurs commonly.</p>"
+          "version": 1514986612011,
+          "description": "Diazépam",
+          "content": "<h1>Indications et utilisation</h1><p>Le diazépam est une benzodiazépine.</p><p>Administrer lors de d'anxiété, d'agitation et des convulsions éclamptiques.</p><p>Il peut également être utilisé comme analgésique avant une procédure douloureuse.</p><h1>Posologie et mode d'emploi</h1><h2>Adulte:</h2><p>Avant procédure:</p><p>10 mg IV OU</p><p>10 à 20 mg en intramusculaire avant la procédure.</p><p>10 mg IV ou 20 mg par voie rectal.</p><p>Deuxième dose:</p><p>10 mg IV ou 10 mg par voie rectal.</p><h2>Enfant:</h2><p>Pour les convulsions : </p><p>Administrez une fois 0,5 mg/kg par voie rectale. </p><p>Si les convulsions persistent au bout de 10 minutes, administrez à nouveau 0,5 mg/kg par voie rectale. </p><p>Si les convulsions persistent toujours 10 minutes plus tard, administrez 0,4 mg/kg en intraveineuse, une fois maximum.</p><p>Si des convulsions se produisent au début de la grossesse ou si la toxicité du sulfate de magnésium se produit ou si le sulfate de magnésium n'est pas disponible.</p><p><strong>Dose de charge IV:</strong></p><p>Administrez diazepan 10 mg IV lentement pendant 2 minutes.</p><p>Si les convulsions se reproduissent, répétez 10 mg.</p><p><strong>Dose d'entretien</strong></p><p>Administrez diazepam 40 mg en 500 ml liquide de perfusion (sérum physiologique ou Ringer lactate) administrez pendant 6-8 heures pour garder la femme sous dédation mais réactive.</p><p>Arretez la dose d'entretien si la respiration est affectée. </p><p>Si necessaire, assistez la respiration par masque et ballon. </p><p>N'administrez pas plus que 100 mg en 24 heures.</p><p>Si l'acces à IV n'est pas possible (e.g. pendant des convulsions), administrez diazepam par voie rectal.</p><p><strong>Dose de charge par voie rectal:</strong></p><p>Administrez 20 mg (4 ml) dans une seringue de 10 ml (ou un cathéter urinaire):</p><p>Retirer l'aiguille, lubrifier le canon et insérer la seringue dans le rectum à la moitié de sa longueur.</p><p>Décharger le contenu et laisser la seringue en place, en tenant les fesses ensemble pendant 10 minutes pour empêcher l'expulsion du médicament.</p><p>Si les convulsions se réproduissent, répétez 10 mg.</p><p><strong>Dose d'entretien:</strong></p><p>Donnez 10 mg (2 ml) supplémentaires toutes les heures pendant le transport.</p><h1>Contre-indications</h1><p>Intoxication à l'alcool.</p><p>Maladie respiratoire ou hépatique sévère.</p><h1>Effets indésirables</h1><p>Les effets indésirables fréquentes sont la somnolence et la confusion.</p><p>Les effets indésirables peu fréquentes sont une faiblesse musculaire, des difficultés de coordination, des maux de tête, des difficultés de concentration et des étourdissements.</p><p>Les réactions rares sont la dépression respiratoire ou l'arrêt respiratoire, l'agression, les hallucinations, la psychose et les réactions allergiques.</p><p>Le diazépam ne devrait pas être utilisé à long terme car la tolérance et l'accoutumance surviennent fréquemment.</p>"
         },
         {
           "id": "gentamicin_1487679704293",
-          "version": 1520248865574,
-          "description": "Gentamicin",
-          "content": "<h1>Indications and Usage</h1><p>Aminoglycoside antibiotic indicated for treatment of severe or serious bacterial infections in adults and children.</p><h1>Dosage and Administration</h1><h2>Adults:</h2><p>240 mg intravenously once a day.</p><h2>Children (First week of life):</h2><p>2.5 mg per kg every 12 hours if term; 1.5 mg per kg every 12 hours if preterm intravenously or intramuscularly.</p><p>Treat for at least two days.</p><h2>Children (Weeks 2-4 of life):</h2><p>7.5 mg/kg per dose once a day intravenously or intramuscularly.</p><h1>Contraindications</h1><p>Allergy to aminoglycosides.</p><p>Treatment should not be more than 3 days if the patient is suffering from renal failure (oliguria or elevated creatinine).</p><h1>Adverse Reactions</h1><p>Common adverse reactions are kidney affection, hearing loss, and tinnitus. </p><p>Uncommon reactions are liver affection, increased or lowered blood pressure, respiratory depression, lowered platelets, joint and muscle pain, depression, coordination disturbances, skin rash, itching, visual disturbances, urticaria and anaphylactic reactions.</p><p>Rare reactions are deafness, hair loss, low urine production and necrosis of the skin.</p>"
+          "version": 1519037539809,
+          "description": "Gentamicine",
+          "content": "<h1>Indications et utilisation</h1><p>Antibiotique aminoglycosidique indiqué pour le traitement d’infections bactériennes sévères ou graves chez l’adulte et l’enfant.</p><h1>Posologie et mode d'emploi</h1><h2>Adulte:</h2><p>240 mg en intraveineuse une fois par jour.</p><h2>Enfant (Première semaine de vie):</h2><p>5 mg/kg toutes les 24 heures si à terme; 4 mg/kg toutes les 24 heures si prématuré en intraveineuse ou intramusculaire.</p><p>Traitez pour au moins deux jours.</p><h2>Enfant (2ème à 4ème semaine de vie):</h2><p>7,5 mg/kg par dose une fois par jour en intraveineuse ou intramusculaire.</p><h1>Contre-indications</h1><p>Allergie aux aminoglycosides.</p><p>Traitement ne doit pas durer plus que 3 jours aux patientes souffrants d’insuffisance rénale (oligurie ou créatinine élevée).</p><h1>Effets indésirables</h1><p>Effets indésirables les plus fréquents : troubles du rein, perte d’audition, et acouphènes. </p><p>Effets indésirables peu fréquents : troubles hépatiques, augmentation ou baisse de la tension artérielle, dépression respiratoire, baisse des plaquettes, douleurs articulaires et musculaires, dépression, troubles de la coordination, éruption cutanée, démangeaisons, troubles visuels, urticaire et réactions anaphylactiques. </p><p>Effets indésirables rares : surdité, chute de cheveux, diurèse faible, et nécrose cutanée.</p>"
         },
         {
           "id": "ibuprofen_1490364323757",
-          "version": 1519037712306,
-          "description": "Ibuprofen",
-          "content": "<h1>Indications and Usage</h1><p>Ibuprofen is a nonsteroidal anti-inflammatory drug (NSAID).</p><p>It works by reducing hormones that cause inflammation and pain in the body.</p><p>Ibuprofen is used to reduce fever and treat pain or inflammation caused by many conditions such as headache, toothache, back pain, arthritis, menstrual cramps, or minor injury.</p><h1>Dosage and Administration</h1><p>For pain relief give 400-600 mg. Ibuprofen orally.</p><p><strong>The maximum amount</strong> of Ibuprofen for adults is 800 milligrams per dose or 3,200 mg per day (4 maximum doses).</p><p>Use only the smallest amount needed to get relief from your pain, swelling, or fever.</p><h1>Contraindications</h1><p>Ibuprofen is contraindicated for use in patients with:</p><p>Known hypersensitivity or idiosyncratic reaction to Ibuprofen (or any of the other ingredients in the product) known hypersensitivity to aspirin and other NSAIDs.</p><p>Asthma that is aspirin or NSAID sensitive.</p><p>Active gastrointestinal bleeding or peptic ulceration.</p><h1>Adverse Reactions</h1><p>Adverse effects include nausea, dyspepsia, diarrhoea, constipation, gastrointestinal ulceration/bleeding, headache, dizziness, rash, salt and fluid retention, and hypertension.</p><p>Infrequent adverse effects include esophageal ulceration, heart failure, hyperkalemia, renal impairment, confusion, and bronchospasm. Ibuprofen can exacerbate asthma, sometimes fatally.</p>"
+          "version": 1515772556517,
+          "description": "Ibuprofène",
+          "content": "<h1>Indications et utilisation</h1><p>L'ibuprofène est un anti-inflammatoire non stéroïdien (AINS). </p><p>Ce médicament fonctionne en réduisant les hormones qui provoquent une inflammation et une douleur dans le corps. </p><p>L'ibuprofène est utilisé pour réduire la fièvre et soulager la douleur ou l'inflammation causée par les maux de tête, maux de dents, maux de dos, arthrite, crampes menstruelles ou blessures mineures.</p><h1>Posologie et mode d'emploi</h1><p>Pour le soulagement de la douleur, donnez 400-600 mg. ibuprofène par voie orale. </p><p><strong>La quantité maximale </strong>d'ibuprofène pour adultes est de 800 milligrammes par dose ou 3,200 mg par jour (4 doses au maximum). </p><p>Utilisez uniquement la quantité suffisante pour obtenir le soulagement de la douleur, la baisse de la fièvre ou la réduction de l’œdème. </p><h1>Contre-indications</h1><p>L’ibuprofène est contre-indiqué pour les patients avec :</p><p>Une hypersensibilité ou réaction idiosyncratique à l’ibuprofène (ou à l’un des ingrédients du médicament). Une hypersensibilité à l’aspririne et aux autres AINS. </p><p>L’asthme sensible à l’aspirine ou aux autres AINS. </p><p>Saignement gastro-intestinal ou ulcération peptique.</p><h1>Effets indésirables</h1><p>Les effets indésirables comprennent la nausée, la dyspepsie, la diarrhée, la constipation, l'ulcération et saignement gastro-intestinaux, les maux de tête, les étourdissements, les éruptions cutanées, la rétention de sel et de liquide et l'hypertension.</p><p>Les effets indésirables peu fréquents comprennent l'ulcération œsophagienne, l'insuffisance cardiaque, l'hyperkaliémie, l'insuffisance rénale, la confusion et le bronchospasme. L'ibuprofène peut exacerber l'asthme, parfois jusqu’à la mort.</p>"
         },
         {
           "id": "metronidazole_1487112262252",
-          "version": 1494417273485,
-          "description": "Metronidazole",
-          "content": "<h1>Indications and Usage</h1><p>Metronidazole is a 5-nitroimidazole antibiotic used on obligate anaerobe bacterias and protozoes. </p><p>Treatment of anaerobic bacterial infections and trichomona vaginalis, intestinal amoebae and giardiasis.</p><h1>Dosage and administration</h1><p>500 mg. every 12 hours for 7 days or until 48 hours after the patient is fever free.</p><h1>Contraindications</h1><p>Allergy to Metronidazole.</p><p>It is very important to note, that alcohol must not be taken together with or three days following treatment with metronidazole as it can cause a severe adverse reaction.</p><h1>Adverse Reactions</h1><p>Common adverse reactions are a taste of metal sensation, nausea, vomiting, abdominal pain, diarrhea, and transient liver affection. </p><p>Uncommon reactions are joint- and muscle pain, headache and visual disturbances. </p><p>Rare reactions are pancreatitis, lowered platelets, dizziness, sensitivity disturbances, confusion and skin rash. </p><p>Anaphylactic shock is very rare.</p>"
+          "version": 1519037526067,
+          "description": "Métronidazole",
+          "content": "<h1>Indications et utilisation</h1><p>Le métronidazole est un antibiotique 5-nitroimidazolé.</p><p>Utilisé pour le traitement des infections bactériennes anaérobiques et du trichomonas vaginalis, des amibes intestinales, et du giardiase.</p><h1>Posologie et mode d'emploi</h1><p>500 mg toutes les 12 heures pendant 7 jours ou jusq'au 48 heures après que la patiente n'a plus de fièvre.<br></p><h1>Contre-indications</h1><p>Allergie au métronidazole. </p><p>Il est très important de noter que la consommation d’alcool est interdite pendant le traitement au métronidazole et dans les trois jours qui suivent la fin du traitement en raison des risques d’effets secondaires sévères. </p><h1>Effets indésirables</h1><p>Effets indésirables les plus fréquents : sensation de goût métallique, nausées, vomissements, douleurs abdominales, diarrhée, et anomalies hépatiques transitoires. </p><p>Effets indésirables peu fréquents : douleurs musculaires et articulatoires, maux de tête, et troubles visuels. </p><p>Effets indésirables rares : pancréatite, baisse des plaquettes, perturbations de la sensibilité, confusion, et éruption cutanée. </p><p>Le choc anaphylactique est très rare. </p>"
         },
         {
           "id": "morphine_1487151518002",
-          "version": 1519037691343,
+          "version": 1515587771530,
           "description": "Morphine",
-          "content": "<h1>Indications and usage</h1><p>Strong opioid analgetic drug.</p><h1>Dosage and administration</h1><p>5-10 mg intramuscularly. </p><p>2.5-5 mg intravenously.</p><p>Can be repeated if insufficient response after 30 minutes up to a maximum dose of 60 mg over 24 hours.</p><h1>Contraindications</h1><p>History of severe reactions to opioids (respiratory stop). </p><p>Severe respiratory insufficiency, paralytic ileus, liver insufficiency.</p><p> Should not be given in first trimester.</p><h1>Adverse reactions</h1><p>Common adverse reactions are nausea, vomiting, euphoria, drowsiness, dizziness, fainting and mood disturbances. </p><p>Uncommon reactions are agitation, trembling, confusion, fits, urticaria, respiratory depression, increased or decreased pulse and constipation. </p><p>Rare reactions are hallucinations, itching, skin rash and anaphylactic reactions.</p>"
+          "content": "<h1>Indications et utilisation</h1><p>Médicament antalgique opioïde puissant.</p><h1>Posologie et mode d'emploi</h1><p>5 à 10 mg en intramusculaire.</p><p>2,5 à 5 mg en intramusculaire.</p><p>Peut être répété si la réponse est insuffisante après 30 minutes, la dose maximale est de 60 mg sur 24 heures. </p><h1>Contre-indications</h1><p>Contre-indiqué en cas d’antécédents de réactions sévères aux opioïdes (arrêt respiratoire).</p><p>L'insuffisance respiratoire sévère, l’iléus paralytique, et l’insuffisance hépatique.  </p><p>Ne doit pas être administré au premier trimestre.</p><h1>Effets indésirables</h1><p>Effets indésirables les plus fréquents : nausées, vomissements, euphorie, somnolence, étourdissements, évanouissements et sautes d’humeur. </p><p>Effets indésirables peu fréquents : agitation, tremblements, confusion, spasmes, urticaire, dépression respiratoire, accélération ou ralentissement du pouls, et constipation. </p><p>Effets indésirables rares : hallucinations, démangeaisons, éruption cutanée et réactions anaphylactiques.</p>"
         }
       ],
       "procedureDetails": [
         {
           "id": "cleaning-manual-vacuum-aspirator_1487245553833",
-          "version": 1496399334415,
+          "version": 1516052260837,
           "icon": "/icon/procedure/cleaning_mva",
-          "description": "Cleaning manual vacuum aspirator",
+          "description": "Nettoyage de l'aspirateur manuel intra-utérin",
           "chapters": [
             {
               "id": "usage_1487245987779",
-              "description": "Usage",
-              "content": "<p>Manual vacuum aspiration, or MVA, is a technique for uterine evacuation whose low cost, simplicity and portability make it an especially valuable reproductive-health technology.</p><p>MVA is used for evacuation of the uterus at incomplete first trimester abortions up to a gestational age of 12 weeks.</p><p>Especially at septic abortion and strong bleeding in relation to abortion the procedure is a life saving emergency procedure that must be performed with no delay. </p><p>Antibiotics should not delay the procedure.</p><p>Ideally antibiotics are given at the start of the procedure, though the procedure can be performed without antibiotics.</p>"
+              "description": "Utilisation",
+              "content": "<p>L’Aspiration Manuelle Intra-Utérine ou AMIU, est une technique d’évacuation de l’utérus au coût bas, simple et portable, ce qui fait d’elle une technologie de santé reproductrice tout à fait précieuse. </p><p>L’AMIU est utilisée lorsque l’évacuation de l’utérus est incomplète, lors des avortements de premier trimestre jusqu’à un âge gestationnel de 12 à 14 semaines. </p><p>Cette procédure d’urgence peut sauver des vies, surtout lors d’avortement septique ou d’hémorragie après un avortement; elle doit être pratiquée sans délai. </p><p>Les antibiotiques ne doivent pas retarder la procédure. </p><p>Dans l’idéal, les antibiotiques sont administrés au début de la procédure, qui peut cependant être pratiquée sans antibiotiques.</p>"
             },
             {
               "id": "practical-information_1487245994454",
-              "description": "Practical information",
-              "content": "<img src=\"/richtext/pp_cleaning_1\"/><h1>Cleaning After Use</h1><h2>Step 1:</h2><p>Soak instruments immediately after use</p><p>Following the procedure, decontaminate and clean all aspirators that will be reused, by first putting unlock and open jointed instruments in a 0.5 % chlorine solution for maximum 10 min. </p><p>Hereafter clean the aspirators with a brush in a soap solution. Be aware the soap solution is made of detergent and water, not hand soap. </p><p>Rinse items with clean running water to remove all detergent.</p><h2>Step 2:</h2><p>Clean all aspirators thoroughly in warm water and detergent, not soap.</p><p>Wear gloves and face protection. </p><p>Disassemble the aspirator by pulling the cylinder out of the valve. </p><p>Remove the cap by pressing down the cap-release tabs with one hand and pulling off the cap with the other hand. </p><p>Open the hinged valve by pulling open the clasp. </p><p>Place right thumb alongside the right valve button and left thumb on the valve latch. </p><p>With the left thumb, pull up and to the left on the valve latch while pushing down and out on the valve body with the right thumb. </p><p>Remove the valve liner. </p><p>Disengage the collar stop by sliding it sideways under the retaining clip, or remove the collar stop completely. </p><p>Pull the plunger completely out. </p><p>Displace the plunger O-ring by squeezing its sides and rolling it into the groove below.</p><img src=\"/richtext/pp_cleaning_2\"/><img src=\"/richtext/pp_cleaning_3\"/>"
+              "description": "Informations pratiques",
+              "content": "<img src=\"/richtext/pp_cleaning_1\"/><h1>Nettoyage après usage </h1><h2>Étape 1:</h2><p>Portez toujours des gants et un tablier.</p><p>Immédiatement après usage; jetez la canule et démontez tous les articles, et immergez les instruments dans une solution savonneuse à base d’eau propre et de détergent.</p><p>Nettoyez les articles avec une brosse dans la solution.</p><p>L’utilisation de pain de savon pour le nettoyage est à éviter. </p><p>Si ce n'est pas possible, faites tremper les articles dans la solution savonneuse jusqu'à ce que le nettoyage soit possible.</p><p>Rincez les articles avec de l'eau potable propre.</p><p>Tous les articles doivent être inspectés individuellement et visiblement propres.</p><p>Après le nettoyage, trempez tous les articles dans une solution javellisée à 0,5% pour décontaminer pendant 10 minutes!</p><p>Voir la procédure sur la façon de mélanger une solution javellisée.</p><p>Rincez les articles avec de l'eau potable propre et séchez à l'air avant la stérilisation ou la désinfection de haut niveau.</p><h2>Étape 2:</h2><p>Nettoyez soigneusement tous les aspirateurs dans de l’eau chaude et du détergent. </p><p>Portez des gants et une protection faciale.</p><p>Démontez l’aspirateur en retirant le cylindre de la valve. </p><p>Libérez-le en appuyant sur les languettes de l’embout de la valve d’une main et en retirant le cylindre de l’autre. </p><p>Ouvrez l’enveloppe de la valve en tirant sur son fermoir. </p><p>Placez le pouce droit le long du bouton de la valve droite et le pouce gauche sur la pièce de verrouillage. </p><p>À l’aide du pouce gauche, poussez la pièce de verrouillage vers le haut et la gauche tout en tirant la valve vers le bas et l’extérieur avec le pouce droit. </p><p>Désengagez le collier de blocage en le faisant glisser latéralement sous le clip ou détachez-le complètement du cylindre. </p><p>Tirez le piston entièrement hors du cylindre. </p><p>Faites glisser le joint d’étanchéité du piston en écrasant ses bords et le faisant passer au cran inférieur pour qu’il tourne librement.</p><p><strong>Étape 3</strong></p><p>Décontaminez et rincez.</p><p>Décontaminez tous les aspirateurs dans une solution javellisée à 0,5% pendant 10 minutes, puis rincez à l’eau courante.</p><img src=\"/richtext/pp_cleaning_2\"/><img src=\"/richtext/pp_cleaning_3\"/>"
             }
           ]
         },
         {
           "id": "urine-catheter_1487245590353",
-          "version": 1496399441700,
+          "version": 1516047012173,
           "icon": "/icon/procedure/urine",
-          "description": "Urine catheter",
+          "description": "Sonde urinaire",
           "chapters": [
             {
               "id": "usage_1487246011962",
-              "description": "Usage",
-              "content": "<p>Emptying the bladder with a urine catheter is indicated:</p><ol><li>If a woman in labour fails to urinate spontaneously and the progress of labour is dissatisfactory, <strong>OR</strong></li><li>In cases of post partum haemorrhage, <strong>AND</strong></li><li>In any severely ill patient with for example sepsis or severe preeclampsia to monitor the urine output. In this case, the catheter should stay in place until the condition improves.</li></ol>"
+              "description": "Utilisation",
+              "content": "<p>Vider la vessie à l’aide d’une sonde urinaire est indiqué si:</p><ol><li>Une femme en train d’accoucher ne parvient pas à uriner spontanément et le progrès de l’accouchement est insatisfaisant, <strong>OU</strong></li><li>En cas d’hémorragie du post-partum, <strong>ET </strong></li><li>Chez toute patiente gravement malade, par exemple septicémie ou pré-éclampsie sévère, pour surveiller la production d’urine. </li></ol>"
             },
             {
               "id": "practical-information_1487246016950",
-              "description": "Practical information",
-              "content": "<p>The urine should be clear, if not, there is a urine tract infection and antibiotics should be administered. </p><p>All patients in a critical state (sepsis, severe preeclampsia, eclampsia, bleeding, shock) must have a permanent catheter, and the hourly urine output should be at least 30 millilitres.</p><p>If less, the underlying cause should be treated and fluid replacement considered, although not more than one litre over 8 hours for preeclampsia as the risk of fluid overload and pulmonary oedema is increased. </p><p>Before applying a permanent catheter, the area around the urethra should be cleaned twice with gauze swabs and normal saline water.</p>"
+              "description": "Informations pratiques",
+              "content": "<p>L’urine doit être claire, sinon, il s’agit d’une infection urinaire et il faut administrer des antibiotiques. </p><p>Toutes les patientes dans un état critique (septicémie, pré-éclampsie sévère, éclampsie, choc hémorragique), doivent avoir une sonde à demeure, et la production d’urine par heure doit être d’au moins 30 mL. </p><p>Si elle est inférieure, la cause sous-jacente doit être traitée et un remplacement liquidien envisagé, qui ne doit cependant pas dépasser un litre sur une période de 8 heures pour la pré-éclampsie pour éviter l’augmentation du risque de surcharge liquidienne d’œdème pulmonaire.</p><p>Avant de poser une sonde à demeure, la zone autour de l’urètre doit être nettoyée deux fois à l’aide de tampons de gaze et de sérum physiologique. </p>"
             }
           ]
         },
         {
-          "id": "intravenous-access-equipment_1487245827833",
-          "version": 1497355563747,
+          "id": "fr-intravenous-access-equipment_1491981544740",
+          "version": 1516048153545,
           "icon": "/icon/procedure/intrav",
-          "description": "Intravenous access equipment",
+          "description": "Matériel d'accés intraveine/intramusculaire",
           "chapters": [
             {
-              "id": "usage_1487246102188",
-              "description": "Usage",
-              "content": "<p>Intravenous access is used to administer fluids and drugs.</p><p>Equipment for intravenous/intramuscular access should be located in the delivery room.</p><p>It should be available at all health facilities for adults as well as children.</p><p>It includes:</p><p>Antiseptic solution to clean the surrounding skin, syringes, intravenous cannulas, venflons, a stasis hose/band, tapes and cannulas.</p>"
+              "id": "usage_1491981591620",
+              "description": "Utilisation",
+              "content": "<p>L’accès intraveineux est utilisé pour administrer des liquides et médicaments. Le matériel d’accès <br>intraveineux/intramusculaire doit être rangé dans la salle de travail. Il doit être disponible dans tous les centres de santé adultes comme pédiatriques. Il inclut : seringues, aiguilles intraveineuses, <br>canules venflons, garrot (tube/bande en caoutchouc), sparadrap, et <br>canules.</p>"
             },
             {
-              "id": "practical-information_1487246106803",
-              "description": "Practical information",
-              "content": "<h2>Adults:</h2><p>The grey and green cannulas have a large diameter.</p><p>Using them makes the fluid enter the body more rapidly.</p><h2>Children:</h2><p>For insertion of an intravenous cannula in the neonate select a suitable vein to place the cannula or a gauge 21 or 23 butterfly needle. </p><img src=\"/richtext/pp_iv_baby_english_text\"/><h2>Peripheral vein:</h2><ul><li>Identify an accessible peripheral vein, see illustration.</li></ul><ul><li>An assistant should keep the position of the limb steady and should act as a tourniquet by obstructing the venous return with his or her fingers lightly closed around the limb. Alternatively use a stasis hose/band.</li></ul><ul><li>Clean the surrounding skin with an antiseptic solution (such as spirit, iodine, isopropyl alcohol or 7+ % alcohol solution), then introduce the cannula into the vein and insert most of its length. Fix the catheter securely with tape. Apply a splint with the limb in an appropriate position (e.g. elbow extended, wrist slightly flexed).</li></ul><img src=\"/richtext/pp_iv_baby\"/><h2>Scalp Vein:</h2><p>These are often used in children ages less than 2 years but are most suitable in young infants.</p><ul><li>Find a suitable scalp vein (usually in the midline of the forehead, the temporal area or above or behind the ear).</li></ul><ul><li>Shave the area if necessary, and clean the skin with an antiseptic solution. The assistant should occlude the vein proximal to the site of puncture. Fill a syringe and leave the end of the tubing open. Introduce the butterfly needle as described above. Blood flowing back slowly through the tubing indicates that the needle is in the vein.</li></ul><ul><li>Care should be taken not to cannulate an artery, which is recognised by palpation. If there is a pulsatile spurting of blood, withdraw the needle and apply pressure until the bleeding stops; then look for the vein.</li></ul>"
+              "id": "practical-information_1491981610099",
+              "description": "Informations pratiques",
+              "content": "<h2>Adultes :</h2><p>Les aiguilles blanches et vertes <br>ont le diamètre le plus large. <br>En les utilisant, vous faites entrer le liquide dans le corps plus rapidement. </p><h2>Enfants : </h2><p>Pour insérer <br>une aiguille intraveineuse chez le nouveau-né, sélectionnez une veine adaptée à la pose d’une canule 21 G ou une aiguille à <br>ailettes 23 G. </p><img src=\"/richtext/pp_iv_baby_number_french\"/><h2>Veine périphérique : </h2><ul><li>Identifiez une veine périphérique accessible, voir illustration. </li><li>Un assistant doit maintenir le membre en position et doit faire office de garrot et obstruer le reflux sanguin en enserrant doucement le membre avec les doigts. Sinon, utilisez le garrot (tube ou bande).</li><li>Nettoyez la peau environnante à l’aide d’une solution antiseptique (alcool, iode, isopropanol ou une solution d’alcool à 7+%), puis introduisez la canule dans la veine et insérez presque jusqu’au bout. Fixez bien le cathéter avec du sparadrap. Posez une attelle sur le membre dans la position adéquate (par ex : coude tendu, poignet légèrement fléchi).</li></ul><img src=\"/richtext/pp_iv_baby\"/><h2>Veines du cuir chevelu :</h2><p>Elles sont souvent utilisées chez <br>les enfants de moins de 2 ans mais sont particulièrement adaptées chez les nourrissons. </p><ul><li>Cherchez une veine adaptée sur le cuir chevelu (généralement sur la ligne médiane du front, au niveau de l’aire temporale ou au-dessus, ou derrière l’oreille). </li><li>Raser la surface si nécessaire et désinfectez la peau. L’assistant doit appuyer sur la veine au-dessus du point de perfusion choisi. Remplissez la seringue et laissez ouverte l’extrémité de la tubulure. Introduisez l’aiguille à ailettes comme décrit ci-dessus. Un lent retour de sang dans la tubulure indique que l’aiguille est rentrée dans la veine. </li><li>Attention à ne pas canuler une artère, les palpitations en sont le signe manifeste. Si un jet de sang pulsatile se produit, retirez l’aiguille et appuyez jusqu’à arrêt du saignement ; ensuite, cherchez la veine. </li></ul>"
             }
           ]
         }
@@ -1489,7 +1486,7 @@
       "keyLearningPointDetails": [
         {
           "id": "test-version_1498639439941",
-          "version": 1524570663426,
+          "version": 1524570716333,
           "level": "2",
           "description": "Unsafe abortion globally",
           "questions": [
@@ -1501,22 +1498,22 @@
               "showToggle": true,
               "link": "video:/Post abortion care/intro",
               "essential": false,
-              "description": "Globally 20 million (2 crore) women undergo an unsafe abortion.",
+              "description": "Globally 20 million women undergo an unsafe abortion.",
               "answers": [
                 {
-                  "value": "100.000 (1 lakh)",
+                  "value": "100.000",
                   "correct": false
                 },
                 {
-                  "value": "2 million (20 lakh)",
+                  "value": "2 million",
                   "correct": false
                 },
                 {
-                  "value": "10 million (1 crore)",
+                  "value": "10 million",
                   "correct": false
                 },
                 {
-                  "value": "20 million (2 crore)",
+                  "value": "20 million",
                   "correct": true
                 }
               ]
@@ -1809,7 +1806,7 @@
         },
         {
           "id": "septic-abortion-can-be-fatal_1504888032303",
-          "version": 1520238219728,
+          "version": 1505498452421,
           "level": "1",
           "description": "Septic abortion can be fatal",
           "questions": [
@@ -1833,6 +1830,10 @@
                 },
                 {
                   "value": "Not to the woman",
+                  "correct": false
+                },
+                {
+                  "value": "Yes, killing the foetus by abortion is murder",
                   "correct": false
                 }
               ]
@@ -2077,7 +2078,7 @@
         },
         {
           "id": "correct-order-of-actions_1504890487022",
-          "version": 1520239897559,
+          "version": 1505498525857,
           "level": "3",
           "description": "Correct order of actions",
           "questions": [
@@ -2089,7 +2090,7 @@
               "showToggle": false,
               "link": "video:/Post abortion care/how_to_manage",
               "essential": false,
-              "description": "At septic abortion, the correct order of actions is:\n\nCall for help, assess airway and ensure breathing\n\nEstablish intravenous access and give fluid resuscitation 2 liters of Normal saline or Ringer’s lactate FAST\n\nEvacuate the uterus IMMEDIATELY!\n\nGive broad-spectrum antibiotics",
+              "description": "At septic abortion, the correct order of actions is:\n\nCall for help, assess airway and ensure breathing\n\nEstablish intravenous access and give fluid resuscitation 2 liters of Normal saline or Ringer’s lactate FAST\n\nEvacuate the uterus IMMEDIATELY!\n\nGive broad-spectrum antibiotics and give Ibuprofen for pain relief .",
               "answers": [
                 {
                   "value": "Call for help, assess airway and ensure breathing",
@@ -2104,7 +2105,7 @@
                   "correct": false
                 },
                 {
-                  "value": "Give broad-spectrum antibiotics",
+                  "value": "Give broad-spectrum antibiotics and give Ibuprofen for pain relief",
                   "correct": false
                 }
               ]
@@ -2149,7 +2150,7 @@
         },
         {
           "id": "evacuation-of-the-uterus-_1504891033708",
-          "version": 1524572034156,
+          "version": 1524571662716,
           "level": "1",
           "description": "Evacuation of the uterus ",
           "questions": [
@@ -2161,14 +2162,14 @@
               "showToggle": false,
               "link": "video:/Post abortion care/evacuation_of_the_uterus",
               "essential": false,
-              "description": "Following is true about the procedure “evacuation of the uterus”:\n\nEvacuation of the uterus is a Basic Emergency Obstetric and Neonatal signal function.\n\nIt is the lifesaving procedure that must be performed by any “skilled birth attendant”.\n\nIf no possibility of performing evacuation of the uterus; give antibiotics and refer IMMEDIATELY.",
+              "description": "Following is true about the procedure “evacuation of the uterus”:\n\nEvacuation of the uterus is a Basic Emergency Obstetric and Neonatal signal function.\n\nIt is the lifesaving procedure that must be performed by any “skilled birth attendant”.",
               "answers": [
                 {
-                  "value": "Evacuation of the uterus is a BEmONC signal function and should be performed by any \"skilled birth attendant",
+                  "value": "Evacuation of the uterus is a Basic Emergency Obstetric and Neonatal signal function",
                   "correct": true
                 },
                 {
-                  "value": "If no possibility of performing evacuation of the uterus; give antibiotics and refer IMMEDIATELY",
+                  "value": "It is the lifesaving procedure that must be performed by any “skilled birth attendant”",
                   "correct": true
                 },
                 {
@@ -2293,7 +2294,7 @@
         },
         {
           "id": "analgesic-for-mva_1504891713356",
-          "version": 1520240011886,
+          "version": 1505498577152,
           "level": "3",
           "description": "Analgesic for MVA",
           "questions": [
@@ -2305,10 +2306,10 @@
               "showToggle": false,
               "link": "video:/Post abortion care/manual_vacuum_aspiration",
               "essential": false,
-              "description": "Relevant analgesic drugs for Manual Vacuum aspiration procedure could be:\n\nParacervical block.\n\nDiazepam.",
+              "description": "Relevant analgesic drugs for Manual Vacuum aspiration procedure could be:\n\nMorphine.\n\nDiazepam.",
               "answers": [
                 {
-                  "value": "Paracervical block",
+                  "value": "Morphine",
                   "correct": true
                 },
                 {
@@ -2858,24 +2859,24 @@
       ],
       "videoDetails": [
         {
-          "id": "/India english/Post abortion care/intro",
+          "id": "/french/Post abortion care/intro",
           "description": "Intro"
         },
         {
-          "id": "/India english/Post abortion care/how_to_diagnose",
-          "description": "How to diagnose"
+          "id": "/french/Post abortion care/how_to_diagnose",
+          "description": "Diagnostic"
         },
         {
-          "id": "/India english/Post abortion care/how_to_manage",
-          "description": "How to manage"
+          "id": "/french/Post abortion care/how_to_manage",
+          "description": "Prise en charge"
         },
         {
-          "id": "/India english/Post abortion care/evacuation_of_the_uterus",
-          "description": "Evacuation of the uterus"
+          "id": "/french/Post abortion care/evacuation_of_the_uterus",
+          "description": "Évacuation de l'utérus"
         },
         {
-          "id": "/India english/Post abortion care/manual_vacuum_aspiration",
-          "description": "Manual vacuum aspiration"
+          "id": "/french/Post abortion care/manual_vacuum_aspiration",
+          "description": "Aspiration manuelle intra-utérine"
         }
       ]
     }

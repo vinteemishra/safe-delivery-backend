@@ -1084,7 +1084,7 @@ const downloadVideo = (videoUrl, timeoutDuration = 30000, retries = 3) => {
   });
 };
 
-const createVideoZip = async (contentFilePath, zipFilePath) => {
+const createVideoZip = async (contentFilePath, zipFilePath,lang) => {
   try {
     const content = JSON.parse(fs.readFileSync(contentFilePath, 'utf-8'));
     const modules = content.module || [];
@@ -1096,7 +1096,7 @@ const createVideoZip = async (contentFilePath, zipFilePath) => {
       if (module.actionCardDetails) {
         module.actionCardDetails.forEach(card => {
           if (card && card.link) {
-            let videoPath = extractVideoPath(card.link);
+            let videoPath = extractVideoPath(card.link,lang);
             videos.push(videoPath);
             console.log('Found action card video:', videoPath);
           }
@@ -1106,7 +1106,7 @@ const createVideoZip = async (contentFilePath, zipFilePath) => {
       if (module.videoDetails) {
         module.videoDetails.forEach(video => {
           if (video && video.link) {
-            let videoPath = extractVideoPath(video.link);
+            let videoPath = extractVideoPath(video.link,lang);
             videos.push(videoPath);
             console.log('Found video thumbnail:', videoPath);
           }
@@ -1116,7 +1116,7 @@ const createVideoZip = async (contentFilePath, zipFilePath) => {
       if (module.procedureDetails) {
         module.procedureDetails.forEach(procedure => {
           if (procedure && procedure.link) {
-            let videoPath = extractVideoPath(procedure.link);
+            let videoPath = extractVideoPath(procedure.link,lang);
             videos.push(videoPath);
             console.log('Found procedure icon:', videoPath);
           }
@@ -1140,7 +1140,7 @@ const createVideoZip = async (contentFilePath, zipFilePath) => {
           if (point && point.questions) {
             point.questions.forEach(question => {
               if (question && question.link) {
-                let videoPath = extractVideoPath(question.link);
+                let videoPath = extractVideoPath(question.link,lang);
                 videos.push(videoPath);
                 console.log('Found key learning point video:', videoPath);
               }
@@ -1180,11 +1180,30 @@ const createVideoZip = async (contentFilePath, zipFilePath) => {
   }
 };
 
-const extractVideoPath = (link) => {
+const extractVideoPath = (link,lang) => {
   const videoPrefix = 'video:/';
   const richtextPrefix = '/richtext/';
   if (link.startsWith(videoPrefix)) {
-    return `https://sdacms.blob.core.windows.net/content/assets/videos/english WHO/${link.substr(videoPrefix.length)}.mp4`;
+    if(lang=='ee722f96-fcf6-4bcf-9f4e-c5fd285eaac3'){
+      return `https://sdacms.blob.core.windows.net/content/assets/videos/India english/${link.substr(videoPrefix.length)}.mp4`;
+    }
+    else if(lang=='22118d52-0d78-431d-b1ba-545ee63017ca'){
+      return `https://sdacms.blob.core.windows.net/content/assets/videos/India/${link.substr(videoPrefix.length)}.mp4`;
+
+    }
+    else if(lang=='da5137d1-8492-4312-b444-8e4d4949a3c7'){
+      return `https://sdacms.blob.core.windows.net/content/assets/videos/french/${link.substr(videoPrefix.length)}.mp4`;
+
+      
+    }
+    else if(lang=='dc40648b-0a77-446b-b11b-e0aa17aed697'){
+      return `https://sdacms.blob.core.windows.net/content/assets/videos/ethiopia somali/${link.substr(videoPrefix.length)}.mp4`;
+
+
+    }
+    else{
+      return `https://sdacms.blob.core.windows.net/content/assets/videos/english WHO/${link.substr(videoPrefix.length)}.mp4`;
+     }
   } else if (link.startsWith(richtextPrefix)) {
     return `https://yourdomain.com${link}`; 
   }
@@ -1287,7 +1306,7 @@ const main2 = async (categoryId,langId) => {
     console.log('The details have been written to content_bundle_module_category.json');
 
     
-    const zipfile=await createVideoZip(fileName, 'category-wise-video-bundle.zip');
+    const zipfile=await createVideoZip(fileName, 'category-wise-video-bundle.zip',lang);
     return zipfile;
   }
 };
