@@ -180,17 +180,52 @@ export const ModulesByCategory = async (ctx, next) => {
 };
 
 
+// export const ZipByCategory = async (ctx, next) => {
+//   ctx.req.setTimeout(0);
+//   try {
+//     // const categoryId = ctx.params.id; 
+//     const { id: categoryId, langId } = ctx.params;
+
+//     const draft = ctx.query.draft === 'true'; 
+//     const fileName = await publiss1(categoryId,langId); 
+//     console.log("vv"+fileName);
+
+//     ctx.set('Content-disposition', `attachment; filename=${fileName}`);
+//     ctx.set('Content-type', 'application/zip');
+//     ctx.body = fs.createReadStream(fileName);
+//   } catch (error) {
+//     console.error(error);
+//     ctx.status = 500;
+//     ctx.body = { error: 'Internal Server Error' };
+//   }
+//   await next();
+// };
+import path from 'path';
+
+
+
+// Exported function to handle HTTP request for downloading the zip file
 export const ZipByCategory = async (ctx, next) => {
-  ctx.req.setTimeout(0);
+  ctx.req.setTimeout(0); // Set request timeout
   try {
-    // const categoryId = ctx.params.id; 
     const { id: categoryId, langId } = ctx.params;
+    const draft = ctx.query.draft === 'true'; // Check if draft mode is requested
 
-    const draft = ctx.query.draft === 'true'; 
-    const fileName = await publiss1(categoryId,langId); 
+    // Call main function to generate zip file
+    const fileName = await publiss1(categoryId, langId);
 
-    ctx.set('Content-disposition', `attachment; filename=${fileName}`);
+    // Check if the generated zip file exists
+    if (!fs.existsSync(fileName)) {
+      ctx.status = 404;
+      ctx.body = { error: 'Zip file not found' };
+      return;
+    }
+
+    // Set headers for HTTP response
+    ctx.set('Content-disposition', `attachment; filename=${path.basename(fileName)}`);
     ctx.set('Content-type', 'application/zip');
+
+    // Stream the zip file as response body
     ctx.body = fs.createReadStream(fileName);
   } catch (error) {
     console.error(error);
@@ -211,9 +246,18 @@ export const ZipvideosByCategory = async (ctx, next) => {
 
     const draft = ctx.query.draft === 'true'; 
     const fileName = await publiss2(categoryId,langId); 
+    if (!fs.existsSync(fileName)) {
+      ctx.status = 404;
+      ctx.body = { error: 'Zip file not found' };
+      return;
+    }
 
-    ctx.set('Content-disposition', `attachment; filename=${fileName}`);
+    ctx.set('Content-disposition', `attachment; filename=${path.basename(fileName)}`);
     ctx.set('Content-type', 'application/zip');
+
+
+    // ctx.set('Content-disposition', `attachment; filename=${fileName}`);
+    // ctx.set('Content-type', 'application/zip');
     ctx.body = fs.createReadStream(fileName);
   } catch (error) {
     console.error(error);

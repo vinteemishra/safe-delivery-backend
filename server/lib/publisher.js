@@ -49,6 +49,7 @@ import { getModuleCategories } from "../api/module-categories/module-categories.
 const https = require('https'); 
 const fs = require('fs');
 // const axios = require('axios');
+const path=require('path');
 
 
 
@@ -443,6 +444,8 @@ const publishLang = async (version, lang, textExporter, user, draft) => {
       headers: { "x-sda-auth": config.durationService.apiKey },
     };
     return httpRequest(options);
+    // return Promise.resolve(); // or handle without durationService
+
   };
 
   // const videoDurationPromise = videoDuration(draft);
@@ -873,7 +876,7 @@ const downloadImage = (relativePath, langId, timeoutDuration = 30000, retries = 
   });
 };
 
-const createImageZip = async (contentFilePath, zipFilePath, langId) => {
+const createImageZip = async (contentFilePath, zipFilePath, langId,draft) => {
   try {
     const content = JSON.parse(fs.readFileSync(contentFilePath, 'utf-8'));
     const modules = content.module || [];
@@ -994,7 +997,17 @@ const createImageZip = async (contentFilePath, zipFilePath, langId) => {
         const imageData = await downloadImage(imageUrl, langId);
         if (imageData) {
           const imageName = imageUrl.split('/').pop();
-          zip.file(imageName, imageData, { binary: true });
+          if((langId=='ee722f96-fcf6-4bcf-9f4e-c5fd285eaac3')||(langId=='22118d52-0d78-431d-b1ba-545ee63017ca')){
+
+          
+            zip.file(`content/assets/images/india/${imageName}`, imageData, { binary: true }); 
+
+          }else{
+            zip.file(`content/assets/images/africa/${imageName}`, imageData, { binary: true }); 
+
+          }
+
+          // zip.file(imageName, imageData, { binary: true });
         }
       } catch (error) {
         console.error(`Error downloading or adding image ${imageUrl} to zip:`, error);
@@ -1006,6 +1019,15 @@ const createImageZip = async (contentFilePath, zipFilePath, langId) => {
     const zipContent = await zip.generateAsync({ type: 'nodebuffer' });
     fs.writeFileSync(zipFilePath, zipContent);
     console.log('Zip file created successfully:', zipFilePath);
+    let filename=`${path.basename(zipFilePath)}`
+    console.log("hello"+filename);
+    await createBlockBlobFromBuffer(draft)(
+      `${langId}/${zipFilePath}.zip`,
+      zipContent,
+      'application/zip'
+    );
+    
+    console.log(`Uploaded ${filename} to Azure Blob Storage.`);
     return zipFilePath;
   } catch (error) {
     console.error('Error creating image zip:', error);
@@ -1015,6 +1037,13 @@ const createImageZip = async (contentFilePath, zipFilePath, langId) => {
 module.exports = {
   createImageZip,
   downloadImage,
+};
+
+const createFolderStructure = (folderPath) => {
+  if (!fs.existsSync(folderPath)) {
+    fs.mkdirSync(folderPath, { recursive: true });
+    console.log(`Created folder structure: ${folderPath}`);
+  }
 };
 
 
@@ -1162,7 +1191,9 @@ const createVideoZip = async (contentFilePath, zipFilePath,lang) => {
         if (videoData) {
           console.log(videoUrl);
           const videoName = videoUrl.split('/').pop();
-          zip.file(videoName, videoData, { binary: true });
+          // zip.file(videoName, videoData, { binary: true });
+          zip.file(`content/assets/videos/india/${videoName}`, videoData, { binary: true }); // Add image to zip with desired folder structure
+
         }
       } catch (error) {
         console.error(`Error downloading or adding video ${videoUrl} to zip:`, error);
@@ -1269,14 +1300,26 @@ const main1 = async (categoryId,langId) => {
         videoDetails: module.videoDetails
       }))
     };
-
+    let folderPath='';
     const fileName = 'content_bundle_module_category.json';
     fs.writeFileSync(fileName, JSON.stringify(output, null, 2), 'utf-8');
     console.log('The details have been written to content_bundle_module_category.json');
+    if(lang=='da5137d1-8492-4312-b444-8e4d4949a3c7'){
+      folderPath = path.join(__dirname, 'content', 'assets', 'images', 'africa');
+
+    }else{
+      folderPath = path.join(__dirname, 'content', 'assets', 'images', 'india');
+
+    }
+    createFolderStructure(folderPath);
+
+    const zipFilePath = path.join(folderPath, 'sda-category-wise-image-bundle3.zip');
+    const zipfile = await createImageZip(fileName, zipFilePath, lang,draft);
+    return zipfile;
 
     
-    const zipfile=await createImageZip(fileName, 'sda-category-wise-image-bundle.zip',langId);
-    return zipfile;
+    // const zipfile=await createImageZip(fileName, 'sda-category-wise-image-bundle.zip',langId);
+    // return zipfile;
   }
 };
 
@@ -1306,7 +1349,7 @@ const main2 = async (categoryId,langId) => {
     console.log('The details have been written to content_bundle_module_category.json');
 
     
-    const zipfile=await createVideoZip(fileName, 'category-wise-video-bundle.zip',lang);
+    const zipfile=await createVideoZip(fileName, 'category-wise-video-bundle3.zip',lang);
     return zipfile;
   }
 };
