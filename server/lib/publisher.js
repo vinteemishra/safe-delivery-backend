@@ -876,53 +876,192 @@ const downloadImage = (relativePath, langId, timeoutDuration = 30000, retries = 
   });
 };
 
-// const createImageZip = async (contentFilePath, zipFilePath, langId,draft) => {
+const createImageZip = async (contentFilePath, zipFilePath, langId, draft) => {
+  let iconCount = 0;
+  let relativeImagePath="";
+  try {
+    const content = JSON.parse(fs.readFileSync(contentFilePath, 'utf-8'));
+    const modules = content.module || [];
+
+    const images = [];
+    modules.forEach(module => {
+      console.log('Processing module:', module.moduleId);
+
+      // Check if module icon exists
+      if (module.icon) {
+        let iconPath = module.icon;
+        if (!iconPath.endsWith('.png')) {
+          iconPath += '.png';
+        }
+        iconCount++;
+        images.push(iconPath);
+        console.log('Found module icon:', iconPath);
+      } else {
+        console.log('No icon found for module');
+      }
+
+      // Check for action card details
+      if (module.actionCardDetails) {
+        module.actionCardDetails.forEach(card => {
+          if (card && card.icon) {
+            let iconPath = card.icon;
+            if (!iconPath.endsWith('.png')) {
+              iconPath += '.png';
+            }
+            iconCount++;
+            images.push(iconPath);
+            console.log('Found action card image:', iconPath);
+          }
+        });
+      }
+
+      // Check for video details
+      if (module.videoDetails) {
+        module.videoDetails.forEach(video => {
+          if (video && video.thumbnail) {
+            let thumbnailPath = video.thumbnail;
+            if (!thumbnailPath.endsWith('.png')) {
+              thumbnailPath += '.png';
+            }
+            images.push(thumbnailPath);
+            console.log('Found video thumbnail:', thumbnailPath);
+          }
+        });
+      }
+
+      // Check for procedure details
+      if (module.procedureDetails) {
+        module.procedureDetails.forEach(procedure => {
+          if (procedure && procedure.icon) {
+            let iconPath = procedure.icon;
+            if (!iconPath.endsWith('.png')) {
+              iconPath += '.png';
+            }
+            iconCount++;
+            images.push(iconPath);
+            console.log('Found procedure icon:', iconPath);
+          }
+          if (procedure.chapters) {
+            procedure.chapters.forEach(chapter => {
+              const matches = chapter.content.match(/<img src="(\/richtext\/[^"]+)"/g);
+              if (matches) {
+                matches.forEach(match => {
+                  let imagePath = match.replace('<img src="', '').replace('"', '');
+                  if (!imagePath.endsWith('.png')) {
+                    imagePath += '.png';
+                  }
+                  images.push(imagePath);
+                  console.log('Found procedure chapter image:', imagePath);
+                });
+              }
+            });
+          }
+        });
+      }
+
+      // Check for key learning point details
+      if (module.keyLearningPointDetails) {
+        module.keyLearningPointDetails.forEach(point => {
+          if (point && point.questions) {
+            point.questions.forEach(question => {
+              if (question && question.image) {
+                let imagePath = question.image;
+                if (!imagePath.endsWith('.png')) {
+                  imagePath += '.png';
+                }
+                images.push(imagePath);
+                console.log('Found key learning point image:', imagePath);
+              }
+            });
+          }
+        });
+      }
+    });
+
+    if (images.length === 0) {
+      console.log('No images found in the content.');
+    }
+
+    const zip = new JSZip();
+    const downloadPromises = images.map(async (imageUrl) => {
+      try {
+        const imageData = await downloadImage(imageUrl, langId);
+        
+        if (imageData) {
+          // const relativeImagePath = imageUrl.startsWith('/') ? imageUrl.slice(1) : imageUrl;
+          if(langId=='ee722f96-fcf6-4bcf-9f4e-c5fd285eaac3'||langId=='22118d52-0d78-431d-b1ba-545ee63017ca'){
+            relativeImagePath = imageUrl.startsWith('/') ? `content/assets/images/india/${imageUrl.slice(1)}` : `content/assets/images/india/${imageUrl}`;
+          }
+          else{
+            relativeImagePath = imageUrl.startsWith('/') ? `content/assets/images/africa/${imageUrl.slice(1)}` : `content/assets/images/india/${imageUrl}`;
+
+          }
+          zip.file(relativeImagePath, imageData, { binary: true });
+        }
+      } catch (error) {
+        console.error(`Error downloading or adding image ${imageUrl} to zip:`, error);
+      }
+    });
+
+    await Promise.all(downloadPromises);
+
+    const zipContent = await zip.generateAsync({ type: 'nodebuffer' });
+    fs.writeFileSync(zipFilePath, zipContent);
+    console.log('Zip file created successfully:', zipFilePath);
+    const filename = `${path.basename(zipFilePath)}`;
+    await createBlockBlobFromBuffer(draft)(`${langId}/${zipFilePath}.zip`, zipContent, 'application/zip');
+    
+    console.log(`Uploaded ${filename} to Azure Blob Storage.`);
+    console.log('iconCount:', iconCount);
+    console.log('Images array:', images);
+    console.log('Total images found:', images.length);
+    return zipFilePath;
+  } catch (error) {
+    console.error('Error creating image zip:', error);
+  }
+};
+
+module.exports = {
+  createImageZip,
+  downloadImage,
+};
+
+
+// const createImageZip = async (contentFilePath, zipFilePath, langId, draft) => {
 //   try {
 //     const content = JSON.parse(fs.readFileSync(contentFilePath, 'utf-8'));
 //     const modules = content.module || [];
 
-//     const images = [];
+//     const images = {
+//       icon: [],
+//       actioncard: [],
+//       procedure: [],
+//       video: [],
+//       keylearning: []
+//     };
+
 //     modules.forEach(module => {
 //       console.log('Processing module:', module.moduleId);
-      
 
+//       if (module.icon) {
+//         let iconPath = module.icon;
+//         if (!iconPath.endsWith('.png')) {
+//           iconPath += '.png';
+//         }
+//         images.icon.push(iconPath);
+//         console.log('Found module icon:', iconPath);
+//       } else {
+//         console.log('No icon found for module');
+//       }
 
-      
-//         // if (category && category.icon) {
-//         //   let iconPath = category.icon;
-//         //   if (!iconPath.endsWith('.png')) {
-//         //     iconPath += '.png';
-//         //   }
-//         //   images.push(iconPath);
-//         //   console.log('Found category icon:', iconPath);
-//         // }
-      
-//         // Check if modules exist and iterate through each module to find its icon
-        
-//         if (module.icon) {
-          
-//               let iconPath = module.icon;
-//               if (!iconPath.endsWith('.png')) {
-//                 iconPath += '.png';
-//               }
-//               images.push(iconPath);
-//               console.log('Found module icon:', iconPath);
-//             } else {
-//               console.log('No icon found for module');
-//             }
-          
-   
-        
-        
-
-//     if (module.actionCardDetails) {
+//       if (module.actionCardDetails) {
 //         module.actionCardDetails.forEach(card => {
 //           if (card && card.icon) {
 //             let iconPath = card.icon;
 //             if (!iconPath.endsWith('.png')) {
 //               iconPath += '.png';
 //             }
-//             images.push(iconPath);
+//             images.actioncard.push(iconPath);
 //             console.log('Found action card image:', iconPath);
 //           }
 //         });
@@ -935,7 +1074,7 @@ const downloadImage = (relativePath, langId, timeoutDuration = 30000, retries = 
 //             if (!thumbnailPath.endsWith('.png')) {
 //               thumbnailPath += '.png';
 //             }
-//             images.push(thumbnailPath);
+//             images.video.push(thumbnailPath);
 //             console.log('Found video thumbnail:', thumbnailPath);
 //           }
 //         });
@@ -948,7 +1087,7 @@ const downloadImage = (relativePath, langId, timeoutDuration = 30000, retries = 
 //             if (!iconPath.endsWith('.png')) {
 //               iconPath += '.png';
 //             }
-//             images.push(iconPath);
+//             images.procedure.push(iconPath);
 //             console.log('Found procedure icon:', iconPath);
 //           }
 //           if (procedure.chapters) {
@@ -960,7 +1099,7 @@ const downloadImage = (relativePath, langId, timeoutDuration = 30000, retries = 
 //                   if (!imagePath.endsWith('.png')) {
 //                     imagePath += '.png';
 //                   }
-//                   images.push(imagePath);
+//                   images.procedure.push(imagePath);
 //                   console.log('Found procedure chapter image:', imagePath);
 //                 });
 //               }
@@ -978,7 +1117,7 @@ const downloadImage = (relativePath, langId, timeoutDuration = 30000, retries = 
 //                 if (!imagePath.endsWith('.png')) {
 //                   imagePath += '.png';
 //                 }
-//                 images.push(imagePath);
+//                 images.keylearning.push(imagePath);
 //                 console.log('Found key learning point image:', imagePath);
 //               }
 //             });
@@ -987,206 +1126,54 @@ const downloadImage = (relativePath, langId, timeoutDuration = 30000, retries = 
 //       }
 //     });
 
-//     if (images.length === 0) {
+//     if (Object.values(images).length == 0) {
 //       console.log('No images found in the content.');
 //     }
 
 //     const zip = new JSZip();
-//     const downloadPromises = images.map(async (imageUrl) => {
-//       try {
-//         const imageData = await downloadImage(imageUrl, langId);
-//         if (imageData) {
-//           const imageName = imageUrl.split('/').pop();
-//           if((langId=='ee722f96-fcf6-4bcf-9f4e-c5fd285eaac3')||(langId=='22118d52-0d78-431d-b1ba-545ee63017ca')){
-
-          
-//             zip.file(`content/assets/images/india/${imageName}`, imageData, { binary: true }); 
-
-//           }else{
-//             zip.file(`content/assets/images/africa/${imageName}`, imageData, { binary: true }); 
-
+    
+//     const addImagesToZip = async (folderName, imagePaths) => {
+//       const folderPath = `content/assets/images/${folderName}`;
+//       const downloadPromises = imagePaths.map(async (imagePath) => {
+//         try {
+//           const imageData = await downloadImage(imagePath, langId);
+//           if (imageData) {
+//             const imageName = imagePath.split('/').pop();
+//             zip.file(`${folderPath}/${imageName}`, imageData, { binary: true });
 //           }
-
-//           // zip.file(imageName, imageData, { binary: true });
+//         } catch (error) {
+//           console.error(`Error downloading or adding image ${imagePath} to zip:`, error);
 //         }
-//       } catch (error) {
-//         console.error(`Error downloading or adding image ${imageUrl} to zip:`, error);
-//       }
-//     });
+//       });
+//       await Promise.all(downloadPromises);
+//     };
 
-//     await Promise.all(downloadPromises);
+//     // Add images to zip by type
+//     await addImagesToZip('icon', images.icon);
+//     await addImagesToZip('actioncard', images.actioncard);
+//     await addImagesToZip('procedure', images.procedure);
+//     await addImagesToZip('video', images.video);
+//     await addImagesToZip('keylearning', images.keylearning);
 
 //     const zipContent = await zip.generateAsync({ type: 'nodebuffer' });
 //     fs.writeFileSync(zipFilePath, zipContent);
 //     console.log('Zip file created successfully:', zipFilePath);
-//     let filename=`${path.basename(zipFilePath)}`
-//     console.log("hello"+filename);
+    
+//     let filename = `${path.basename(zipFilePath)}`;
+//     console.log("Filename:", filename);
+    
 //     await createBlockBlobFromBuffer(draft)(
-//       `${langId}/${zipFilePath}.zip`,
+//       `${langId}/${filename}`,
 //       zipContent,
 //       'application/zip'
 //     );
-    
+
 //     console.log(`Uploaded ${filename} to Azure Blob Storage.`);
 //     return zipFilePath;
 //   } catch (error) {
 //     console.error('Error creating image zip:', error);
 //   }
 // };
-
-// module.exports = {
-//   createImageZip,
-//   downloadImage,
-// };
-
-
-const createImageZip = async (contentFilePath, zipFilePath, langId, draft) => {
-  try {
-    const content = JSON.parse(fs.readFileSync(contentFilePath, 'utf-8'));
-    const modules = content.module || [];
-
-    const images = {
-      icon: [],
-      actioncard: [],
-      procedure: [],
-      video: [],
-      keylearning: []
-    };
-
-    modules.forEach(module => {
-      console.log('Processing module:', module.moduleId);
-
-      if (module.icon) {
-        let iconPath = module.icon;
-        if (!iconPath.endsWith('.png')) {
-          iconPath += '.png';
-        }
-        images.icon.push(iconPath);
-        console.log('Found module icon:', iconPath);
-      } else {
-        console.log('No icon found for module');
-      }
-
-      if (module.actionCardDetails) {
-        module.actionCardDetails.forEach(card => {
-          if (card && card.icon) {
-            let iconPath = card.icon;
-            if (!iconPath.endsWith('.png')) {
-              iconPath += '.png';
-            }
-            images.actioncard.push(iconPath);
-            console.log('Found action card image:', iconPath);
-          }
-        });
-      }
-
-      if (module.videoDetails) {
-        module.videoDetails.forEach(video => {
-          if (video && video.thumbnail) {
-            let thumbnailPath = video.thumbnail;
-            if (!thumbnailPath.endsWith('.png')) {
-              thumbnailPath += '.png';
-            }
-            images.video.push(thumbnailPath);
-            console.log('Found video thumbnail:', thumbnailPath);
-          }
-        });
-      }
-
-      if (module.procedureDetails) {
-        module.procedureDetails.forEach(procedure => {
-          if (procedure && procedure.icon) {
-            let iconPath = procedure.icon;
-            if (!iconPath.endsWith('.png')) {
-              iconPath += '.png';
-            }
-            images.procedure.push(iconPath);
-            console.log('Found procedure icon:', iconPath);
-          }
-          if (procedure.chapters) {
-            procedure.chapters.forEach(chapter => {
-              const matches = chapter.content.match(/<img src="(\/richtext\/[^"]+)"/g);
-              if (matches) {
-                matches.forEach(match => {
-                  let imagePath = match.replace('<img src="', '').replace('"', '');
-                  if (!imagePath.endsWith('.png')) {
-                    imagePath += '.png';
-                  }
-                  images.procedure.push(imagePath);
-                  console.log('Found procedure chapter image:', imagePath);
-                });
-              }
-            });
-          }
-        });
-      }
-
-      if (module.keyLearningPointDetails) {
-        module.keyLearningPointDetails.forEach(point => {
-          if (point && point.questions) {
-            point.questions.forEach(question => {
-              if (question && question.image) {
-                let imagePath = question.image;
-                if (!imagePath.endsWith('.png')) {
-                  imagePath += '.png';
-                }
-                images.keylearning.push(imagePath);
-                console.log('Found key learning point image:', imagePath);
-              }
-            });
-          }
-        });
-      }
-    });
-
-    if (Object.values(images).length == 0) {
-      console.log('No images found in the content.');
-    }
-
-    const zip = new JSZip();
-    
-    const addImagesToZip = async (folderName, imagePaths) => {
-      const folderPath = `content/assets/images/${folderName}`;
-      const downloadPromises = imagePaths.map(async (imagePath) => {
-        try {
-          const imageData = await downloadImage(imagePath, langId);
-          if (imageData) {
-            const imageName = imagePath.split('/').pop();
-            zip.file(`${folderPath}/${imageName}`, imageData, { binary: true });
-          }
-        } catch (error) {
-          console.error(`Error downloading or adding image ${imagePath} to zip:`, error);
-        }
-      });
-      await Promise.all(downloadPromises);
-    };
-
-    // Add images to zip by type
-    await addImagesToZip('icon', images.icon);
-    await addImagesToZip('actioncard', images.actioncard);
-    await addImagesToZip('procedure', images.procedure);
-    await addImagesToZip('video', images.video);
-    await addImagesToZip('keylearning', images.keylearning);
-
-    const zipContent = await zip.generateAsync({ type: 'nodebuffer' });
-    fs.writeFileSync(zipFilePath, zipContent);
-    console.log('Zip file created successfully:', zipFilePath);
-    
-    let filename = `${path.basename(zipFilePath)}`;
-    console.log("Filename:", filename);
-    
-    await createBlockBlobFromBuffer(draft)(
-      `${langId}/${filename}`,
-      zipContent,
-      'application/zip'
-    );
-
-    console.log(`Uploaded ${filename} to Azure Blob Storage.`);
-    return zipFilePath;
-  } catch (error) {
-    console.error('Error creating image zip:', error);
-  }
-};
 
 
 const createFolderStructure = (folderPath) => {
@@ -1430,9 +1417,48 @@ const main = async (categoryId,langId) => {
   }
 };
 
-// const main1 = async (categoryId,langId) => {
-//   // const lang = 'ee722f96-fcf6-4bcf-9f4e-c5fd285eaac3';
-//   const lang=langId;
+const main1 = async (categoryId, langId) => {
+  const draft = true;
+
+  const result = await filterModulesByCategory(langId, draft, categoryId);
+
+  if (result) {
+    const output = {
+      category: result.category,
+      module: result.modules.map(module => ({
+        moduleId: module.id,
+        icon: module.icon,
+        actionCardDetails: module.actionCardDetails,
+        drugDetails: module.drugDetails,
+        procedureDetails: module.procedureDetails,
+        keyLearningPointDetails: module.keyLearningPointDetails,
+        videoDetails: module.videoDetails
+      }))
+    };
+    const fileName = 'content_bundle_module_category.json';
+    fs.writeFileSync(fileName, JSON.stringify(output, null, 2), 'utf-8');
+    console.log('The details have been written to content_bundle_module_category.json');
+    
+    let folderPath = '';
+    if (langId === 'da5137d1-8492-4312-b444-8e4d4949a3c7') {
+      folderPath = path.join(__dirname, 'content', 'assets', 'images', 'africa');
+    } else {
+      folderPath = path.join(__dirname, 'content', 'assets', 'images', 'india');
+    }
+    createFolderStructure(folderPath);
+
+    const zipFilePath = path.join(folderPath, 'sda-category-wise-image-bundle3.zip');
+    const zipfile = await createImageZip(fileName, zipFilePath, langId, draft);
+    return zipfile;
+  }
+};
+
+
+
+
+
+// const main1 = async (categoryId, langId) => {
+//   const lang = langId;
 //   const draft = true;
 
 //   const result = await filterModulesByCategory(lang, draft, categoryId);
@@ -1450,80 +1476,34 @@ const main = async (categoryId,langId) => {
 //         videoDetails: module.videoDetails
 //       }))
 //     };
-//     let folderPath='';
+
 //     const fileName = 'content_bundle_module_category.json';
 //     fs.writeFileSync(fileName, JSON.stringify(output, null, 2), 'utf-8');
 //     console.log('The details have been written to content_bundle_module_category.json');
-//     if(lang=='da5137d1-8492-4312-b444-8e4d4949a3c7'){
-//       folderPath = path.join(__dirname, 'content', 'assets', 'images', 'africa');
 
-//     }else{
-//       folderPath = path.join(__dirname, 'content', 'assets', 'images', 'india');
+//     // Define folder paths based on the type of image
+//     let folderPaths = {
+//       icons: path.join(__dirname, 'content', 'assets', 'images', 'icons'),
+//       actionCards: path.join(__dirname, 'content', 'assets', 'images', 'actionCards'),
+//       drugs: path.join(__dirname, 'content', 'assets', 'images', 'drugs'),
+//       procedures: path.join(__dirname, 'content', 'assets', 'images', 'procedures'),
+//       keyLearningPoints: path.join(__dirname, 'content', 'assets', 'images', 'keyLearningPoints'),
+//       videos: path.join(__dirname, 'content', 'assets', 'images', 'videos')
+//     };
 
+//     // Create folders if they don't exist
+//     for (let folderPath of Object.values(folderPaths)) {
+//       createFolderStructure(folderPath);
 //     }
-//     createFolderStructure(folderPath);
 
-//     const zipFilePath = path.join(folderPath, 'sda-category-wise-image-bundle3.zip');
-//     const zipfile = await createImageZip(fileName, zipFilePath, lang,draft);
+//     // Define the zip file path
+//     const zipFilePath = path.join(__dirname, 'content', 'assets', 'images', 'sda-category-wise-image-bundle.zip');
+
+//     // Create the zip file containing all images
+//     const zipfile = await createImageZip(fileName, zipFilePath, lang, draft, folderPaths);
 //     return zipfile;
-
-    
-//     // const zipfile=await createImageZip(fileName, 'sda-category-wise-image-bundle.zip',langId);
-//     // return zipfile;
 //   }
 // };
-
-
-
-
-
-const main1 = async (categoryId, langId) => {
-  const lang = langId;
-  const draft = true;
-
-  const result = await filterModulesByCategory(lang, draft, categoryId);
-
-  if (result) {
-    const output = {
-      category: result.category,
-      module: result.modules.map(module => ({
-        moduleId: module.id,
-        icon: module.icon,
-        actionCardDetails: module.actionCardDetails,
-        drugDetails: module.drugDetails,
-        procedureDetails: module.procedureDetails,
-        keyLearningPointDetails: module.keyLearningPointDetails,
-        videoDetails: module.videoDetails
-      }))
-    };
-
-    const fileName = 'content_bundle_module_category.json';
-    fs.writeFileSync(fileName, JSON.stringify(output, null, 2), 'utf-8');
-    console.log('The details have been written to content_bundle_module_category.json');
-
-    // Define folder paths based on the type of image
-    let folderPaths = {
-      icons: path.join(__dirname, 'content', 'assets', 'images', 'icons'),
-      actionCards: path.join(__dirname, 'content', 'assets', 'images', 'actionCards'),
-      drugs: path.join(__dirname, 'content', 'assets', 'images', 'drugs'),
-      procedures: path.join(__dirname, 'content', 'assets', 'images', 'procedures'),
-      keyLearningPoints: path.join(__dirname, 'content', 'assets', 'images', 'keyLearningPoints'),
-      videos: path.join(__dirname, 'content', 'assets', 'images', 'videos')
-    };
-
-    // Create folders if they don't exist
-    for (let folderPath of Object.values(folderPaths)) {
-      createFolderStructure(folderPath);
-    }
-
-    // Define the zip file path
-    const zipFilePath = path.join(__dirname, 'content', 'assets', 'images', 'sda-category-wise-image-bundle.zip');
-
-    // Create the zip file containing all images
-    const zipfile = await createImageZip(fileName, zipFilePath, lang, draft, folderPaths);
-    return zipfile;
-  }
-};
 
 
 
@@ -1572,6 +1552,15 @@ const publiss2 = async (categoryId,langId) => {
 };
 
 module.exports = { main, publiss,main1, publiss1, main2, publiss2,publisher,publishModuleCategory,getModuleCategoryVersion};
+
+
+
+
+
+
+
+
+
 
 
 
