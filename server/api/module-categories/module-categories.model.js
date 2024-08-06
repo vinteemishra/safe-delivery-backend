@@ -28,20 +28,20 @@ export function insert(user, moduleCategory) {
     );
 }
 
-export function remove(id) {
-  return getModuleCategories(id).then((ids) => {
-    const deletes = ids.map((row) => {
-      return dbClient.deleteDoc(row.id);
-    });
-
-    return Promise.all([...deletes]);
-  });
-}
-
-
 // export function remove(id) {
-//   return dbClient.deleteDoc(id);
+//   return getModuleCategories(id).then((ids) => {
+//     const deletes = ids.map((row) => {
+//       return dbClient.deleteDoc(row.id);
+//     });
+
+//     return Promise.all([...deletes]);
+//   });
 // }
+
+
+export function remove(id) {
+  return dbClient.deleteDoc(id);
+}
 
 
 

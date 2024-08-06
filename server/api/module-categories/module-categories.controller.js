@@ -27,93 +27,116 @@ export const list = async (ctx, next) => {
 
 // export const list = async (ctx, next) => {
 //   var id = ctx.query.key;
-//   const data = await getModuleCategories(id);
+
   
-//   // Process each category object
+//   function generateModuleDescription(moduleKey) {
+//     if (typeof moduleKey !== 'string') {
+//       return 'Unknown Module';
+//     }
+
+//     const moduleName = moduleKey.split('_')[0]; 
+//     return moduleName
+//       .split('-')
+//       .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+//       .join(' ');
+//   }
+
+  
+//   const data = await getModuleCategories(id);
+
+  
 //   data.forEach(category => {
-//     // Clean up module names
-//     category.modules = category.modules.map(module => cleanModuleName(module));
+    
+//     if (Array.isArray(category.modules)) {
+  
+//       category.moduleDescriptions = category.modules.reduce((acc, moduleKey) => {
+//         acc[moduleKey] = generateModuleDescription(moduleKey);
+//         return acc;
+//       }, {});
+//     } else {
+      
+//       category.modules = [];
+//       category.moduleDescriptions = {};
+//     }
 //   });
+
+  
 
 //   ctx.status = 200;
 //   ctx.body = data;
 //   await next();
 // };
 
-// // Function to clean module names
-// function cleanModuleName(moduleName) {
-//   // Split by underscore and take the first part
-//   const cleanName = moduleName.split('_')[0];
-//   // Replace hyphens with spaces
-//   const normalized = cleanName.replace(/-/g, ' ');
-//   // Capitalize the first letter of each word
-//   return normalized.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
-// }
-
-
-
-
-
-
 
 // export const list = async (ctx, next) => {
 //   var id = ctx.query.key;
-//   const data = await getModuleCategories(id);
+
   
-//   // Modify the response data to extract only module names without suffixes
-//   const modifiedData = data.map(category => ({
-//     ...category,
-//     modules: category.modules.map(module => {
-//       return module.split('_')[0].replace(/-/g, ' '); // Replace hyphens with spaces
-//     })
-//   }));
+//   function generateModuleDescription(moduleKey) {
+//     const moduleName = moduleKey.split('_')[0]; // Extract module name
+//     return moduleName
+//       .split('-')
+//       .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+//       .join(' ');
+//   }
+
+  
+//   const data = await getModuleCategories(id);
+
+  
+//   data.forEach(category => {
+    
+//     if (Array.isArray(category.modules)) {
+//       category.modules = category.modules.map(moduleKey => ({
+//         key: moduleKey,
+//         description: generateModuleDescription(moduleKey),
+//       }));
+//     } else {
+      
+//       category.modules = [];
+//     }
+//   });
+
+  
 
 //   ctx.status = 200;
-//   ctx.body = modifiedData;
+//   ctx.body = data;
 //   await next();
 // };
+
 
 
 // export const list = async (ctx, next) => {
 //   var id = ctx.query.key;
 //   const data = await getModuleCategories(id);
-//   const cleanedData = data.map((doc) => {
-//     if (doc.modules) {
-//       doc.modules = doc.modules.map((module) => {
+
+  
+//   const cleanedData = data.map(category => {
+//     const { modules } = category;
+//     let moduleName = [];
+
+//     if (modules && modules.length > 0) {
+//       moduleName = modules.map(module => {
+        
 //         let cleanedModule = module.replace(/_\d+$/, "");
-//         cleanedModule = cleanedModule.replace(/[_-]/g, ' ');
-//         cleanedModule = cleanedModule.toLowerCase().replace(/(^\w|\s\w)/g, (m) => m.toUpperCase());
+        
+//         cleanedModule = cleanedModule.replace(/[-_]/g, ' ');
+        
+//         cleanedModule = cleanedModule.toLowerCase().replace(/(^\w|\s\w)/g, m => m.toUpperCase());
 //         return cleanedModule;
 //       });
 //     }
-//     return doc;
+
+//     return {
+//       ...category,
+//       ModuleName: moduleName
+//     };
 //   });
+
 //   ctx.status = 200;
 //   ctx.body = cleanedData;
 //   await next();
 // };
-
-
-// export const list = async (ctx, next) => {
-//   var id = ctx.query.key;
-  //   const data = await getModuleCategories(id);
-//   const cleanedData = data.map((doc) => {
-//     let cleanedDoc = { ...doc }; // Create a shallow copy of the document
-//     if (cleanedDoc.modules) {
-//       cleanedDoc.modules = cleanedDoc.modules.map((module) => {
-//         let cleanedModule = module.replace(/_\d+$/, "");
-//         cleanedModule = cleanedModule.replace(/[_-]/g, ' ');
-//         cleanedModule = cleanedModule.toLowerCase().replace(/(^\w|\s\w)/g, (m) => m.toUpperCase());
-//         return cleanedModule;
-//       });
-//     }
-//     return cleanedDoc;
-//   });
-//   ctx.status = 200;
-//   ctx.body = cleanedData;
-//   await next();
-// };
-
 
 
 export const post = async (ctx, next) => {
