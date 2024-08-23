@@ -766,56 +766,25 @@ const filterModulesByCategory = async (lang, draft, categoryId) => {
 
 const JSZip = require('jszip');
 
-// const downloadImage = (relativePath) => {
-//   const baseUrl = 'https://sdacms.blob.core.windows.net/content/assets/images/india'; 
-//   const imageUrl = `${baseUrl}${relativePath}`; 
-//   console.log(imageUrl);
-
-//   return new Promise((resolve, reject) => {
-//     const request = https.get(imageUrl, (response) => {
-//       if (response.statusCode !== 200) {
-//         if (response.statusCode === 404) {
-//           console.log(`Image not found: ${imageUrl}`);
-//           resolve(null); // Skip this image
-//         } else {
-//           reject(new Error(`Failed to download image ${imageUrl}: Status code ${response.statusCode}`));
-//         }
-//         return;
-//       }
-
-//       let data = [];
-//       response.on('data', (chunk) => {
-//         data.push(chunk);
-//       });
-
-//       response.on('end', () => {
-//         resolve(Buffer.concat(data));
-//       });
-//     }).on('error', (err) => {
-//       console.error(`Failed to download image ${imageUrl}:`, err);
-//       reject(err);
-//     });
-
-    
-//     request.setTimeout(10000, () => {
-//       request.abort();
-//       reject(new Error(`Download timed out for image ${imageUrl}`));
-//     });
-//   });
-// };
 
 const downloadImage = (relativePath, langId, timeoutDuration = 30000, retries = 3) => {
-  if((langId=='ee722f96-fcf6-4bcf-9f4e-c5fd285eaac3')||(langId=='22118d52-0d78-431d-b1ba-545ee63017ca')){
-  var baseUrl = 'https://sdacms.blob.core.windows.net/content/assets/images/india';
-  }else if((langId=='da5137d1-8492-4312-b444-8e4d4949a3c7')||(langId=='dc40648b-0a77-446b-b11b-e0aa17aed697')){
-  var baseUrl = 'https://sdacms.blob.core.windows.net/content/assets/images/africa';
-  }else{
-  var baseUrl = 'https://sdacms.blob.core.windows.net/content/assets/images/africa';
+  let baseUrl;
+
+  if (relativePath.includes('videos')) {
+    console.log("url with video found");
+    baseUrl = 'https://sdacms.blob.core.windows.net/content/assets/';
+  } else {
+    if (['ee722f96-fcf6-4bcf-9f4e-c5fd285eaac3', '22118d52-0d78-431d-b1ba-545ee63017ca'].includes(langId)) {
+      baseUrl = 'https://sdacms.blob.core.windows.net/content/assets/images/india';
+    } else if (['da5137d1-8492-4312-b444-8e4d4949a3c7', 'dc40648b-0a77-446b-b11b-e0aa17aed697'].includes(langId)) {
+      baseUrl = 'https://sdacms.blob.core.windows.net/content/assets/images/africa';
+    } else {
+      baseUrl = 'https://sdacms.blob.core.windows.net/content/assets/images/africa';
+    }
   }
+
   const imageUrl = `${baseUrl}${relativePath}`;
   console.log(imageUrl);
-  
-  
 
   return new Promise((resolve, reject) => {
     const attemptDownload = (attempt) => {
@@ -871,9 +840,7 @@ const createImageZip = async (contentFilePath, zipFilePath, langId) => {
     const modules = content.module || [];
     
     const categoryIcon = content.category ? content.category.icon : undefined;
-
-
-
+    
     const images = [];
 
     if (categoryIcon) {
@@ -912,14 +879,18 @@ const createImageZip = async (contentFilePath, zipFilePath, langId) => {
       }
 
       if (module.videoDetails) {
+        
         module.videoDetails.forEach(video => {
-          if (video && video.thumbnail) {
-            let thumbnailPath = video.thumbnail;
+          if (video && video.id) {
+            let thumbnailPath = video.id;
             if (!thumbnailPath.endsWith('.png')) {
               thumbnailPath += '.png';
             }
-            images.push(thumbnailPath);
+            images.push(`videos${thumbnailPath}`);
+
+            // images.push(thumbnailPath);
             console.log('Found video thumbnail:', thumbnailPath);
+            console.log(`/videos${thumbnailPath}`);
           }
         });
       }
@@ -977,11 +948,20 @@ const createImageZip = async (contentFilePath, zipFilePath, langId) => {
 
     const zip = new JSZip();
     const downloadPromises = images.map(async (imageUrl) => {
+      if (imageUrl.includes('videos')) {
+        console.log("video url",imageUrl);
+      }
       try {
         const imageData = await downloadImage(imageUrl, langId);
         if (imageData) {
           const imageName = imageUrl.split('/').pop();
-          zip.file(`content/assets/images/india/${imageName}`, imageData, { binary: true }); // Add image to zip with desired folder structure
+          if(langId=='ee722f96-fcf6-4bcf-9f4e-c5fd285eaac3'||langId=='22118d52-0d78-431d-b1ba-545ee63017ca'){
+            zip.file(`content/assets/images/india/${imageName}`, imageData, { binary: true }); 
+
+          }else{
+            zip.file(`content/assets/images/africa/${imageName}`, imageData, { binary: true }); 
+
+          }
           // zip.file(imageName, imageData, { binary: true });
         }
       } catch (error) {
@@ -1150,7 +1130,15 @@ const createVideoZip = async (contentFilePath, zipFilePath,lang) => {
         if (videoData) {
           console.log(videoUrl);
           const videoName = videoUrl.split('/').pop();
-          zip.file(videoName, videoData, { binary: true });
+          // zip.file(videoName, videoData, { binary: true });
+          if(lang=='22118d52-0d78-431d-b1ba-545ee63017ca'||lang=='ee722f96-fcf6-4bcf-9f4e-c5fd285eaac3'){
+            zip.file(`content/assets/videos/india/${videoName}`, videoData, { binary: true }); 
+
+          }else{
+            zip.file(`content/assets/videos/africa/${videoName}`, videoData, { binary: true }); 
+
+          }
+
         }
       } catch (error) {
         console.error(`Error downloading or adding video ${videoUrl} to zip:`, error);
@@ -1265,11 +1253,18 @@ const main1 = async (categoryId,langId) => {
         videoDetails: module.videoDetails
       }))
     };
-
+    let folderPath='';
     const fileName = 'content_bundle_module_category.json';
     fs.writeFileSync(fileName, JSON.stringify(output, null, 2), 'utf-8');
     console.log('The details have been written to content_bundle_module_category.json');
-    const folderPath = path.join(__dirname, 'content', 'assets', 'images', 'india');
+    // const folderPath = path.join(__dirname, 'content', 'assets', 'images', 'india');
+    if(lang=='da5137d1-8492-4312-b444-8e4d4949a3c7'){
+      folderPath = path.join(__dirname, 'content', 'assets', 'images', 'africa');
+
+    }else{
+      folderPath = path.join(__dirname, 'content', 'assets', 'images', 'india');
+
+    }
     createFolderStructure(folderPath);
  
     const zipFilePath = path.join(folderPath, 'sda-category-wise-image-bundle3.zip');
@@ -1303,14 +1298,27 @@ const main2 = async (categoryId,langId) => {
         videoDetails: module.videoDetails
       }))
     };
-
+    let folderPath='';
+ 
     const fileName = 'content_bundle_module_category.json';
     fs.writeFileSync(fileName, JSON.stringify(output, null, 2), 'utf-8');
     console.log('The details have been written to content_bundle_module_category.json');
+    if(lang=='da5137d1-8492-4312-b444-8e4d4949a3c7'){
+      folderPath = path.join(__dirname, 'content', 'assets', 'videos', 'africa');
+
+    }else{
+      folderPath = path.join(__dirname, 'content', 'assets', 'videos', 'india');
+
+    }
+    createFolderStructure(folderPath);
+ 
+    const zipFilePath = path.join(folderPath, 'category-wise-video-bundle.zip');
+    const zipfile = await createVideoZip(fileName, zipFilePath, langId);
+    return zipfile;
 
     
-    const zipfile=await createVideoZip(fileName, 'category-wise-video-bundle.zip',lang);
-    return zipfile;
+    // const zipfile=await createVideoZip(fileName, 'category-wise-video-bundle.zip',lang);
+    // return zipfile;
   }
 };
 const publiss = async (categoryId,langId) => {
