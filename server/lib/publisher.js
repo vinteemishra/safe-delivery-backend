@@ -1010,7 +1010,7 @@ const downloadVideo = (videoUrl, timeoutDuration = 30000, retries = 3) => {
         if (response.statusCode !== 200) {
           if (response.statusCode === 404) {
             console.log(`Video not found: ${videoUrl}`);
-            resolve(null); 
+            resolve(null);
           } else {
             reject(new Error(`Failed to download video ${videoUrl}: Status code ${response.statusCode}`));
           }
@@ -1027,7 +1027,7 @@ const downloadVideo = (videoUrl, timeoutDuration = 30000, retries = 3) => {
         });
       }).on('error', (err) => {
         if (attempt < retries) {
-          const delay = Math.pow(2, attempt) * 1000; 
+          const delay = Math.pow(2, attempt) * 1000;
           console.log(`Attempt ${attempt} failed. Retrying in ${delay} ms...`);
           setTimeout(() => attemptDownload(attempt + 1), delay);
         } else {
@@ -1039,7 +1039,7 @@ const downloadVideo = (videoUrl, timeoutDuration = 30000, retries = 3) => {
       request.setTimeout(timeoutDuration, () => {
         request.abort();
         if (attempt < retries) {
-          const delay = Math.pow(2, attempt) * 1000; 
+          const delay = Math.pow(2, attempt) * 1000;
           console.log(`Download timed out for video ${videoUrl}. Retrying in ${delay} ms...`);
           setTimeout(() => attemptDownload(attempt + 1), delay);
         } else {
@@ -1052,7 +1052,7 @@ const downloadVideo = (videoUrl, timeoutDuration = 30000, retries = 3) => {
   });
 };
 
-const createVideoZip = async (contentFilePath, zipFilePath,lang) => {
+const createVideoZip = async (contentFilePath, zipFilePath, lang) => {
   try {
     const content = JSON.parse(fs.readFileSync(contentFilePath, 'utf-8'));
     const modules = content.module || [];
@@ -1061,11 +1061,15 @@ const createVideoZip = async (contentFilePath, zipFilePath,lang) => {
     modules.forEach(module => {
       console.log('Processing module:', module.moduleId);
 
+      const addVideoToQueue = (videoPath) => {
+        videos.push({ videoPath, moduleId: module.moduleId });
+      };
+
       if (module.actionCardDetails) {
         module.actionCardDetails.forEach(card => {
           if (card && card.link) {
-            let videoPath = extractVideoPath(card.link,lang);
-            videos.push(videoPath);
+            let videoPath = extractVideoPath(card.link, lang);
+            addVideoToQueue(videoPath);
             console.log('Found action card video:', videoPath);
           }
         });
@@ -1074,8 +1078,8 @@ const createVideoZip = async (contentFilePath, zipFilePath,lang) => {
       if (module.videoDetails) {
         module.videoDetails.forEach(video => {
           if (video && video.link) {
-            let videoPath = extractVideoPath(video.link,lang);
-            videos.push(videoPath);
+            let videoPath = extractVideoPath(video.link, lang);
+            addVideoToQueue(videoPath);
             console.log('Found video thumbnail:', videoPath);
           }
         });
@@ -1084,8 +1088,8 @@ const createVideoZip = async (contentFilePath, zipFilePath,lang) => {
       if (module.procedureDetails) {
         module.procedureDetails.forEach(procedure => {
           if (procedure && procedure.link) {
-            let videoPath = extractVideoPath(procedure.link,lang);
-            videos.push(videoPath);
+            let videoPath = extractVideoPath(procedure.link, lang);
+            addVideoToQueue(videoPath);
             console.log('Found procedure icon:', videoPath);
           }
           if (procedure.chapters) {
@@ -1094,7 +1098,7 @@ const createVideoZip = async (contentFilePath, zipFilePath,lang) => {
               if (matches) {
                 matches.forEach(match => {
                   let imagePath = match.replace('<img src="', '').replace('"', '');
-                  videos.push(imagePath);
+                  addVideoToQueue(imagePath);
                   console.log('Found procedure chapter image:', imagePath);
                 });
               }
@@ -1108,8 +1112,8 @@ const createVideoZip = async (contentFilePath, zipFilePath,lang) => {
           if (point && point.questions) {
             point.questions.forEach(question => {
               if (question && question.link) {
-                let videoPath = extractVideoPath(question.link,lang);
-                videos.push(videoPath);
+                let videoPath = extractVideoPath(question.link, lang);
+                addVideoToQueue(videoPath);
                 console.log('Found key learning point video:', videoPath);
               }
             });
@@ -1124,24 +1128,19 @@ const createVideoZip = async (contentFilePath, zipFilePath,lang) => {
     }
 
     const zip = new JSZip();
-    const downloadPromises = videos.map(async (videoUrl) => {
+    const downloadPromises = videos.map(async ({ videoPath, moduleId }) => {
       try {
-        const videoData = await downloadVideo(videoUrl);
+        const videoData = await downloadVideo(videoPath);
         if (videoData) {
-          console.log(videoUrl);
-          const videoName = videoUrl.split('/').pop();
-          // zip.file(videoName, videoData, { binary: true });
-          if(lang=='22118d52-0d78-431d-b1ba-545ee63017ca'||lang=='ee722f96-fcf6-4bcf-9f4e-c5fd285eaac3'){
-            zip.file(`content/assets/videos/india/${videoName}`, videoData, { binary: true }); 
+          const videoName = `${moduleId}_${videoPath.split('/').pop()}`;
+          const folderPath = (lang === '22118d52-0d78-431d-b1ba-545ee63017ca' || lang === 'ee722f96-fcf6-4bcf-9f4e-c5fd285eaac3')
+            ? 'content/assets/videos/india/'
+            : 'content/assets/videos/africa/';
 
-          }else{
-            zip.file(`content/assets/videos/africa/${videoName}`, videoData, { binary: true }); 
-
-          }
-
+          zip.file(`${folderPath}${videoName}`, videoData, { binary: true });
         }
       } catch (error) {
-        console.error(`Error downloading or adding video ${videoUrl} to zip:`, error);
+        console.error(`Error downloading or adding video ${videoPath} to zip:`, error);
       }
     });
 
@@ -1181,7 +1180,7 @@ const extractVideoPath = (link,lang) => {
       return `https://sdacms.blob.core.windows.net/content/assets/videos/english WHO/${link.substr(videoPrefix.length)}.mp4`;
      }
   } else if (link.startsWith(richtextPrefix)) {
-    return `https://yourdomain.com${link}`; 
+    return `https://localhost${link}`; 
   }
   return link;
 };
@@ -1279,6 +1278,8 @@ const main1 = async (categoryId,langId) => {
 
 
 const main2 = async (categoryId,langId) => {
+  console.log("main22");
+  
   // const lang = 'ee722f96-fcf6-4bcf-9f4e-c5fd285eaac3';
   const lang=langId;
   const draft = true;
@@ -1332,6 +1333,7 @@ const publiss1 = async (categoryId,langId) => {
 };
 
 const publiss2 = async (categoryId,langId) => {
+  console.log("test11");
   const filename = await main2(categoryId,langId);
   return filename;
 };
