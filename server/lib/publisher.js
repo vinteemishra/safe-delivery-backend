@@ -997,60 +997,90 @@ function isValidUrl(urlString) {
   }
 }
 
-const downloadVideo = (videoUrl, timeoutDuration = 30000, retries = 3) => {
-  console.log('Downloading video:', videoUrl);
 
+const { PassThrough } = require('stream');
+
+
+
+// Stream-based download
+const downloadVideoStream = (videoUrl) => {
+  console.log('Downloading video:', videoUrl);
   return new Promise((resolve, reject) => {
-    const attemptDownload = (attempt) => {
-      if (!isValidUrl(videoUrl)) {
-        return reject(new Error(`Invalid URL: ${videoUrl}`));
+    if (!isValidUrl(videoUrl)) {
+      return reject(new Error(`Invalid URL: ${videoUrl}`));
+    }
+
+    const request = https.get(videoUrl, (response) => {
+      if (response.statusCode !== 200) {
+        if (response.statusCode === 404) {
+          console.log(`Video not found: ${videoUrl}`);
+          resolve(null);
+        } else {
+          reject(new Error(`Failed to download video ${videoUrl}: Status code ${response.statusCode}`));
+        }
+        return;
       }
 
-      const request = https.get(videoUrl, (response) => {
-        if (response.statusCode !== 200) {
-          if (response.statusCode === 404) {
-            console.log(`Video not found: ${videoUrl}`);
-            resolve(null);
-          } else {
-            reject(new Error(`Failed to download video ${videoUrl}: Status code ${response.statusCode}`));
-          }
-          return;
-        }
-
-        let data = [];
-        response.on('data', (chunk) => {
-          data.push(chunk);
-        });
-
-        response.on('end', () => {
-          resolve(Buffer.concat(data));
-        });
-      }).on('error', (err) => {
-        if (attempt < retries) {
-          const delay = Math.pow(2, attempt) * 1000;
-          console.log(`Attempt ${attempt} failed. Retrying in ${delay} ms...`);
-          setTimeout(() => attemptDownload(attempt + 1), delay);
-        } else {
-          console.error(`Failed to download video ${videoUrl}:`, err);
-          reject(err);
-        }
-      });
-
-      request.setTimeout(timeoutDuration, () => {
-        request.abort();
-        if (attempt < retries) {
-          const delay = Math.pow(2, attempt) * 1000;
-          console.log(`Download timed out for video ${videoUrl}. Retrying in ${delay} ms...`);
-          setTimeout(() => attemptDownload(attempt + 1), delay);
-        } else {
-          reject(new Error(`Download timed out for video ${videoUrl} after ${retries} attempts`));
-        }
-      });
-    };
-
-    attemptDownload(1);
+      const passthrough = new PassThrough();
+      response.pipe(passthrough);
+      resolve(passthrough);
+    }).on('error', (err) => {
+      reject(new Error(`Failed to download video ${videoUrl}: ${err.message}`));
+    });
   });
 };
+
+const extractVideoPath = (link, lang) => {
+  const videoPrefix = 'video:/';
+  const richtextPrefix = '/richtext/';
+  if (link.startsWith(videoPrefix)) {
+    switch (lang) {
+      case 'ee722f96-fcf6-4bcf-9f4e-c5fd285eaac3':
+        return `https://sdacms.blob.core.windows.net/content/assets/videos/India english/${link.substr(videoPrefix.length)}.mp4`;
+      case '22118d52-0d78-431d-b1ba-545ee63017ca':
+        return `https://sdacms.blob.core.windows.net/content/assets/videos/India/${link.substr(videoPrefix.length)}.mp4`;
+      case 'da5137d1-8492-4312-b444-8e4d4949a3c7':
+        return `https://sdacms.blob.core.windows.net/content/assets/videos/french/${link.substr(videoPrefix.length)}.mp4`;
+      case 'dc40648b-0a77-446b-b11b-e0aa17aed697':
+        return `https://sdacms.blob.core.windows.net/content/assets/videos/ethiopia somali/${link.substr(videoPrefix.length)}.mp4`;
+      default:
+        return `https://sdacms.blob.core.windows.net/content/assets/videos/english WHO/${link.substr(videoPrefix.length)}.mp4`;
+    }
+  } else if (link.startsWith(richtextPrefix)) {
+    return `https://sdacms.blob.core.windows.net${link}`; // Replace with the actual base URL
+  }
+  return link;
+};
+
+// Limiting concurrent downloads
+const concurrentLimit = 5;
+const semaphore = (max) => {
+  let count = 0;
+  const queue = [];
+  const semaphore = {
+    acquire() {
+      return new Promise(resolve => {
+        const attempt = () => {
+          if (count < max) {
+            count += 1;
+            resolve(() => {
+              count -= 1;
+              if (queue.length) {
+                queue.shift()();
+              }
+            });
+          } else {
+            queue.push(attempt);
+          }
+        };
+        attempt();
+      });
+    }
+  };
+  return semaphore;
+};
+
+const downloadSemaphore = semaphore(concurrentLimit);
 
 const createVideoZip = async (contentFilePath, zipFilePath, lang) => {
   try {
@@ -1128,19 +1158,23 @@ const createVideoZip = async (contentFilePath, zipFilePath, lang) => {
     }
 
     const zip = new JSZip();
+
     const downloadPromises = videos.map(async ({ videoPath, moduleId }) => {
+      const release = await downloadSemaphore.acquire();
       try {
-        const videoData = await downloadVideo(videoPath);
-        if (videoData) {
+        const videoStream = await downloadVideoStream(videoPath);
+        if (videoStream) {
           const videoName = `${moduleId}_${videoPath.split('/').pop()}`;
           const folderPath = (lang === '22118d52-0d78-431d-b1ba-545ee63017ca' || lang === 'ee722f96-fcf6-4bcf-9f4e-c5fd285eaac3')
             ? 'content/assets/videos/india/'
             : 'content/assets/videos/africa/';
 
-          zip.file(`${folderPath}${videoName}`, videoData, { binary: true });
+          zip.file(`${folderPath}${videoName}`, videoStream);
         }
       } catch (error) {
         console.error(`Error downloading or adding video ${videoPath} to zip:`, error);
+      } finally {
+        release();
       }
     });
 
@@ -1155,40 +1189,13 @@ const createVideoZip = async (contentFilePath, zipFilePath, lang) => {
   }
 };
 
-const extractVideoPath = (link,lang) => {
-  const videoPrefix = 'video:/';
-  const richtextPrefix = '/richtext/';
-  if (link.startsWith(videoPrefix)) {
-    if(lang=='ee722f96-fcf6-4bcf-9f4e-c5fd285eaac3'){
-      return `https://sdacms.blob.core.windows.net/content/assets/videos/India english/${link.substr(videoPrefix.length)}.mp4`;
-    }
-    else if(lang=='22118d52-0d78-431d-b1ba-545ee63017ca'){
-      return `https://sdacms.blob.core.windows.net/content/assets/videos/India/${link.substr(videoPrefix.length)}.mp4`;
-
-    }
-    else if(lang=='da5137d1-8492-4312-b444-8e4d4949a3c7'){
-      return `https://sdacms.blob.core.windows.net/content/assets/videos/french/${link.substr(videoPrefix.length)}.mp4`;
-
-      
-    }
-    else if(lang=='dc40648b-0a77-446b-b11b-e0aa17aed697'){
-      return `https://sdacms.blob.core.windows.net/content/assets/videos/ethiopia somali/${link.substr(videoPrefix.length)}.mp4`;
 
 
-    }
-    else{
-      return `https://sdacms.blob.core.windows.net/content/assets/videos/english WHO/${link.substr(videoPrefix.length)}.mp4`;
-     }
-  } else if (link.startsWith(richtextPrefix)) {
-    return `https://localhost${link}`; 
-  }
-  return link;
-};
 
 module.exports = {
   createVideoZip,
   extractVideoPath,
-  downloadVideo,
+  downloadVideoStream,
   isValidUrl
 };
 
@@ -1311,6 +1318,7 @@ const main2 = async (categoryId,langId) => {
       folderPath = path.join(__dirname, 'content', 'assets', 'videos', 'india');
 
     }
+    
     createFolderStructure(folderPath);
  
     const zipFilePath = path.join(folderPath, 'category-wise-video-bundle.zip');
@@ -1339,16 +1347,3 @@ const publiss2 = async (categoryId,langId) => {
 };
 
 module.exports = { main, publiss,main1, publiss1, main2, publiss2,publisher,publishModuleCategory,getModuleCategoryVersion};
-
-
-
-
-
-
-
-
-
-
-
-
-
