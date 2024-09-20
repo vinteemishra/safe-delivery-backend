@@ -692,6 +692,7 @@ pub.post("/genCertificate", async (ctx) => {
   member && member.trim() !== "" && (_member = member);
 
   uniqueId && uniqueId.trim() !== "" && (_uniqueId = uniqueId);
+  
 
   const certHeader = "This certificate is granted to";
   const certBody = "For successfully completing the MyLearning";
@@ -722,6 +723,7 @@ pub.post("/genCertificate", async (ctx) => {
 
   //Draw the certificate image from the above options and body
   let png = await httpRequestPost(options, body);
+  console.log("body.isManyataUser",body.isManyataUser);
   ctx.type = "png";
   ctx.body = png;
 });

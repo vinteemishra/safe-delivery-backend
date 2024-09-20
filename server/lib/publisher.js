@@ -33,28 +33,28 @@ import { actionCardsModel } from "../api/action-cards/action-cards.model";
 import { proceduresModel } from "../api/procedures/procedures.model";
 import { httpRequest } from "./httpUtil";
 import log from "../config/logging";
-
-
+ 
+ 
 const Parallel = require("async-parallel");
-
+ 
 import { chapterScreenKey } from "./chapters";
-
+ 
 import { docToHtml } from "./richdocument";
 import config from "../config";
-
+ 
 import ZipExporter from "./zipexporter";
 import { publishLangLegacy } from "./publisherLegacy";
 import { getModuleCategories } from "../api/module-categories/module-categories.model";
-
-const https = require('https'); 
+ 
+const https = require('https');
 const fs = require('fs');
 // const axios = require('axios');
 import path from 'path';
-
-
+ 
+ 
 export const publishIndex = (version, langs1, exporter, draft) => {
   const langs = [...langs1];
-
+ 
   const prop = draft ? "draftLastPublished" : "lastPublished";
   const index = {
     version: version,
@@ -71,26 +71,26 @@ export const publishIndex = (version, langs1, exporter, draft) => {
         hrefZip: contentURL(`${lang.id}/bundle.zip`, draft),
       })),
   };
-  
-
-
+ 
+ 
+ 
 main();
-
-
-
+ 
+ 
+ 
   // fetchContentBundle('ee722f96-fcf6-4bcf-9f4e-c5fd285eaac3', true);
   // fetchmodulecategory(true);
   // filterModulesByCategory('ee722f96-fcf6-4bcf-9f4e-c5fd285eaac3', true, 'b08c23ad-1e01-2d12-102b-ad6706e7358a');
-
-
-  
-
+ 
+ 
+ 
+ 
   return exporter("index.json", JSON.stringify(index));
 };
-
+ 
 export const publishModule = (screenMap, modul, refs) => {
   const iconAlt = `${modul.icon}_alt`;
-
+ 
   const m = {
     id: modul.key,
     version: modul.LastUpdated,
@@ -105,16 +105,16 @@ export const publishModule = (screenMap, modul, refs) => {
   };
   refs.images.add(modul.icon);
   refs.images.add(iconAlt);
-
+ 
   modul.procedures.forEach((p) => refs.procedures.add(p));
   modul.actionCards.forEach((p) => refs.actionCards.add(p));
   modul.keyLearningPoints.forEach((klp) => refs.keyLearningPoints.add(klp));
   modul.videos.forEach((v) => refs.videos.add(v));
-
+ 
   return m;
   // return exporter(`${lang.id}/modules/${module.key}.json`, JSON.stringify(m));
 };
-
+ 
 const publishModules = async (screenMap, lang, refs) => {
   const modules = await listModules(lang.id);
   const translatedModules = modules.filter((m) => m.id);
@@ -122,16 +122,16 @@ const publishModules = async (screenMap, lang, refs) => {
     publishModule(screenMap, modul, refs)
   );
 };
-
+ 
 class RichDocumentPublisher {
   constructor(model) {
     this.model = model;
   }
-
+ 
   docPath(doc) {
     return `${this.model.docTypePlural}/${doc.key}.json`;
   }
-
+ 
   publishChapter(screens, chapter, refs) {
     return {
       id: chapter.key,
@@ -139,7 +139,7 @@ class RichDocumentPublisher {
       content: docToHtml(chapter, refs),
     };
   }
-
+ 
   publishDoc(screens, doc, refs) {
     const d = {
       id: doc.key,
@@ -153,7 +153,7 @@ class RichDocumentPublisher {
     refs.images.add(doc.icon);
     return d;
   }
-
+ 
   async publishDocuments(screens, lang, docs, refs) {
     const ds = await this.model.list(lang.id);
     const referencedDocs = new Set(docs);
@@ -161,7 +161,7 @@ class RichDocumentPublisher {
     return translatedDocs.map((doc) => this.publishDoc(screens, doc, refs));
   }
 }
-
+ 
 const publishDrug = (screens, drug, refs) => {
   return {
     id: drug.key,
@@ -170,12 +170,12 @@ const publishDrug = (screens, drug, refs) => {
     content: docToHtml(drug, refs),
   };
 };
-
+ 
 const publishDrugs = async (screens, lang, refs) => {
   const ds = await listDrugs(lang.id);
   return ds.map((drug) => publishDrug(screens, drug, refs));
 };
-
+ 
 const publishOnboarding = async (lang) => {
   const onboardingScreens = await listOnboardings(lang.id);
   return Promise.all(
@@ -189,7 +189,7 @@ const publishOnboarding = async (lang) => {
     })
   );
 };
-
+ 
 const publishAnswer = (a) => {
   const result = a.result;
   const correct = result ? result === "correct" : a.correct;
@@ -199,7 +199,7 @@ const publishAnswer = (a) => {
     result: result,
   };
 };
-
+ 
 const publishQuestion = (q, refs) => {
   const d = {
     id: q.key,
@@ -214,14 +214,14 @@ const publishQuestion = (q, refs) => {
       .filter((a) => a.value.translated)
       .map((a) => publishAnswer(a)),
   };
-
+ 
   if (q.image && !refs.images.has(q.image)) {
     refs.imagesLearningPlatform.add(q.image);
   }
-
+ 
   return d;
 };
-
+ 
 const publishKLP = (klp, refs) => {
   return {
     id: klp.key,
@@ -232,20 +232,20 @@ const publishKLP = (klp, refs) => {
     questions: klp.questions.map((q) => publishQuestion(q, refs)),
   };
 };
-
+ 
 const publishKeyLearningPoints = async (lang, klps, refs) => {
   // Do nothing if Learning Platform is disabled
   if (!lang.learningPlatform) {
     return [];
   }
-
+ 
   const allKLPS = await keyLearningPointsModel.list(lang.id);
   const referencedKLPS = new Set(klps);
   const translatedKLPS = allKLPS.filter((klp) => referencedKLPS.has(klp.key));
-
+ 
   return translatedKLPS.map((klp) => publishKLP(klp, refs));
 };
-
+ 
 const publishCase = (caze, refs) => {
   const d = {
     id: caze.key,
@@ -259,10 +259,10 @@ const publishCase = (caze, refs) => {
   if (caze.image && !refs.images.has(caze.image)) {
     refs.imagesLearningPlatform.add(caze.image);
   }
-
+ 
   return d;
 };
-
+ 
 const publishCertificate = (casesMap, cert, refs) => {
   const cases = cert.cases.map((c) => publishCase(casesMap.get(c), refs));
   cases.sort((a, b) => (a.order || 1e20) - (b.order || 1e20));
@@ -277,17 +277,17 @@ const publishCertificate = (casesMap, cert, refs) => {
     cases: cases,
   };
 };
-
+ 
 const publishCertificates = async (cases, lang, refs) => {
   // Do nothing if Learning Platform is disabled
   if (!lang.learningPlatform) {
     return [];
   }
-
+ 
   const certs = await listCertificates(lang.id);
   return certs.map((cert) => publishCertificate(cases, cert, refs));
 };
-
+ 
 const publishNotifications = async (lang) => {
   const ns = await listNotifications(lang.id);
   return ns.map((n) => ({
@@ -297,7 +297,7 @@ const publishNotifications = async (lang) => {
     link: n.link,
   }));
 };
-
+ 
 const publishScreens = (screens) => {
   let m = {};
   screens.forEach((s) => {
@@ -305,35 +305,35 @@ const publishScreens = (screens) => {
   });
   return m;
 };
-
+ 
 const publishImages = async (lang, refs) => {
   const images = [...refs.images];
   const imagesLP = [...refs.imagesLearningPlatform];
   const allImages = await listImages(lang.assetVersion);
   const imageMap = new Map(allImages.map((i) => [i.key, i]));
-
+ 
   const formatImages = (imageKey) => {
     const image = imageMap.get(imageKey);
     if (!image) {
       refs.msgs.push(`Missing image '${imageKey}'`);
     }
-
+ 
     return {
       id: imageKey,
       src: image ? image.href : undefined,
       version: image ? image.lastModified : undefined,
     };
   };
-
+ 
   let imagesFormatted = images.map(formatImages).concat([...refs.thumbnails]);
   let imagesLPFormatted = imagesLP.map(formatImages);
-
+ 
   return {
     images: imagesFormatted,
     imagesLearningPlatform: imagesLPFormatted,
   };
 };
-
+ 
 const publishVideos = async (screens, refs) => {
   const videos = [...refs.videos];
   const allVideos = await listVideos();
@@ -341,7 +341,7 @@ const publishVideos = async (screens, refs) => {
   return videos.map((videoKey) => {
     const video = videoMap.get(videoKey);
     let icon = undefined;
-
+ 
     if (!video) {
       refs.msgs.push(`Missing video '${videoKey}'`);
     } else if (video.icon) {
@@ -361,7 +361,7 @@ const publishVideos = async (screens, refs) => {
     };
   });
 };
-
+ 
 const publishSection = (doc, refs) => {
   const section = {
     id: doc.section,
@@ -373,11 +373,11 @@ const publishSection = (doc, refs) => {
       content: docToHtml(chapter, refs),
     })),
   };
-
+ 
   return section;
   // return exporter(`${lang.id}/about/${doc.section}.json`, JSON.stringify(section));
 };
-
+ 
 const publishAbout = async (lang, refs) => {
   const sections = await Promise.all(
     aboutSections.map((section) => listAbout(lang.id, section))
@@ -386,7 +386,7 @@ const publishAbout = async (lang, refs) => {
   const aboutDocs = [].concat(...sections);
   return aboutDocs.map((doc) => publishSection(doc, refs));
 };
-
+ 
 async function exportImageList(lang, images, exporter, draft, zipName) {
   log.debug(`Collecting and adding images for ${zipName}`);
   const zipExporter = new ZipExporter(lang.id + "/", exporter);
@@ -406,7 +406,7 @@ async function exportImageList(lang, images, exporter, draft, zipName) {
     "application/zip"
   );
 }
-
+ 
 /**
  * This is the main function which published the language. It calls
  * all the above code collecting the various parts that make up a
@@ -424,12 +424,12 @@ const publishLang = async (version, lang, textExporter, user, draft) => {
     certificates: new Set(),
     msgs: [],
   };
-
+ 
   const videoDuration = (draft) => {
     // draft = draft || config.env == "dev";
-
+ 
     draft = false; // Always update released videos durations
-
+ 
     var options = {
       host: config.durationService.host,
       path: "/trigger?draft=" + draft,
@@ -438,12 +438,12 @@ const publishLang = async (version, lang, textExporter, user, draft) => {
     };
     return httpRequest(options);
   };
-
+ 
   // const videoDurationPromise = videoDuration(draft);
-
+ 
   const allScreens = await listScreens(lang.id);
   const allCases = await casesModel.list(lang.id, "", true);
-
+ 
   // Only publish screens not used to translate other types of content
   const screens = publishScreens(
     allScreens.filter(
@@ -455,12 +455,12 @@ const publishLang = async (version, lang, textExporter, user, draft) => {
         !s.key.includes(":")
     )
   );
-
+ 
   const screensMap = new Map(
     allScreens.map((s) => [s.key, s.translated || s.adapted])
   );
   const casesMap = new Map(allCases.map((c) => [c.key, c]));
-
+ 
   const about = await publishAbout(lang, references);
   const modules = await publishModules(screensMap, lang, references);
   const procedures = await new RichDocumentPublisher(
@@ -477,16 +477,16 @@ const publishLang = async (version, lang, textExporter, user, draft) => {
     references
   );
   const certificates = await publishCertificates(casesMap, lang, references);
-
+ 
   const videos = await publishVideos(screensMap, references);
   const { images, imagesLearningPlatform } = await publishImages(
     lang,
     references
   );
   const allImages = [...images, ...imagesLearningPlatform];
-
+ 
   const notifications = await publishNotifications(lang);
-
+ 
   const updatedLang = draft
     ? { ...lang, draftLastPublished: Date.now(), draftVersion: version }
     : { ...lang, lastPublished: Date.now(), version: version };
@@ -509,22 +509,22 @@ const publishLang = async (version, lang, textExporter, user, draft) => {
     drugs,
     onboarding,
   };
-
+ 
   if (lang.learningPlatform) {
     bundle.keyLearningPoints = keyLearningPoints;
     bundle.certificates = certificates;
   }
   log.debug("All content collected");
-
-  
+ 
+ 
   const bundleJson = JSON.stringify(bundle);
   await createBlockBlobFromBuffer(draft)(
     `${lang.id}/content-bundle.json`,
     Buffer.from(bundleJson, "utf8"),
     "application/json"
   );
-
-  
+ 
+ 
   await exportImageList(lang, images, textExporter, draft, "image-bundle");
   await exportImageList(
     lang,
@@ -533,30 +533,30 @@ const publishLang = async (version, lang, textExporter, user, draft) => {
     draft,
     "image-learning-bundle"
   );
-
+ 
   log.debug("Everything written to blob store");
-
+ 
   await videoDuration();
   log.debug("Video duration done");
-
+ 
   // Update mappings
   await runMappingsUpdate();
   log.debug("Updated mappings");
-
+ 
   // Await legacy publish language
   await publishLangLegacy(version, lang, textExporter, user, draft);
-
+ 
   return upsertLang(user, updatedLang);
 };
-
+ 
 export const unpublishLang = (lang, user) => {
   const { lastPublished, ...updatedLang } = lang;
   return upsertLang(user, updatedLang);
 };
-
+ 
 export const publisher = async (langId, ls, exporter, user, draft) => {
   // We need to keep legacy publish
-
+ 
   const langs = await ls;
   const publishPromises = langs.map((lang) => {
     const nextVersion = Math.max(lang.draftVersion || 0, lang.version || 0) + 1;
@@ -564,13 +564,13 @@ export const publisher = async (langId, ls, exporter, user, draft) => {
       ? publishLang(nextVersion, lang, exporter, user, draft)
       : Promise.resolve(lang);
   });
-
+ 
   const languages = await Promise.all(publishPromises);
   const index = await publishIndex(Date.now(), languages, exporter, draft);
-  
+ 
   return { index, languages };
 };
-
+ 
 export const unpublisher = (langId, ls, exporter, user) => {
   const publishedLangs = ls.then((langs) => {
     return Promise.all(
@@ -581,7 +581,7 @@ export const unpublisher = (langId, ls, exporter, user) => {
       })
     );
   });
-
+ 
   return Promise.all([ls, publishedLangs]).then((ps) => {
     const pubLangs = ps[1];
     return publishIndex(Date.now(), pubLangs, exporter, false).then((index) =>
@@ -592,7 +592,7 @@ export const unpublisher = (langId, ls, exporter, user) => {
     );
   });
 };
-
+ 
 export const getModuleCategoryVersion = async () => {
   const blobBuffer = await getBlockBlobToBuffer(
     "assets/module_categories.json"
@@ -600,7 +600,7 @@ export const getModuleCategoryVersion = async () => {
   const categories = JSON.parse(blobBuffer.toString());
   return categories.version;
 };
-
+ 
 export const publishModuleCategory = async (user) => {
   console.log("Received request to publish module categories: ", user);
   const moduleCategories = await getModuleCategories();
@@ -619,39 +619,39 @@ export const publishModuleCategory = async (user) => {
     "application/json"
   );
 };
-
-
-
+ 
+ 
+ 
 const contentURL1 = (path, draft) => {
   const basePath = draft ? 'localcontent' : 'release';
   return `${basePath}/${path}`;
 }
-
-
-
+ 
+ 
+ 
 const fetchContentBundle = (lang, draft) => {
   const baseURL = 'https://sdacms.blob.core.windows.net';
   const path = contentURL1(`${lang}/content-bundle.json`, draft);
   // const hrefZip= contentURL1(`${lang.id}/bundle.zip`, draft);
-
+ 
   const fullURL = `${baseURL}/${path}`;
   // const fullURL1 = `${baseURL}/${hrefZip}`;
-
-
-  console.log('Fetching content bundle from:', fullURL); 
+ 
+ 
+  console.log('Fetching content bundle from:', fullURL);
   // console.log('Fetching bundle.zip:', fullURL1); // Log the full URL for debugging
-
-
+ 
+ 
   return new Promise((resolve, reject) => {
     https.get(fullURL, (res) => {
       let data = '';
-
-      
+ 
+     
       res.on('data', (chunk) => {
         data += chunk;
       });
-
-      
+ 
+     
       res.on('end', () => {
         try {
           const jsonData = JSON.parse(data);
@@ -667,24 +667,24 @@ const fetchContentBundle = (lang, draft) => {
     });
   });
 };
-
+ 
 const fetchModuleCategory = (draft) => {
   const baseURL = 'https://sdacms.blob.core.windows.net';
   const path = contentURL1('assets/module_categories.json', draft);
   const fullURL = `${baseURL}/${path}`;
-
-  console.log('Fetching module categories from:', fullURL); 
-
+ 
+  console.log('Fetching module categories from:', fullURL);
+ 
   return new Promise((resolve, reject) => {
     https.get(fullURL, (res) => {
       let data = '';
-
-      
+ 
+     
       res.on('data', (chunk) => {
         data += chunk;
       });
-
-      
+ 
+     
       res.on('end', () => {
         try {
           const jsonData = JSON.parse(data);
@@ -700,76 +700,97 @@ const fetchModuleCategory = (draft) => {
     });
   });
 };
-
+ 
 // const categoryId = 'b08c23ad-1e01-2d12-102b-ad6706e7358a';
-
+ 
 const filterModulesByCategory = async (lang, draft, categoryId) => {
   try {
-    
-    
+   
+   
     const moduleCategories = await fetchModuleCategory(draft);
     console.log("hiii",categoryId);
-
-    
+ 
+   
     const category = moduleCategories.categories.find(cat => cat.id === categoryId);
-
+ 
     if (!category) {
       console.error('Category not found');
       return null;
     }
-
+ 
     console.log('Found Category:', category);
-
-    
+ 
+   
     const contentBundle = await fetchContentBundle(lang, draft);
-
-    
+ 
+   
     if (!contentBundle.modules) {
       console.error('Content bundle does not contain a "modules" property.');
       return null;
     }
-
-    
+ 
+   
     const filteredModules = contentBundle.modules.filter(module => {
       return category.modules.includes(module.id);
     });
-
+ 
     filteredModules.forEach(module => {
       module.actionCardDetails = module.actionCards.map(actionCardId => {
         return contentBundle.actionCards.find(card => card.id === actionCardId);
       });
-
+ 
       module.drugDetails = module.drugs.map(drugId => {
         return contentBundle.drugs.find(drug => drug.id === drugId);
       });
-
+ 
       module.procedureDetails = module.procedures.map(procedureId => {
         return contentBundle.procedures.find(procedure => procedure.id === procedureId);
       });
-
+ 
       module.keyLearningPointDetails = module.keyLearningPoints.map(pointId => {
         return contentBundle.keyLearningPoints.find(point => point.id === pointId);
       });
-
+ 
       module.videoDetails = module.videos.map(videoId => {
         return contentBundle.videos.find(video => video.id === videoId);
       });
     });
-
-    return { category, modules: filteredModules };
+ 
+    const images_alt = [];
+ 
+// Define the prefix you want to remove
+const prefix = "/localcontent/assets/images/india";
+ 
+// Collect images from content bundle that end with '_alt.png'
+if (contentBundle.images) {
+  contentBundle.images.forEach(imageDetail => {
+    if (imageDetail && imageDetail.src) { // Check if imageDetail and imageDetail.src are defined
+      let imagePath = imageDetail.src;
+      if (imagePath.endsWith('_alt.png')) {
+        // Remove the unwanted prefix from the image path
+        imagePath = imagePath.replace(prefix, '');
+        images_alt.push(imagePath);
+        console.log('Found image from content-bundle:', imagePath);
+      }
+    }
+  });
+}
+ 
+ 
+    return { category, modules: filteredModules,images_alt };
   } catch (error) {
     console.error('Error filtering modules by category:', error);
     return null;
   }
 };
-
-
+ 
+ 
 const JSZip = require('jszip');
-
-
+ 
+ 
 const downloadImage = (relativePath, langId, timeoutDuration = 30000, retries = 3) => {
   let baseUrl;
-
+ 
   if (relativePath.includes('videos')) {
     console.log("url with video found");
     baseUrl = 'https://sdacms.blob.core.windows.net/content/assets/';
@@ -782,34 +803,34 @@ const downloadImage = (relativePath, langId, timeoutDuration = 30000, retries = 
       baseUrl = 'https://sdacms.blob.core.windows.net/content/assets/images/africa';
     }
   }
-
+ 
   const imageUrl = `${baseUrl}${relativePath}`;
   console.log(imageUrl);
-
+ 
   return new Promise((resolve, reject) => {
     const attemptDownload = (attempt) => {
       const request = https.get(imageUrl, (response) => {
         if (response.statusCode !== 200) {
           if (response.statusCode === 404) {
             console.log(`Image not found: ${imageUrl}`);
-            resolve(null); 
+            resolve(null);
           } else {
             reject(new Error(`Failed to download image ${imageUrl}: Status code ${response.statusCode}`));
           }
           return;
         }
-
+ 
         let data = [];
         response.on('data', (chunk) => {
           data.push(chunk);
         });
-
+ 
         response.on('end', () => {
           resolve(Buffer.concat(data));
         });
       }).on('error', (err) => {
         if (attempt < retries) {
-          const delay = Math.pow(2, attempt) * 1000; 
+          const delay = Math.pow(2, attempt) * 1000;
           console.log(`Attempt ${attempt} failed. Retrying in ${delay} ms...`);
           setTimeout(() => attemptDownload(attempt + 1), delay);
         } else {
@@ -817,11 +838,11 @@ const downloadImage = (relativePath, langId, timeoutDuration = 30000, retries = 
           reject(err);
         }
       });
-
+ 
       request.setTimeout(timeoutDuration, () => {
         request.abort();
         if (attempt < retries) {
-          const delay = Math.pow(2, attempt) * 1000; 
+          const delay = Math.pow(2, attempt) * 1000;
           console.log(`Download timed out for image ${imageUrl}. Retrying in ${delay} ms...`);
           setTimeout(() => attemptDownload(attempt + 1), delay);
         } else {
@@ -829,20 +850,21 @@ const downloadImage = (relativePath, langId, timeoutDuration = 30000, retries = 
         }
       });
     };
-
+ 
     attemptDownload(1);
   });
 };
-
+ 
 const createImageZip = async (contentFilePath, zipFilePath, langId) => {
   try {
     const content = JSON.parse(fs.readFileSync(contentFilePath, 'utf-8'));
     const modules = content.module || [];
-    
+   
+   
     const categoryIcon = content.category ? content.category.icon : undefined;
-    
+   
     const images = [];
-
+ 
     if (categoryIcon) {
       let iconPath = categoryIcon;
       if (!iconPath.endsWith('.png')) {
@@ -851,10 +873,10 @@ const createImageZip = async (contentFilePath, zipFilePath, langId) => {
       images.push(iconPath);
       console.log('Found category icon:', iconPath);
     }
-
+ 
     modules.forEach(module => {
       console.log('Processing module:', module.moduleId);
-
+ 
       if (module.icon) {
        
             let iconPath = module.icon;
@@ -864,7 +886,7 @@ const createImageZip = async (contentFilePath, zipFilePath, langId) => {
             images.push(iconPath);
             console.log('Found action card image:', iconPath);
           }
-      
+     
       if (module.actionCardDetails) {
         module.actionCardDetails.forEach(card => {
           if (card && card.icon) {
@@ -877,9 +899,21 @@ const createImageZip = async (contentFilePath, zipFilePath, langId) => {
           }
         });
       }
-
+ 
+      if (module.images_alt) {
+        module.images_alt.forEach(im => {
+          if (im ) {
+            let img = im;
+           
+            images.push(img);
+            console.log('Found _ alt image:', img);
+          }
+        });
+      }
+ 
+ 
       if (module.videoDetails) {
-        
+       
         module.videoDetails.forEach(video => {
           if (video && video.id) {
             let thumbnailPath = video.id;
@@ -887,14 +921,14 @@ const createImageZip = async (contentFilePath, zipFilePath, langId) => {
               thumbnailPath += '.png';
             }
             images.push(`videos${thumbnailPath}`);
-
+ 
             // images.push(thumbnailPath);
             console.log('Found video thumbnail:', thumbnailPath);
             console.log(`/videos${thumbnailPath}`);
           }
         });
       }
-
+ 
       if (module.procedureDetails) {
         module.procedureDetails.forEach(procedure => {
           if (procedure && procedure.icon) {
@@ -922,7 +956,7 @@ const createImageZip = async (contentFilePath, zipFilePath, langId) => {
           }
         });
       }
-
+ 
       if (module.keyLearningPointDetails) {
         module.keyLearningPointDetails.forEach(point => {
           if (point && point.questions) {
@@ -940,12 +974,12 @@ const createImageZip = async (contentFilePath, zipFilePath, langId) => {
         });
       }
     });
-
+ 
     if (images.length === 0) {
       console.log('No images found in the content.');
     }
     console.log("No of images",images.length);
-
+ 
     const zip = new JSZip();
     const downloadPromises = images.map(async (imageUrl) => {
       if (imageUrl.includes('videos')) {
@@ -956,11 +990,11 @@ const createImageZip = async (contentFilePath, zipFilePath, langId) => {
         if (imageData) {
           const imageName = imageUrl.split('/').pop();
           if(langId=='ee722f96-fcf6-4bcf-9f4e-c5fd285eaac3'||langId=='22118d52-0d78-431d-b1ba-545ee63017ca'){
-            zip.file(`content/assets/images/india/${imageName}`, imageData, { binary: true }); 
-
+            zip.file(`content/assets/images/india/${imageName}`, imageData, { binary: true });
+ 
           }else{
-            zip.file(`content/assets/images/africa/${imageName}`, imageData, { binary: true }); 
-
+            zip.file(`content/assets/images/africa/${imageName}`, imageData, { binary: true });
+ 
           }
           // zip.file(imageName, imageData, { binary: true });
         }
@@ -968,9 +1002,9 @@ const createImageZip = async (contentFilePath, zipFilePath, langId) => {
         console.error(`Error downloading or adding image ${imageUrl} to zip:`, error);
       }
     });
-
+ 
     await Promise.all(downloadPromises);
-
+ 
     const zipContent = await zip.generateAsync({ type: 'nodebuffer' });
     fs.writeFileSync(zipFilePath, zipContent);
     console.log('Zip file created successfully:', zipFilePath);
@@ -979,14 +1013,26 @@ const createImageZip = async (contentFilePath, zipFilePath, langId) => {
     console.error('Error creating image zip:', error);
   }
 };
-
+ 
 module.exports = {
   createImageZip,
   downloadImage,
 };
-
-
+ 
+ 
 const { URL } = require('url');
+ 
+function isValidUrl(urlString) {
+  try {
+    new URL(urlString);
+    return true;
+  } catch (err) {
+    return false;
+  }
+}
+ 
+ 
+const { PassThrough } = require('stream');
 
 function isValidUrl(urlString) {
   try {
@@ -998,13 +1044,14 @@ function isValidUrl(urlString) {
 }
 
 
-const { PassThrough } = require('stream');
-
-
-
-// Stream-based download
 const downloadVideoStream = (videoUrl) => {
+  if (videoUrl.toLowerCase().includes('richtext')) {
+    console.log(`Skipping richtext URL: ${videoUrl}`);
+    return Promise.resolve(null);
+  }
+
   console.log('Downloading video:', videoUrl);
+
   return new Promise((resolve, reject) => {
     if (!isValidUrl(videoUrl)) {
       return reject(new Error(`Invalid URL: ${videoUrl}`));
@@ -1030,29 +1077,32 @@ const downloadVideoStream = (videoUrl) => {
   });
 };
 
+// Extract video path based on language
 const extractVideoPath = (link, lang) => {
   const videoPrefix = 'video:/';
   const richtextPrefix = '/richtext/';
+  const baseURL = 'https://sdacms.blob.core.windows.net';
+
   if (link.startsWith(videoPrefix)) {
     switch (lang) {
       case 'ee722f96-fcf6-4bcf-9f4e-c5fd285eaac3':
-        return `https://sdacms.blob.core.windows.net/content/assets/videos/India english/${link.substr(videoPrefix.length)}.mp4`;
+        return `${baseURL}/content/assets/videos/India english/${link.substr(videoPrefix.length)}.mp4`;
       case '22118d52-0d78-431d-b1ba-545ee63017ca':
-        return `https://sdacms.blob.core.windows.net/content/assets/videos/India/${link.substr(videoPrefix.length)}.mp4`;
+        return `${baseURL}/content/assets/videos/India/${link.substr(videoPrefix.length)}.mp4`;
       case 'da5137d1-8492-4312-b444-8e4d4949a3c7':
-        return `https://sdacms.blob.core.windows.net/content/assets/videos/french/${link.substr(videoPrefix.length)}.mp4`;
+        return `${baseURL}/content/assets/videos/french/${link.substr(videoPrefix.length)}.mp4`;
       case 'dc40648b-0a77-446b-b11b-e0aa17aed697':
-        return `https://sdacms.blob.core.windows.net/content/assets/videos/ethiopia somali/${link.substr(videoPrefix.length)}.mp4`;
+        return `${baseURL}/content/assets/videos/ethiopia somali/${link.substr(videoPrefix.length)}.mp4`;
       default:
-        return `https://sdacms.blob.core.windows.net/content/assets/videos/english WHO/${link.substr(videoPrefix.length)}.mp4`;
+        return `${baseURL}/content/assets/videos/english WHO/${link.substr(videoPrefix.length)}.mp4`;
     }
   } else if (link.startsWith(richtextPrefix)) {
-    return `https://sdacms.blob.core.windows.net${link}`; // Replace with the actual base URL
+    return `${baseURL}${link}`;
   }
   return link;
 };
 
-// Limiting concurrent downloads
+// Semaphore for limiting concurrent downloads
 const concurrentLimit = 5;
 const semaphore = (max) => {
   let count = 0;
@@ -1082,19 +1132,30 @@ const semaphore = (max) => {
 
 const downloadSemaphore = semaphore(concurrentLimit);
 
+
 const createVideoZip = async (contentFilePath, zipFilePath, lang) => {
   try {
     const content = JSON.parse(fs.readFileSync(contentFilePath, 'utf-8'));
     const modules = content.module || [];
 
-    const videos = [];
+    const videos = new Map(); 
+
     modules.forEach(module => {
       console.log('Processing module:', module.moduleId);
 
       const addVideoToQueue = (videoPath) => {
-        videos.push({ videoPath, moduleId: module.moduleId });
+        const videoName = `${module.moduleId}_${videoPath.split('/').pop()}`;
+        const validProtocols = ['http:', 'https:'];
+        const url = new URL(videoPath, `https://sdacms.blob.core.windows.net`);
+
+        if (validProtocols.includes(url.protocol) && !videos.has(videoName)) {
+          videos.set(videoName, { videoPath: url.href, moduleId: module.moduleId });
+        } else {
+          console.log(`Invalid or unsupported URL skipped: ${videoPath}`);
+        }
       };
 
+      // Process actionCardDetails
       if (module.actionCardDetails) {
         module.actionCardDetails.forEach(card => {
           if (card && card.link) {
@@ -1105,6 +1166,7 @@ const createVideoZip = async (contentFilePath, zipFilePath, lang) => {
         });
       }
 
+      // Process videoDetails
       if (module.videoDetails) {
         module.videoDetails.forEach(video => {
           if (video && video.link) {
@@ -1115,6 +1177,7 @@ const createVideoZip = async (contentFilePath, zipFilePath, lang) => {
         });
       }
 
+      
       if (module.procedureDetails) {
         module.procedureDetails.forEach(procedure => {
           if (procedure && procedure.link) {
@@ -1137,6 +1200,7 @@ const createVideoZip = async (contentFilePath, zipFilePath, lang) => {
         });
       }
 
+      
       if (module.keyLearningPointDetails) {
         module.keyLearningPointDetails.forEach(point => {
           if (point && point.questions) {
@@ -1152,14 +1216,14 @@ const createVideoZip = async (contentFilePath, zipFilePath, lang) => {
       }
     });
 
-    if (videos.length === 0) {
-      console.log('No videos found in the content.');
+    if (videos.size === 0) {
+      console.log('No valid videos found in the content.');
       return;
     }
 
     const zip = new JSZip();
 
-    const downloadPromises = videos.map(async ({ videoPath, moduleId }) => {
+    const downloadPromises = Array.from(videos.values()).map(async ({ videoPath, moduleId }) => {
       const release = await downloadSemaphore.acquire();
       try {
         const videoStream = await downloadVideoStream(videoPath);
@@ -1191,22 +1255,24 @@ const createVideoZip = async (contentFilePath, zipFilePath, lang) => {
 
 
 
-
+ 
+ 
+ 
 module.exports = {
   createVideoZip,
   extractVideoPath,
   downloadVideoStream,
   isValidUrl
 };
-
-
+ 
+ 
 const main = async (categoryId,langId) => {
   // const lang = 'ee722f96-fcf6-4bcf-9f4e-c5fd285eaac3';
   const lang=langId;
   const draft = true;
-
+ 
   const result = await filterModulesByCategory(lang, draft, categoryId);
-
+ 
   if (result) {
     const output = {
       category: result.category,
@@ -1221,31 +1287,31 @@ const main = async (categoryId,langId) => {
         videoDetails: module.videoDetails
       }))
     };
-
+ 
     const fileName = 'content_bundle_module_category.json';
     fs.writeFileSync(fileName, JSON.stringify(output, null, 2), 'utf-8');
     console.log('The details have been written to content_bundle_module_category.json');
-
-    
+ 
+   
     // await createImageZip(fileName, 'category-wise-image-bundle1.zip');
     return fileName;
   }
 };
-
+ 
 const createFolderStructure = (folderPath) => {
   if (!fs.existsSync(folderPath)) {
     fs.mkdirSync(folderPath, { recursive: true });
     console.log(`Created folder structure: ${folderPath}`);
   }
 };
-
+ 
 const main1 = async (categoryId,langId) => {
   // const lang = 'ee722f96-fcf6-4bcf-9f4e-c5fd285eaac3';
   const lang=langId;
   const draft = true;
-
+ 
   const result = await filterModulesByCategory(lang, draft, categoryId);
-
+ 
   if (result) {
     const output = {
       category: result.category,
@@ -1256,7 +1322,8 @@ const main1 = async (categoryId,langId) => {
         drugDetails: module.drugDetails,
         procedureDetails: module.procedureDetails,
         keyLearningPointDetails: module.keyLearningPointDetails,
-        videoDetails: module.videoDetails
+        videoDetails: module.videoDetails,
+        images_alt:result.images_alt
       }))
     };
     let folderPath='';
@@ -1266,33 +1333,33 @@ const main1 = async (categoryId,langId) => {
     // const folderPath = path.join(__dirname, 'content', 'assets', 'images', 'india');
     if(lang=='da5137d1-8492-4312-b444-8e4d4949a3c7'){
       folderPath = path.join(__dirname, 'content', 'assets', 'images', 'africa');
-
+ 
     }else{
       folderPath = path.join(__dirname, 'content', 'assets', 'images', 'india');
-
+ 
     }
     createFolderStructure(folderPath);
  
     const zipFilePath = path.join(folderPath, 'sda-category-wise-image-bundle3.zip');
     const zipfile = await createImageZip(fileName, zipFilePath, langId);
     return zipfile;
-
-    
+ 
+   
     // const zipfile=await createImageZip(fileName, 'sda-category-wise-image-bundle.zip',langId);
     // return zipfile;
   }
 };
-
-
+ 
+ 
 const main2 = async (categoryId,langId) => {
   console.log("main22");
-  
+ 
   // const lang = 'ee722f96-fcf6-4bcf-9f4e-c5fd285eaac3';
   const lang=langId;
   const draft = true;
-
+ 
   const result = await filterModulesByCategory(lang, draft, categoryId);
-
+ 
   if (result) {
     const output = {
       category: result.category,
@@ -1313,19 +1380,19 @@ const main2 = async (categoryId,langId) => {
     console.log('The details have been written to content_bundle_module_category.json');
     if(lang=='da5137d1-8492-4312-b444-8e4d4949a3c7'){
       folderPath = path.join(__dirname, 'content', 'assets', 'videos', 'africa');
-
+ 
     }else{
       folderPath = path.join(__dirname, 'content', 'assets', 'videos', 'india');
-
+ 
     }
-    
+ 
     createFolderStructure(folderPath);
  
     const zipFilePath = path.join(folderPath, 'category-wise-video-bundle.zip');
     const zipfile = await createVideoZip(fileName, zipFilePath, langId);
     return zipfile;
-
-    
+ 
+   
     // const zipfile=await createVideoZip(fileName, 'category-wise-video-bundle.zip',lang);
     // return zipfile;
   }
@@ -1334,16 +1401,18 @@ const publiss = async (categoryId,langId) => {
   const filename = await main(categoryId,langId);
   return filename;
 };
-
+ 
 const publiss1 = async (categoryId,langId) => {
   const filename = await main1(categoryId,langId);
   return filename;
 };
-
+ 
 const publiss2 = async (categoryId,langId) => {
   console.log("test11");
   const filename = await main2(categoryId,langId);
   return filename;
 };
-
+ 
 module.exports = { main, publiss,main1, publiss1, main2, publiss2,publisher,publishModuleCategory,getModuleCategoryVersion};
+ 
+ 

@@ -264,7 +264,7 @@ export const ZipvideosByCategory = async (ctx, next) => {
   try {
     // const categoryId = ctx.params.id; 
     
-    const { id: categoryId, langId } = ctx.params;
+    const { id: categoryId, langId} = ctx.params;
 
 
     const draft = ctx.query.draft === 'true'; 
