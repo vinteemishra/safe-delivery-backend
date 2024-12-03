@@ -853,6 +853,7 @@ pub.post("/shareCertificate", async (ctx) => {
 
   //Draw the certificate image from the above options and body
   let png = await httpRequestPost(options, body);
+  console.log("png",png);
 
   // Potentially share with third parties
   await shareWithThirdParties(country, _member, uniqueId, png);

@@ -554,7 +554,7 @@ export const unpublishLang = (lang, user) => {
   return upsertLang(user, updatedLang);
 };
  
-export const publisher = async (langId, ls, exporter, user, draft) => {
+export const publisher = async (langId, ls, exporter, user, draft) => { 
   // We need to keep legacy publish
  
   const langs = await ls;
